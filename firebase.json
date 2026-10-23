@@ -1,5 +1,9 @@
 {
+  "database": {
+    "rules": "database.rules.json"
+  },
   "hosting": {
+    "site": "hyejeong-class-planner",
     "public": "hosting",
     "ignore": [
       "firebase.json",

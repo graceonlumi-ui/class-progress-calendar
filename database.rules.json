@@ -1,0 +1,26 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      ".read": true,
+      ".write": "auth != null && auth.token.email == 'admin@example.com'"
+    },
+    "session": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "events": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "loginRequests": {
+      ".read": true,
+      ".write": true
+    },
+    "timetable_progress": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}
