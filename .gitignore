@@ -1,0 +1,5 @@
+node_modules/
+data/widget.pid
+data/recovered_from_chrome.json
+*.lnk
+.firebase/
