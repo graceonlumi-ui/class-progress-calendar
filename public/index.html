@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>학급알리미 - 교실 전자칠판</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- QRCode CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen p-4 xl:p-6 flex flex-col justify-between overflow-hidden select-none">
+
+  <!-- ==================== TOP HEADER ==================== -->
+  <header class="glass-panel rounded-2xl p-4 xl:px-6 xl:py-4 mb-4 flex items-center justify-between border border-slate-700/60 shadow-2xl">
+    <!-- 좌측: 학교명 & 학급 정보 -->
+    <div class="flex items-center space-x-4">
+      <div class="w-12 h-12 xl:w-14 xl:h-14 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20">
+        <i data-lucide="sparkles" class="w-7 h-7 text-white"></i>
+      </div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <h1 id="classTitle" class="text-2xl xl:text-3xl font-black tracking-tight text-white">
+            서운중학교 <span class="text-sky-400">2학년 2반</span>
+          </h1>
+          <span class="bg-sky-500/20 text-sky-300 text-xs font-bold px-2.5 py-1 rounded-full border border-sky-500/40">
+            학급알리미
+          </span>
+        </div>
+        <p id="classGreeting" class="text-slate-400 text-sm font-medium mt-0.5">
+          2학년 2반 오늘도 활기차게 시작해요! ✨
+        </p>
+      </div>
+    </div>
+
+    <!-- 중앙: 실시간 시계 & 날짜 -->
+    <div class="flex items-center space-x-6">
+      <div class="text-center">
+        <div id="currentTime" class="text-4xl xl:text-5xl font-extrabold tracking-tight font-mono text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-300 to-teal-300">
+          --:--:--
+        </div>
+        <div id="currentDate" class="text-sm xl:text-base font-semibold text-slate-300 tracking-wide mt-0.5">
+          ----년 --월 --일 (-)
+        </div>
+      </div>
+    </div>
+
+    <!-- 우측: D-Day & 액션 버튼 -->
+    <div class="flex items-center space-x-3">
+      <!-- D-Day 뱃지 목록 -->
+      <div id="ddayContainer" class="flex items-center space-x-2 mr-2">
+        <!-- JS로 동적 렌더링 -->
+      </div>
+
+      <!-- 원격 접속 QR코드 버튼 -->
+      <button id="btnQrCode" class="p-2.5 xl:p-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition border border-slate-700" title="선생님 폰 접속 QR">
+        <i data-lucide="qr-code" class="w-5 h-5"></i>
+      </button>
+
+      <!-- 전체화면 토글 버튼 (F11) -->
+      <button id="btnFullscreen" class="p-2.5 xl:p-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition border border-slate-700" title="전체화면 (F11)">
+        <i data-lucide="maximize" class="w-5 h-5"></i>
+      </button>
+
+      <!-- 관리자 바로가기 -->
+      <a href="/admin" target="_blank" class="flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition shadow-md shadow-indigo-600/30">
+        <i data-lucide="settings" class="w-4 h-4"></i>
+        <span>선생님 관리</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT (4 SECTIONS GRID) ==================== -->
+  <main class="grid grid-cols-12 gap-4 xl:gap-5 flex-1 min-h-0">
+    
+    <!-- 1. 시간표 영역 (좌측 상단, col-span-7) -->
+    <section class="col-span-7 glass-panel rounded-2xl p-4 xl:p-5 flex flex-col justify-between border border-slate-800 shadow-xl relative overflow-hidden">
+      <!-- 헤더 -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center border border-sky-500/30">
+            <i data-lucide="calendar" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h2 class="text-lg xl:text-xl font-bold text-white flex items-center space-x-2">
+              <span>오늘의 시간표</span>
+              <span id="timetableDayBadge" class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-md border border-slate-700">오늘</span>
+            </h2>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-2">
+          <span id="timetableLiveBadge" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+            컴시간 실시간 연동
+          </span>
+          <button id="btnRefreshTimetable" class="text-slate-400 hover:text-white transition p-1" title="새로고침">
+            <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 시간표 타임라인 리스트 (가로 7~8개 카드) -->
+      <div id="timetableGrid" class="grid grid-cols-7 gap-2 xl:gap-3 flex-1 items-stretch py-1">
+        <!-- JS로 동적 렌더링 -->
+        <div class="col-span-7 flex items-center justify-center text-slate-500">
+          <i data-lucide="loader" class="w-6 h-6 animate-spin mr-2"></i> 시간표를 불러오는 중...
+        </div>
+      </div>
+
+      <!-- 시간표 하단 알림 및 상태 안내 -->
+      <div id="timetableNoticeBar" class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+        <span class="flex items-center space-x-1.5">
+          <i data-lucide="info" class="w-4 h-4 text-amber-400"></i>
+          <span>노란색 카드는 <strong>변경된 시간표</strong>(결강/교체)입니다.</span>
+        </span>
+        <span id="currentPeriodIndicator" class="font-medium text-sky-400">
+          현재 일과 진행 중
+        </span>
+      </div>
+    </section>
+
+    <!-- 2. 오늘의 급식 영역 (우측 상단, col-span-5) -->
+    <section class="col-span-5 glass-panel rounded-2xl p-4 xl:p-5 flex flex-col justify-between border border-slate-800 shadow-xl relative overflow-hidden">
+      <!-- 헤더 -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/30">
+            <i data-lucide="utensils" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h2 class="text-lg xl:text-xl font-bold text-white flex items-center space-x-2">
+              <span>오늘의 급식</span>
+              <span id="mealTypeBadge" class="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-md border border-amber-500/30 font-semibold">중식</span>
+            </h2>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-2">
+          <span id="mealCaloriesBadge" class="text-xs text-slate-400 bg-slate-800 px-2.5 py-1 rounded-lg border border-slate-700/80">
+            -- Kcal
+          </span>
+          <button id="btnRefreshMeal" class="text-slate-400 hover:text-white transition p-1" title="새로고침">
+            <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 급식 메뉴 리스트 -->
+      <div id="mealContainer" class="flex-1 flex flex-col justify-center overflow-y-auto pr-1">
+        <!-- JS로 동적 렌더링 -->
+        <div class="text-center text-slate-500 py-6">
+          <i data-lucide="loader" class="w-6 h-6 animate-spin mx-auto mb-2"></i>
+          오늘의 맛있는 급식을 조회하고 있어요...
+        </div>
+      </div>
+
+      <!-- 급식 하단 알레르기 안내 -->
+      <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+        <span class="truncate">
+          <i data-lucide="shield-alert" class="w-3.5 h-3.5 inline mr-1 text-slate-400"></i>
+          알레르기 식품 번호는 메뉴 옆 괄호 표시
+        </span>
+        <span class="text-slate-500 text-[11px]">나이스(NEIS) 연동</span>
+      </div>
+    </section>
+
+    <!-- 3. 담임교사 전달사항 영역 (좌측 하단, col-span-7) -->
+    <section class="col-span-7 glass-panel rounded-2xl p-4 xl:p-5 flex flex-col justify-between border border-slate-800 shadow-xl relative overflow-hidden">
+      <!-- 헤더 -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30">
+            <i data-lucide="megaphone" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h2 class="text-lg xl:text-xl font-bold text-white flex items-center space-x-2">
+              <span>담임선생님 전달사항</span>
+              <span id="noticeCountBadge" class="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/40">
+                0건
+              </span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <span class="text-xs text-slate-400 bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-700/60 flex items-center space-x-1">
+            <i data-lucide="smartphone" class="w-3.5 h-3.5 text-sky-400"></i>
+            <span>선생님 폰으로 실시간 반영 중</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- 전달사항 카드 그리드 (스크롤 가능) -->
+      <div id="noticeContainer" class="flex-1 grid grid-cols-2 gap-3 overflow-y-auto pr-1">
+        <!-- JS로 동적 렌더링 -->
+      </div>
+
+      <!-- 전달사항 푸터 -->
+      <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+        <span class="flex items-center space-x-1">
+          <i data-lucide="bell" class="w-3.5 h-3.5 text-rose-400"></i>
+          <span>새로운 공지가 등록되면 자동으로 화면에 갱신됩니다.</span>
+        </span>
+        <span class="text-slate-500">실시간 동기화 ON</span>
+      </div>
+    </section>
+
+    <!-- 4. 오늘의 청소 당번 영역 (우측 하단, col-span-5) -->
+    <section class="col-span-5 glass-panel rounded-2xl p-4 xl:p-5 flex flex-col justify-between border border-slate-800 shadow-xl relative overflow-hidden">
+      <!-- 헤더 -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+            <i data-lucide="sparkle" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h2 class="text-lg xl:text-xl font-bold text-white flex items-center space-x-2">
+              <span>오늘의 청소 당번</span>
+              <span id="cleaningModeBadge" class="text-xs px-2 py-0.5 rounded-md font-semibold border">
+                요일 기본 순환
+              </span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <span id="cleaningDayBadge" class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded-md border border-slate-700">
+            -요일 당번
+          </span>
+        </div>
+      </div>
+
+      <!-- 청소 구역 카드 리스트 -->
+      <div id="cleaningContainer" class="flex-1 grid grid-cols-2 gap-2.5 overflow-y-auto pr-1 content-center">
+        <!-- JS로 동적 렌더링 -->
+      </div>
+
+      <!-- 청소 푸터 -->
+      <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+        <span class="flex items-center space-x-1">
+          <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span>청소 후 담임선생님께 확인받기!</span>
+        </span>
+        <span class="text-slate-500">깨끗한 교실 함께 만들어요 ✨</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== 교실 대형 타이머 모달 (오버레이) ==================== -->
+  <div id="timerModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center hidden">
+    <div class="glass-panel border-2 border-sky-500/60 rounded-3xl p-8 xl:p-12 max-w-xl w-full text-center shadow-2xl relative animate-slide-in">
+      <button id="btnCloseTimer" class="absolute top-6 right-6 text-slate-400 hover:text-white transition p-2">
+        <i data-lucide="x" class="w-8 h-8"></i>
+      </button>
+
+      <div class="inline-flex items-center space-x-2 bg-sky-500/20 text-sky-300 px-4 py-1.5 rounded-full border border-sky-500/40 text-sm font-bold mb-4">
+        <i data-lucide="timer" class="w-4 h-4 animate-spin"></i>
+        <span id="timerLabel">교실 집중 활동 타이머</span>
+      </div>
+
+      <div id="timerDisplay" class="text-8xl xl:text-9xl font-black font-mono tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-300 to-teal-300 my-6">
+        05:00
+      </div>
+
+      <div class="flex items-center justify-center space-x-4">
+        <button id="btnPauseResumeTimer" class="px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-lg transition shadow-lg shadow-indigo-600/40">
+          일시정지
+        </button>
+        <button id="btnResetTimer" class="px-6 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-lg transition border border-slate-700">
+          타이머 종료
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 긴급 알림 전체화면 배너 (오버레이) ==================== -->
+  <div id="urgentAlertModal" class="fixed inset-0 bg-rose-950/90 backdrop-blur-lg z-50 flex items-center justify-center hidden">
+    <div class="glass-panel border-2 border-rose-500 rounded-3xl p-8 xl:p-12 max-w-2xl w-full text-center shadow-2xl relative animate-slide-in">
+      <div class="w-20 h-20 mx-auto rounded-full bg-rose-500/30 flex items-center justify-center text-rose-400 mb-6 border border-rose-500/50 animate-bounce">
+        <i data-lucide="alert-triangle" class="w-12 h-12"></i>
+      </div>
+      <h2 id="urgentAlertTitle" class="text-3xl xl:text-4xl font-black text-white mb-4">
+        담임선생님 긴급 알림
+      </h2>
+      <p id="urgentAlertSub" class="text-rose-200 text-xl font-medium leading-relaxed mb-8">
+        모두 자리에 조용히 착석해 주세요.
+      </p>
+      <button id="btnCloseUrgentAlert" class="px-8 py-3.5 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-lg transition shadow-lg shadow-rose-600/40">
+        확인했습니다
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== 스마트폰 접속 QR 모달 ==================== -->
+  <div id="qrModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+    <div class="glass-panel border border-slate-700 rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl relative animate-slide-in">
+      <button id="btnCloseQr" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="w-12 h-12 mx-auto rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center mb-3">
+        <i data-lucide="smartphone" class="w-6 h-6"></i>
+      </div>
+      <h3 class="text-xl font-bold text-white mb-1">선생님 모바일 관리 접속</h3>
+      <p class="text-xs text-slate-400 mb-5">스마트폰 카메라로 QR 코드를 스캔하세요</p>
+
+      <div class="bg-white p-4 rounded-2xl inline-block mx-auto mb-4 shadow-inner" id="qrcode"></div>
+
+      <div class="text-xs text-slate-400 break-all bg-slate-900/80 p-2.5 rounded-xl border border-slate-800" id="qrUrlText">
+        http://...
+      </div>
+    </div>
+  </div>
+
+  <!-- 스크립트 로드 -->
+  <script src="/js/board.js"></script>
+</body>
+</html>

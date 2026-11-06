@@ -2,32 +2,40 @@
   "syllabus": {
     "1": [
       {
-        "category": "평가",
-        "title": "수행평가(1) 포스터 제작"
-      },
-      {
-        "category": "수업",
-        "title": "1) 인공지능 개념"
-      },
-      {
         "category": "수업",
         "title": "2) 이미지 학습 : 동물 분류"
       },
       {
         "category": "수업",
-        "title": "3) 이미지 학습 : 산불 감지, 안전 계단"
+        "title": "3) 이미지 학습 : 산불 감지"
       },
       {
         "category": "수업",
-        "title": "4) 사운드 학습"
+        "title": "4) 이미지 학습 : 안전한 계단, 손동작 인식(캠코더)"
       },
       {
         "category": "수업",
-        "title": "5) 모션 학습"
+        "title": "5) 사운드 학습"
+      },
+      {
+        "category": "수업",
+        "title": "6) 모션 학습"
       },
       {
         "category": "평가",
         "title": "수행평가(2) AI 모델"
+      },
+      {
+        "category": "기타",
+        "title": "자습"
+      },
+      {
+        "category": "기타",
+        "title": "7) 타자배틀"
+      },
+      {
+        "category": "수업",
+        "title": "8) 스프레스시트 기초"
       }
     ],
     "2": [
@@ -38,10 +46,6 @@
       {
         "category": "수업",
         "title": "2-6) 데이터분석(4) : 대기오염"
-      },
-      {
-        "category": "평가",
-        "title": "수행평가(1) 데이터분석"
       },
       {
         "category": "수업",
@@ -62,6 +66,18 @@
       {
         "category": "평가",
         "title": "수행평가(2) AI 모델"
+      },
+      {
+        "category": "평가",
+        "title": "수행평가(1) 데이터분석"
+      },
+      {
+        "category": "기타",
+        "title": "자습"
+      },
+      {
+        "category": "기타",
+        "title": "타자배틀"
       }
     ]
   },
@@ -85,22 +101,24 @@
       "skip": false
     },
     "2026-10-29_2-1": {
-      "category": "평가",
-      "topic": "수행평가(1) 데이터분석",
-      "content": "",
+      "_updatedAt": 1793239176768,
       "absent": "",
+      "category": "평가",
+      "content": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "수행평가(1) 데이터분석"
     },
     "2026-10-26_2-2": {
+      "_updatedAt": 1792990962151,
+      "absent": "3번 김승준",
       "category": "수업",
-      "topic": "2-6) 데이터분석(4) : 대기오염",
       "content": "",
-      "absent": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "2-6) 데이터분석(4) : 대기오염"
     },
     "2026-11-02_2-2": {
       "category": "수업",
@@ -122,31 +140,14 @@
       "_updatedAt": 1792564917262
     },
     "2026-10-28_2-3": {
+      "_updatedAt": 1793236336114,
+      "absent": "",
       "category": "평가",
-      "topic": "수행평가(1) 데이터분석",
       "content": "",
-      "absent": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
-    },
-    "2026-10-27_2-4": {
-      "category": "평가",
-      "topic": "수행평가(1) 데이터분석",
-      "content": "",
-      "absent": "",
-      "note": "",
-      "done": false,
-      "skip": false
-    },
-    "2026-10-27_2-5": {
-      "category": "수업",
-      "topic": "2-6) 데이터분석(4) : 대기오염",
-      "content": "",
-      "absent": "",
-      "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "수행평가(1) 데이터분석"
     },
     "2026-11-03_2-5": {
       "category": "평가",
@@ -194,13 +195,14 @@
       "skip": false
     },
     "2026-10-26_2-7": {
-      "category": "수업",
-      "topic": "2-6) 데이터분석(4) : 대기오염",
-      "content": "",
+      "_updatedAt": 1792990834187,
       "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "2-6) 데이터분석(4) : 대기오염"
     },
     "2026-11-02_2-7": {
       "category": "평가",
@@ -230,22 +232,24 @@
       "skip": false
     },
     "2026-10-23_1-3": {
-      "category": "평가",
-      "topic": "수행평가(1) 포스터 제작",
-      "content": "",
+      "_updatedAt": 1792739173810,
       "absent": "",
+      "category": "평가",
+      "content": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "수행평가(1) 포스터 제작"
     },
     "added_2026-10-29_P3_2-2_1792470271189": {
-      "category": "평가",
-      "topic": "수행평가(1) 데이터분석",
-      "content": "",
+      "_updatedAt": 1793239179793,
       "absent": "",
+      "category": "평가",
+      "content": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "수행평가(1) 데이터분석"
     },
     "2026-10-21_1-1": {
       "category": "수업",
@@ -266,94 +270,104 @@
       "skip": true
     },
     "2026-10-28_1-1": {
-      "category": "수업",
-      "topic": "2) 이미지 학습 : 동물 분류",
-      "content": "",
+      "_updatedAt": 1793236332768,
       "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "2) 이미지 학습 : 동물 분류"
     },
     "2026-11-04_1-1": {
       "category": "수업",
-      "topic": "3) 이미지 학습 : 산불 감지, 안전 계단",
+      "topic": "3) 이미지 학습 : 산불 감지",
       "content": "",
       "absent": "",
       "note": "",
       "done": false,
-      "skip": false
+      "skip": false,
+      "_updatedAt": 1793580902525
     },
     "2026-11-11_1-1": {
-      "category": "수업",
-      "topic": "4) 사운드 학습",
-      "content": "",
+      "_updatedAt": 1793582169024,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "4) 이미지 학습 : 안전한 계단, 캠코더"
     },
     "2026-11-18_1-1": {
-      "category": "수업",
-      "topic": "5) 모션 학습",
-      "content": "",
+      "_updatedAt": 1793582174189,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "5) 사운드 학습"
     },
     "2026-11-25_1-1": {
-      "category": "평가",
-      "topic": "수행평가(2) AI 모델",
-      "content": "",
+      "_updatedAt": 1793582176668,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "6) 모션 학습"
     },
     "2026-10-26_1-2": {
-      "category": "수업",
-      "topic": "2) 이미지 학습 : 동물 분류",
-      "content": "",
+      "_updatedAt": 1792990829122,
       "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "2) 이미지 학습 : 동물 분류"
     },
     "2026-11-02_1-2": {
       "category": "수업",
-      "topic": "3) 이미지 학습 : 산불 감지, 안전 계단",
+      "topic": "3) 이미지 학습 : 산불 감지",
       "content": "",
       "absent": "",
       "note": "",
       "done": false,
-      "skip": false
+      "skip": false,
+      "_updatedAt": 1793580882291
     },
     "2026-11-09_1-2": {
-      "category": "수업",
-      "topic": "4) 사운드 학습",
-      "content": "",
+      "_updatedAt": 1793582194356,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "4) 이미지 학습 : 안전한 계단, 캠코더"
     },
     "2026-11-16_1-2": {
-      "category": "수업",
-      "topic": "5) 모션 학습",
-      "content": "",
+      "_updatedAt": 1793582197957,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "5) 사운드 학습"
     },
     "2026-11-23_1-2": {
-      "category": "평가",
-      "topic": "수행평가(2) AI 모델",
-      "content": "",
+      "_updatedAt": 1793582201312,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "6) 모션 학습"
     },
     "2026-10-30_1-3": {
       "category": "수업",
@@ -374,220 +388,224 @@
       "skip": false
     },
     "2026-11-13_1-3": {
-      "category": "수업",
-      "topic": "3) 이미지 학습 : 산불 감지, 안전 계단",
-      "content": "",
+      "_updatedAt": 1793844118514,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "유니스트 체험",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": true,
+      "topic": "3) 이미지 학습 : 산불 감지"
     },
     "2026-11-20_1-3": {
-      "category": "수업",
-      "topic": "4) 사운드 학습",
-      "content": "",
+      "_updatedAt": 1793844208461,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "3) 이미지 학습 : 산불 감지"
     },
     "2026-11-27_1-3": {
-      "category": "수업",
-      "topic": "5) 모션 학습",
-      "content": "",
+      "_updatedAt": 1793844212778,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "4) 이미지 학습 : 안전한 계단, 손동작 인식(캠코더)"
     },
     "2026-12-04_1-3": {
-      "category": "평가",
-      "topic": "수행평가(2) AI 모델",
-      "content": "",
+      "_updatedAt": 1793844215538,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "5) 사운드 학습"
     },
     "2026-10-26_1-4": {
+      "_updatedAt": 1792990952947,
+      "absent": "결석 없음",
       "category": "수업",
-      "topic": "2) 이미지 학습 : 동물 분류",
       "content": "",
-      "absent": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "2) 이미지 학습 : 동물 분류"
     },
     "2026-11-02_1-4": {
       "category": "수업",
-      "topic": "3) 이미지 학습 : 산불 감지, 안전 계단",
+      "topic": "3) 이미지 학습 : 산불 감지",
       "content": "",
       "absent": "",
       "note": "",
       "done": false,
-      "skip": false
+      "skip": false,
+      "_updatedAt": 1793580890864
     },
     "2026-11-09_1-4": {
-      "category": "수업",
-      "topic": "4) 사운드 학습",
-      "content": "",
+      "_updatedAt": 1793582275546,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "4) 이미지 학습 : 안전한 계단, 캠코더"
     },
     "2026-11-16_1-4": {
-      "category": "수업",
-      "topic": "5) 모션 학습",
-      "content": "",
+      "_updatedAt": 1793582287953,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "5) 사운드 학습"
     },
     "2026-11-23_1-4": {
-      "category": "평가",
-      "topic": "수행평가(2) AI 모델",
-      "content": "",
+      "_updatedAt": 1793582289873,
       "absent": "",
-      "note": "",
-      "done": false,
-      "skip": false
-    },
-    "2026-10-29_1-5": {
       "category": "수업",
-      "topic": "2) 이미지 학습 : 동물 분류",
       "content": "",
-      "absent": "",
-      "note": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "6) 모션 학습"
     },
     "2026-11-05_1-5": {
       "category": "수업",
-      "topic": "3) 이미지 학습 : 산불 감지, 안전 계단",
+      "topic": "3) 이미지 학습 : 산불 감지",
       "content": "",
       "absent": "",
       "note": "",
       "done": false,
-      "skip": false
+      "skip": false,
+      "_updatedAt": 1793580915095
     },
     "2026-11-12_1-5": {
-      "category": "수업",
-      "topic": "4) 사운드 학습",
-      "content": "",
+      "_updatedAt": 1793582715982,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "4) 이미지 학습 : 안전한 계단, 손동작 인식(캠코더)"
     },
     "2026-11-19_1-5": {
-      "category": "수업",
-      "topic": "5) 모션 학습",
-      "content": "",
+      "_updatedAt": 1793582307526,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "5) 사운드 학습"
     },
     "2026-11-26_1-5": {
-      "category": "평가",
-      "topic": "수행평가(2) AI 모델",
-      "content": "",
+      "_updatedAt": 1793582309566,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "6) 모션 학습"
     },
     "2026-10-28_1-6": {
-      "category": "수업",
-      "topic": "2) 이미지 학습 : 동물 분류",
-      "content": "",
+      "_updatedAt": 1793236329484,
       "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "2) 이미지 학습 : 동물 분류"
     },
     "2026-11-04_1-6": {
       "category": "수업",
-      "topic": "3) 이미지 학습 : 산불 감지, 안전 계단",
+      "topic": "3) 이미지 학습 : 산불 감지",
       "content": "",
       "absent": "",
       "note": "",
       "done": false,
-      "skip": false
+      "skip": false,
+      "_updatedAt": 1793580908536
     },
     "2026-11-11_1-6": {
-      "category": "수업",
-      "topic": "4) 사운드 학습",
-      "content": "",
+      "_updatedAt": 1793582318204,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "4) 이미지 학습 : 안전한 계단, 캠코더"
     },
     "2026-11-18_1-6": {
-      "category": "수업",
-      "topic": "5) 모션 학습",
-      "content": "",
+      "_updatedAt": 1793582319940,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "5) 사운드 학습"
     },
     "2026-11-25_1-6": {
-      "category": "평가",
-      "topic": "수행평가(2) AI 모델",
-      "content": "",
+      "_updatedAt": 1793582321617,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "6) 모션 학습"
     },
     "2026-10-22_1-7": {
-      "category": "수업",
-      "topic": "2) 이미지 학습 : 동물 분류",
-      "content": "",
+      "_updatedAt": 1792739178979,
       "absent": "",
-      "note": "",
-      "done": false,
-      "skip": false
-    },
-    "2026-10-29_1-7": {
       "category": "수업",
-      "topic": "3) 이미지 학습 : 산불 감지, 안전 계단",
       "content": "",
-      "absent": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "2) 이미지 학습 : 동물 분류"
     },
     "2026-11-05_1-7": {
-      "category": "수업",
-      "topic": "4) 사운드 학습",
-      "content": "",
+      "_updatedAt": 1793582706346,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "4) 이미지 학습 : 안전한 계단, 손동작 인식(캠코더)"
     },
     "2026-11-12_1-7": {
-      "category": "수업",
-      "topic": "5) 모션 학습",
-      "content": "",
+      "_updatedAt": 1793582331417,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "5) 사운드 학습"
     },
     "2026-11-19_1-7": {
-      "category": "평가",
-      "topic": "수행평가(2) AI 모델",
-      "content": "",
+      "_updatedAt": 1793582334809,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "6) 모션 학습"
     },
     "2026-11-05_2-1": {
       "category": "수업",
@@ -682,38 +700,42 @@
     "2026-11-11_2-3": {
       "category": "수업",
       "topic": "3-2) 이미지 학습 : 산불 감지, 안전 계단",
-      "content": "",
+      "content": "단축수업",
       "absent": "",
       "note": "",
       "done": false,
-      "skip": false
+      "skip": true,
+      "_updatedAt": 1793843929210
     },
     "2026-11-18_2-3": {
-      "category": "수업",
-      "topic": "3-3) 사운드 학습",
-      "content": "",
+      "_updatedAt": 1793592798912,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "3-2) 이미지 학습 : 산불 감지, 안전 계단"
     },
     "2026-11-25_2-3": {
-      "category": "수업",
-      "topic": "3-4) 모션 학습",
-      "content": "",
+      "_updatedAt": 1793592855431,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "3-3) 사운드 학습"
     },
     "2026-12-02_2-3": {
-      "category": "평가",
-      "topic": "수행평가(2) AI 모델",
-      "content": "",
+      "_updatedAt": 1793592859901,
       "absent": "",
-      "note": "",
+      "category": "수업",
+      "content": "",
       "done": false,
-      "skip": false
+      "note": "",
+      "skip": false,
+      "topic": "3-4) 모션 학습"
     },
     "2026-11-03_2-4": {
       "category": "수업",
@@ -1015,16 +1037,268 @@
       "done": true,
       "skip": false,
       "_updatedAt": 1792641537281
+    },
+    "2026-10-27_2-4": {
+      "category": "평가",
+      "topic": "수행평가(1) 데이터분석",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": true,
+      "skip": false,
+      "_updatedAt": 1793086388723
+    },
+    "2026-10-27_2-5": {
+      "category": "수업",
+      "topic": "2-6) 데이터분석(4) : 대기오염",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": true,
+      "skip": false,
+      "_updatedAt": 1793086389761
+    },
+    "2026-10-29_1-5": {
+      "category": "수업",
+      "topic": "2) 이미지 학습 : 동물 분류",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": true,
+      "skip": false,
+      "_updatedAt": 1793246940828
+    },
+    "2026-10-29_1-7": {
+      "category": "수업",
+      "topic": "3) 이미지 학습 : 산불 감지",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": true,
+      "skip": false,
+      "_updatedAt": 1793580860837
+    },
+    "2026-11-26_1-7": {
+      "_updatedAt": 1793582338963,
+      "absent": "",
+      "category": "평가",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "수행평가(2) AI 모델"
+    },
+    "2026-11-30_1-2": {
+      "_updatedAt": 1793582204653,
+      "absent": "",
+      "category": "평가",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "수행평가(2) AI 모델"
+    },
+    "2026-11-30_1-4": {
+      "_updatedAt": 1793582291863,
+      "absent": "",
+      "category": "평가",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "수행평가(2) AI 모델"
+    },
+    "2026-12-02_1-1": {
+      "_updatedAt": 1793582179880,
+      "absent": "",
+      "category": "평가",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "수행평가(2) AI 모델"
+    },
+    "2026-12-02_1-6": {
+      "_updatedAt": 1793582323711,
+      "absent": "",
+      "category": "평가",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "수행평가(2) AI 모델"
+    },
+    "2026-12-03_1-5": {
+      "_updatedAt": 1793582313343,
+      "absent": "",
+      "category": "평가",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "수행평가(2) AI 모델"
+    },
+    "2026-12-11_1-3": {
+      "_updatedAt": 1793844218893,
+      "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "6) 모션 학습"
+    },
+    "2026-12-18_1-3": {
+      "_updatedAt": 1793844221167,
+      "absent": "",
+      "category": "평가",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "수행평가(2) AI 모델"
+    },
+    "2026-12-09_2-3": {
+      "_updatedAt": 1793592877283,
+      "absent": "",
+      "category": "평가",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "수행평가(2) AI 모델"
+    },
+    "added_2026-11-05_P5_2-4_1793843845005": {
+      "category": "수업",
+      "topic": "3-2) 이미지 학습 : 산불 감지, 안전 계단",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": false,
+      "skip": false,
+      "_updatedAt": 1793843856085
+    },
+    "added_2026-11-24_P6_2-3_1793843989282": {
+      "category": "수업",
+      "topic": "3-3) 사운드 학습",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": false,
+      "skip": false,
+      "_updatedAt": 1793844001831
+    },
+    "2026-12-07_1-2": {
+      "category": "기타",
+      "topic": "자습",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": false,
+      "skip": false,
+      "_updatedAt": 1793946955727
+    },
+    "2026-12-07_2-2": {
+      "category": "기타",
+      "topic": "자습",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": false,
+      "skip": false,
+      "_updatedAt": 1793946962681
+    },
+    "2026-12-07_1-4": {
+      "category": "기타",
+      "topic": "자습",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": false,
+      "skip": false,
+      "_updatedAt": 1793946966797
+    },
+    "2026-12-08_2-4": {
+      "category": "기타",
+      "topic": "자습",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": false,
+      "skip": false,
+      "_updatedAt": 1793946970968
+    },
+    "2026-12-09_1-1": {
+      "category": "기타",
+      "topic": "자습",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": false,
+      "skip": false,
+      "_updatedAt": 1793946975208
+    },
+    "2026-12-09_1-6": {
+      "category": "기타",
+      "topic": "자습",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": false,
+      "skip": false,
+      "_updatedAt": 1793946978567
+    },
+    "2026-12-10_2-1": {
+      "category": "기타",
+      "topic": "자습",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": false,
+      "skip": false,
+      "_updatedAt": 1793946982720
+    },
+    "2026-12-10_1-5": {
+      "category": "기타",
+      "topic": "자습",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": false,
+      "skip": false,
+      "_updatedAt": 1793946986600
+    },
+    "2026-12-10_1-7": {
+      "category": "기타",
+      "topic": "자습",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": false,
+      "skip": false,
+      "_updatedAt": 1793946990837
     }
   },
   "classMemos": {},
   "holidays": {
-    "2026-12-31": "방학",
+    "2026-12-14": "기말고사",
+    "2026-12-15": "기말고사",
+    "2026-12-16": "기말고사",
+    "2026-12-24": "간월제",
+    "2026-12-25": "크리스마스",
     "2026-12-30": "방학식",
-    "2026-12-24": "간월제"
+    "2026-12-31": "방학"
   },
   "scheduleOverrides": {
     "2026-10-23_P3_2-6": {
+      "deleted": true,
+      "changeNote": "타교과 교체/수업 빠짐"
+    },
+    "2026-11-10_P2_2-4": {
+      "deleted": true,
+      "changeNote": "타교과 교체/수업 빠짐"
+    },
+    "2026-11-25_P6_2-3": {
       "deleted": true,
       "changeNote": "타교과 교체/수업 빠짐"
     }
@@ -1036,7 +1310,21 @@
       "period": 3,
       "className": "2-2",
       "changeNote": "대강"
+    },
+    {
+      "id": "2026-10-21_P5_2-6_1792540652999",
+      "dateStr": "2026-10-21",
+      "period": 5,
+      "className": "2-6",
+      "changeNote": "보강/교체 추가"
+    },
+    {
+      "id": "2026-11-27_P1_1-1_1793947035849",
+      "dateStr": "2026-11-27",
+      "period": 1,
+      "className": "1-1",
+      "changeNote": "수업 빌림"
     }
   ],
-  "updatedAt": 1792716613152
+  "updatedAt": 1793947035855
 }

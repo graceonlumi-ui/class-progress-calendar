@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>학급알리미 - 선생님 관리자</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans select-none">
+
+  <!-- ==================== PIN 인증 화면 ==================== -->
+  <div id="pinScreen" class="fixed inset-0 bg-slate-950 flex flex-col items-center justify-center p-4 z-50">
+    <div class="glass-panel p-8 rounded-3xl max-w-sm w-full text-center border border-slate-700 shadow-2xl">
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-indigo-500 to-sky-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 mb-4">
+        <i data-lucide="lock" class="w-8 h-8 text-white"></i>
+      </div>
+      <h2 class="text-2xl font-bold text-white mb-1">선생님 전용 관리</h2>
+      <p class="text-xs text-slate-400 mb-6">4자리 PIN 번호를 입력해 주세요</p>
+
+      <form id="pinForm" class="space-y-4">
+        <input type="password" id="pinInput" maxlength="6" inputmode="numeric" placeholder="PIN 번호 (기본: 1234)" autofocus
+               class="w-full text-center tracking-widest text-2xl font-bold py-3.5 px-4 bg-slate-900/90 border border-slate-700 rounded-2xl text-white focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20">
+        <p id="pinError" class="text-xs text-rose-400 hidden">PIN 번호가 일치하지 않습니다.</p>
+        <button type="submit" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-2xl transition shadow-lg shadow-indigo-600/30">
+          로그인
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== 메인 관리자 컨테이너 ==================== -->
+  <div id="adminContent" class="flex-1 flex flex-col max-w-3xl w-full mx-auto p-4 md:p-6 pb-24 hidden">
+    
+    <!-- 상단 헤더 -->
+    <header class="flex items-center justify-between py-3 mb-4 border-b border-slate-800">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center shadow-md">
+          <i data-lucide="layout-dashboard" class="w-5 h-5 text-white"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold text-white flex items-center space-x-1.5">
+            <span id="adminHeaderTitle">2학년 2반 관리</span>
+            <span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30 font-semibold">교사용</span>
+          </h1>
+          <p class="text-xs text-slate-400">변경사항은 전자칠판에 즉시 반영됩니다</p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <a href="/" target="_blank" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition border border-slate-700" title="전자칠판 열기">
+          <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+        <button id="btnLogout" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-rose-400 transition border border-slate-700" title="로그아웃">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- 탭 네비게이션 (모바일 스크롤 지원) -->
+    <nav class="flex space-x-1 bg-slate-950/60 p-1.5 rounded-2xl border border-slate-800 mb-6 overflow-x-auto">
+      <button class="tab-btn flex-1 min-w-[70px] py-2 px-3 rounded-xl text-xs md:text-sm font-bold transition flex items-center justify-center space-x-1.5 bg-indigo-600 text-white shadow" data-tab="tab-notices">
+        <i data-lucide="megaphone" class="w-4 h-4"></i>
+        <span>전달사항</span>
+      </button>
+      <button class="tab-btn flex-1 min-w-[70px] py-2 px-3 rounded-xl text-xs md:text-sm font-bold text-slate-400 hover:text-white transition flex items-center justify-center space-x-1.5" data-tab="tab-cleaning">
+        <i data-lucide="sparkle" class="w-4 h-4"></i>
+        <span>청소당번</span>
+      </button>
+      <button class="tab-btn flex-1 min-w-[70px] py-2 px-3 rounded-xl text-xs md:text-sm font-bold text-slate-400 hover:text-white transition flex items-center justify-center space-x-1.5" data-tab="tab-remote">
+        <i data-lucide="radio" class="w-4 h-4"></i>
+        <span>원격제어</span>
+      </button>
+      <button class="tab-btn flex-1 min-w-[70px] py-2 px-3 rounded-xl text-xs md:text-sm font-bold text-slate-400 hover:text-white transition flex items-center justify-center space-x-1.5" data-tab="tab-settings">
+        <i data-lucide="settings" class="w-4 h-4"></i>
+        <span>학급설정</span>
+      </button>
+    </nav>
+
+    <!-- ==================== TAB 1: 전달사항 ==================== -->
+    <div id="tab-notices" class="tab-pane space-y-5">
+      <!-- 새 전달사항 작성 카드 -->
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800">
+        <h3 class="text-sm font-bold text-white mb-3 flex items-center space-x-2">
+          <i data-lucide="plus-circle" class="w-4 h-4 text-indigo-400"></i>
+          <span>새 전달사항 등록</span>
+        </h3>
+
+        <form id="noticeForm" class="space-y-3.5">
+          <!-- 카테고리 선택 -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1.5">카테고리</label>
+            <div class="flex flex-wrap gap-1.5" id="categoryGroup">
+              <button type="button" class="cat-chip px-3 py-1.5 rounded-xl text-xs font-bold border transition bg-rose-500/20 text-rose-300 border-rose-500/40" data-cat="중요">🚨 중요</button>
+              <button type="button" class="cat-chip px-3 py-1.5 rounded-xl text-xs font-bold border transition bg-slate-800 text-slate-400 border-slate-700" data-cat="알림">📢 알림</button>
+              <button type="button" class="cat-chip px-3 py-1.5 rounded-xl text-xs font-bold border transition bg-slate-800 text-slate-400 border-slate-700" data-cat="과제">📝 과제</button>
+              <button type="button" class="cat-chip px-3 py-1.5 rounded-xl text-xs font-bold border transition bg-slate-800 text-slate-400 border-slate-700" data-cat="준비물">🎒 준비물</button>
+              <button type="button" class="cat-chip px-3 py-1.5 rounded-xl text-xs font-bold border transition bg-slate-800 text-slate-400 border-slate-700" data-cat="한마디">🌱 한마디</button>
+            </div>
+            <input type="hidden" id="noticeCategory" value="중요">
+          </div>
+
+          <!-- 제목 -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">제목</label>
+            <input type="text" id="noticeTitle" required placeholder="예: 내일 4교시 소방훈련 복장 안내"
+                   class="w-full text-sm font-bold py-2.5 px-3.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500">
+          </div>
+
+          <!-- 상세 내용 -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">상세 내용</label>
+            <textarea id="noticeContent" rows="3" placeholder="학생들에게 안내할 자세한 내용을 적어주세요."
+                      class="w-full text-sm py-2.5 px-3.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"></textarea>
+          </div>
+
+          <!-- 옵션 & 등록 버튼 -->
+          <div class="flex items-center justify-between pt-1">
+            <label class="flex items-center space-x-2 cursor-pointer">
+              <input type="checkbox" id="noticePinned" class="w-4 h-4 rounded text-indigo-600 focus:ring-0 bg-slate-900 border-slate-700">
+              <span class="text-xs text-slate-300 font-semibold">📌 상단에 고정하기</span>
+            </label>
+
+            <button type="submit" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs md:text-sm rounded-xl transition shadow-md shadow-indigo-600/30 flex items-center space-x-1.5">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>전자칠판에 즉시 등록</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 등록된 전달사항 목록 -->
+      <div>
+        <h3 class="text-sm font-bold text-slate-300 mb-3 flex items-center justify-between">
+          <span>등록된 전달사항 목록</span>
+          <span id="adminNoticeCount" class="text-xs text-indigo-400 font-normal">총 0건</span>
+        </h3>
+        <div id="adminNoticeList" class="space-y-3">
+          <!-- JS 렌더링 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 2: 청소 당번 ==================== -->
+    <div id="tab-cleaning" class="tab-pane space-y-6 hidden">
+      <!-- 1) 오늘만 당번 직접 수정 (Override) -->
+      <div class="glass-panel p-5 rounded-2xl border border-amber-500/30 bg-amber-950/10">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <h3 class="text-sm font-bold text-white flex items-center space-x-1.5">
+              <span class="text-amber-400">✨ 오늘만 당번 직접 수정</span>
+              <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-500/30">우선적용</span>
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">결석이나 특별 청소 시 오늘 날짜의 당번을 즉시 변경합니다.</p>
+          </div>
+          <button id="btnResetCleaningOverride" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold border border-slate-700 transition" title="요일 기본값으로 되돌리기">
+            기본값 복귀
+          </button>
+        </div>
+
+        <form id="todayCleaningForm" class="space-y-3">
+          <div id="todayCleaningInputs" class="space-y-2">
+            <!-- JS 렌더링 -->
+          </div>
+
+          <div class="flex justify-end pt-2">
+            <button type="submit" class="px-5 py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs md:text-sm rounded-xl transition shadow-md shadow-amber-600/30 flex items-center space-x-1.5">
+              <i data-lucide="check" class="w-4 h-4"></i>
+              <span>오늘 당번 즉시 적용</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 2) 요일별 기본 템플릿 설정 -->
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800">
+        <h3 class="text-sm font-bold text-white mb-2 flex items-center space-x-1.5">
+          <i data-lucide="calendar" class="w-4 h-4 text-emerald-400"></i>
+          <span>요일별 기본 청소 템플릿</span>
+        </h3>
+        <p class="text-xs text-slate-400 mb-4">매주 월~금요일에 자동으로 돌아갈 기본 규칙입니다.</p>
+
+        <!-- 요일 선택 탭 -->
+        <div class="flex space-x-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800 mb-4" id="cleaningDayTabs">
+          <button type="button" class="flex-1 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white" data-day="1">월요일</button>
+          <button type="button" class="flex-1 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white" data-day="2">화요일</button>
+          <button type="button" class="flex-1 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white" data-day="3">수요일</button>
+          <button type="button" class="flex-1 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white" data-day="4">목요일</button>
+          <button type="button" class="flex-1 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white" data-day="5">금요일</button>
+        </div>
+
+        <form id="templateCleaningForm" class="space-y-3">
+          <div id="templateCleaningInputs" class="space-y-2">
+            <!-- JS 렌더링 -->
+          </div>
+
+          <div class="flex justify-end pt-2">
+            <button type="submit" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs md:text-sm rounded-xl transition shadow-md shadow-emerald-600/30 flex items-center space-x-1.5">
+              <i data-lucide="save" class="w-4 h-4"></i>
+              <span>요일 템플릿 저장</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 3: 원격 제어 ==================== -->
+    <div id="tab-remote" class="tab-pane space-y-6 hidden">
+      <!-- 1) 교실 타이머 원격 작동 -->
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800">
+        <h3 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+          <i data-lucide="timer" class="w-4 h-4 text-sky-400"></i>
+          <span>전자칠판 대형 타이머 원격 제어</span>
+        </h3>
+        <p class="text-xs text-slate-400 mb-4">버튼을 누르면 전자칠판 화면에 큼직한 타이머가 바로 작동합니다.</p>
+
+        <!-- 간편 원터치 프리셋 버튼 -->
+        <div class="grid grid-cols-3 gap-2 mb-4">
+          <button class="btn-timer-preset p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 transition" data-sec="180" data-label="3분 집중 활동">
+            ⏱️ 3분 타이머
+          </button>
+          <button class="btn-timer-preset p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 transition" data-sec="300" data-label="5분 모둠 토의">
+            ⏱️ 5분 타이머
+          </button>
+          <button class="btn-timer-preset p-3 rounded-xl bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-200 text-xs font-bold border border-indigo-500/40 transition" data-sec="600" data-label="10분 청소 시간">
+            🧹 10분 (청소용)
+          </button>
+          <button class="btn-timer-preset p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 transition" data-sec="900" data-label="15분 과제 시간">
+            ⏱️ 15분 타이머
+          </button>
+          <button class="btn-timer-preset p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 transition" data-sec="1200" data-label="20분 자습 시간">
+            📖 20분 자습
+          </button>
+          <button class="btn-timer-preset p-3 rounded-xl bg-rose-600/30 hover:bg-rose-600/50 text-rose-200 text-xs font-bold border border-rose-500/40 transition" data-action="stop">
+            🛑 타이머 끄기
+          </button>
+        </div>
+      </div>
+
+      <!-- 2) 긴급 알림 전체화면 팝업 전송 -->
+      <div class="glass-panel p-5 rounded-2xl border border-rose-500/30 bg-rose-950/10">
+        <h3 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+          <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-400"></i>
+          <span>전자칠판 긴급 알림 팝업 발송</span>
+        </h3>
+        <p class="text-xs text-slate-400 mb-4">선생님이 메시지를 보내면 전자칠판 전체화면에 알림창이 뜹니다.</p>
+
+        <form id="urgentAlertForm" class="space-y-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">알림 제목</label>
+            <input type="text" id="alertTitle" value="담임선생님 긴급 알림 📢"
+                   class="w-full text-sm py-2 px-3 bg-slate-900 border border-slate-700 rounded-xl text-white">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">상세 안내 문구</label>
+            <input type="text" id="alertSub" placeholder="예: 조용히 하고 모두 자기 자리에 착석하세요!"
+                   class="w-full text-sm py-2 px-3 bg-slate-900 border border-slate-700 rounded-xl text-white">
+          </div>
+
+          <div class="flex justify-end pt-1">
+            <button type="submit" class="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs md:text-sm rounded-xl transition shadow-md shadow-rose-600/30 flex items-center space-x-1.5">
+              <i data-lucide="bell-ring" class="w-4 h-4"></i>
+              <span>칠판에 팝업 띄우기</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 4: 학급 설정 ==================== -->
+    <div id="tab-settings" class="tab-pane space-y-6 hidden">
+      <!-- 1) 학교 및 학급 설정 -->
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800">
+        <h3 class="text-sm font-bold text-white mb-3 flex items-center space-x-2">
+          <i data-lucide="school" class="w-4 h-4 text-indigo-400"></i>
+          <span>학교 및 학급 기본 정보</span>
+        </h3>
+
+        <!-- 학교 검색 -->
+        <div class="mb-4">
+          <label class="block text-xs font-semibold text-slate-400 mb-1">학교 검색 (나이스 + 컴시간 자동 연동)</label>
+          <div class="flex space-x-2">
+            <input type="text" id="schoolSearchInput" placeholder="학교 이름 입력 (예: 서운중)"
+                   class="flex-1 text-sm py-2 px-3 bg-slate-900 border border-slate-700 rounded-xl text-white">
+            <button type="button" id="btnSearchSchool" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl transition">
+              검색
+            </button>
+          </div>
+          <div id="schoolSearchResults" class="mt-2 space-y-1 max-h-40 overflow-y-auto hidden"></div>
+        </div>
+
+        <form id="settingsForm" class="space-y-3.5">
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-400 mb-1">학교 이름</label>
+              <input type="text" id="settingSchoolName" required
+                     class="w-full text-sm py-2 px-3 bg-slate-900 border border-slate-700 rounded-xl text-white">
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1">학년</label>
+                <input type="number" id="settingGrade" min="1" max="6" value="2" required
+                       class="w-full text-sm py-2 px-3 bg-slate-900 border border-slate-700 rounded-xl text-white">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1">반</label>
+                <input type="number" id="settingClassNum" min="1" max="20" value="2" required
+                       class="w-full text-sm py-2 px-3 bg-slate-900 border border-slate-700 rounded-xl text-white">
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2">
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-400 mb-1">컴시간 학교코드</label>
+              <input type="number" id="settingComciCode" required
+                     class="w-full text-xs py-2 px-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white font-mono">
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-400 mb-1">나이스 교육청코드</label>
+              <input type="text" id="settingNeisOffice" required
+                     class="w-full text-xs py-2 px-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white font-mono">
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-400 mb-1">나이스 학교코드</label>
+              <input type="text" id="settingNeisCode" required
+                     class="w-full text-xs py-2 px-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white font-mono">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">학급 급훈 / 인사말</label>
+            <input type="text" id="settingGreeting" placeholder="예: 2학년 2반 오늘도 활기차게 시작해요! ✨"
+                   class="w-full text-sm py-2 px-3 bg-slate-900 border border-slate-700 rounded-xl text-white">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-400 mb-1">관리자 PIN 번호 (비밀번호)</label>
+            <input type="text" id="settingAdminPin" maxlength="6" placeholder="변경할 4자리 PIN"
+                   class="w-full text-sm py-2 px-3 bg-slate-900 border border-slate-700 rounded-xl text-white">
+          </div>
+
+          <div class="flex justify-end pt-2">
+            <button type="submit" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs md:text-sm rounded-xl transition shadow-md shadow-indigo-600/30 flex items-center space-x-1.5">
+              <i data-lucide="save" class="w-4 h-4"></i>
+              <span>설정 저장</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 2) D-Day 설정 -->
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800">
+        <h3 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+          <i data-lucide="calendar-heart" class="w-4 h-4 text-rose-400"></i>
+          <span>학급 D-Day 관리</span>
+        </h3>
+        <p class="text-xs text-slate-400 mb-4">지필평가, 축제, 방학 등의 목표일을 설정합니다.</p>
+
+        <form id="ddayForm" class="space-y-3 mb-4">
+          <div class="grid grid-cols-2 gap-2">
+            <input type="text" id="newDdayTitle" placeholder="D-Day 제목 (예: 2차 지필평가)" required
+                   class="text-sm py-2 px-3 bg-slate-900 border border-slate-700 rounded-xl text-white">
+            <input type="date" id="newDdayDate" required
+                   class="text-sm py-2 px-3 bg-slate-900 border border-slate-700 rounded-xl text-white">
+          </div>
+          <button type="submit" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs rounded-xl transition border border-slate-700">
+            + 새 D-Day 추가
+          </button>
+        </form>
+
+        <div id="adminDdayList" class="space-y-2">
+          <!-- JS 렌더링 -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 토스트 알림 컨테이너 -->
+  <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 px-4 py-2.5 rounded-2xl bg-indigo-600 text-white text-xs font-bold shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50">
+    저장되었습니다!
+  </div>
+
+  <!-- 스크립트 로드 -->
+  <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1373,225 +1373,154 @@
     }
 
     /* =======================================================================
-       [신규 1 & 2] 주간 접기/펼치기 & 오늘 주간 최상단 정렬 툴바 스타일
+       [신규 1 & 2] 주간 접기/펼치기 & 오늘 주간 최상단 정렬 스타일
        ======================================================================= */
     .calendar-quick-toolbar {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
-      background: #ffffff;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 13px;
-      padding: 10px 16px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .week-block {
-      border-bottom: 1.5px solid #e2e8f0;
-    }
-
-    .week-block:last-child {
-      border-bottom: none;
+      gap: 6px;
+      margin-bottom: 10px;
     }
 
     .week-toggle-bar {
+      grid-column: 1 / -1;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 16px;
-      background: #f8fafc;
-      border-bottom: 1px solid #e2e8f0;
+      padding: 7px 14px;
+      background: #f1f5f9;
+      border-top: 1px solid #cbd5e1;
+      border-bottom: 1px solid #cbd5e1;
       cursor: pointer;
       user-select: none;
       font-size: 0.82rem;
       font-weight: 800;
-      color: #475569;
+      color: #334155;
       transition: background 0.15s ease;
     }
 
     .week-toggle-bar:hover {
-      background: #f1f5f9;
+      background: #e2e8f0;
     }
 
-    .week-toggle-bar.is-current-week {
+    .week-toggle-bar.current-week-bar {
       background: linear-gradient(90deg, #eef2ff 0%, #e0e7ff 100%);
       color: #312e81;
-      border-left: 5px solid #4f46e5;
+      border-left: 4px solid #4f46e5;
     }
 
-    .week-toggle-bar.is-past-week {
-      background: #f1f5f9;
+    .week-toggle-bar.collapsed-bar {
+      background: #f8fafc;
       color: #64748b;
     }
 
-    .week-days-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(220px, 1fr));
+    .week-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 99px;
+      font-size: 0.72rem;
+      font-weight: 800;
     }
 
-    .week-days-grid.collapsed {
-      display: none;
+    .week-tag.current {
+      background: #4f46e5;
+      color: #ffffff;
+    }
+
+    .week-tag.past {
+      background: #e2e8f0;
+      color: #475569;
     }
 
     /* =======================================================================
        [신규 3 & 4] 통합 교실 자리배치표 + 나이스 명렬/학생 사진 업로드 스타일
        ======================================================================= */
-    .seating-container {
+    .seating-workspace {
       background: #ffffff;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow-md);
-      padding: 18px;
+      padding: 16px;
     }
 
-    .seating-top-bar {
+    .seating-toolbar {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 14px;
-      flex-wrap: wrap;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 14px;
-    }
-
-    .seating-class-title {
-      font-size: 1.65rem;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
     }
 
-    .seating-progress-banner {
-      flex: 1 1 360px;
-      background: #f8fafc;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 12px;
-      padding: 10px 14px;
-      font-size: 0.9rem;
-      line-height: 1.55;
-      color: #334155;
-    }
-
-    .seating-controls-box {
+    .seating-toolbar-group {
       display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: flex-end;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 10px 12px;
-    }
-
-    .seating-mode-bar {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 14px;
+      flex-wrap: wrap;
     }
 
-    .seating-mode-btn {
-      padding: 8px 13px;
-      border-radius: 10px;
-      font-size: 0.83rem;
-      font-weight: 800;
+    .seating-stage {
       border: 1.5px solid #cbd5e1;
-      background: #f1f5f9;
-      color: #334155;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .seating-mode-btn.active {
-      background: #0f172a;
-      color: #fff;
-      border-color: #0f172a;
-    }
-
-    .seating-canvas-area {
-      border: 1.5px solid #cbd5e1;
-      border-radius: 18px;
-      background:
-        linear-gradient(90deg, rgba(148,163,184,0.10) 1px, transparent 1px),
-        linear-gradient(rgba(148,163,184,0.10) 1px, transparent 1px),
-        #f8fafc;
-      background-size: 32px 32px;
+      border-radius: 16px;
+      background: #f8fafc;
       padding: 16px;
-      min-height: 520px;
+      min-height: 480px;
     }
 
-    .seating-front-board {
+    .podium-box {
       text-align: center;
       font-weight: 900;
       color: #334155;
       background: #ffffff;
       border: 2px dashed #94a3b8;
-      border-radius: 14px;
-      padding: 10px;
-      margin-bottom: 14px;
-      font-size: 0.95rem;
+      border-radius: 12px;
+      padding: 8px 24px;
+      margin: 0 auto 14px auto;
+      max-width: 360px;
+      font-size: 0.9rem;
     }
 
-    .seating-front-board.bottom {
-      margin-top: 14px;
-      margin-bottom: 0;
-    }
-
-    .seating-rows-wrap {
+    .seating-grid-lab {
       display: grid;
-      gap: 10px;
-      width: 100%;
-    }
-
-    .seating-lab-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(28px, 0.32fr) repeat(4, minmax(0, 1fr));
-      gap: 9px;
+      grid-template-columns: repeat(3, minmax(110px, 1fr)) 36px repeat(4, minmax(110px, 1fr));
+      gap: 8px;
       align-items: stretch;
     }
 
-    .seating-lab-row.mirrored {
-      grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(28px, 0.32fr) repeat(3, minmax(0, 1fr));
-    }
-
-    .seating-classroom-grid {
+    .seating-grid-custom {
       display: grid;
-      gap: 9px;
+      gap: 8px;
       align-items: stretch;
     }
 
     .seating-aisle {
-      min-height: 98px;
-      border-radius: 14px;
+      min-height: 92px;
+      border-radius: 10px;
       border: 1px dashed #cbd5e1;
-      background: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.5);
       display: flex;
       justify-content: center;
       align-items: center;
       color: #94a3b8;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 800;
       writing-mode: vertical-rl;
     }
 
     .seat-card {
       position: relative;
-      min-height: 104px;
-      border-radius: 16px;
-      border: 2.5px solid #93c5fd;
-      background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+      min-height: 100px;
+      border-radius: 14px;
+      border: 2px solid #93c5fd;
+      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
       padding: 8px 6px;
       cursor: pointer;
-      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.12);
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.06);
       transition: transform 0.1s ease, box-shadow 0.15s ease, border-color 0.15s ease;
       display: flex;
       flex-direction: column;
@@ -1603,166 +1532,133 @@
 
     .seat-card:hover {
       transform: translateY(-2px);
-      border-color: #1d4ed8;
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.22);
+      border-color: #2563eb;
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.16);
     }
 
-    .seat-card.selected {
-      border-color: #0f172a !important;
-      box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.2) !important;
+    .seat-card.swap-source {
+      border-color: #f59e0b !important;
+      background: #fef3c7 !important;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.35) !important;
     }
 
-    .seat-card.level-low { background: linear-gradient(135deg, #fee2e2 0%, #fff1f2 100%); border-color: #ef4444; }
-    .seat-card.level-normal { background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%); border-color: #3b82f6; }
-    .seat-card.level-excellent { background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%); border-color: #22c55e; }
-    .seat-card.level-observe { background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%); border-color: #f59e0b; }
-
-    .seat-card.task-checked {
-      background: linear-gradient(135deg, #bbf7d0 0%, #ecfdf5 100%) !important;
-      border-color: #16a34a !important;
-    }
+    .seat-card.level-1 { background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%); border-color: #22c55e; }
+    .seat-card.level-2 { background: linear-gradient(135deg, #fef9c3 0%, #fffbeb 100%); border-color: #eab308; }
+    .seat-card.level-3 { background: linear-gradient(135deg, #ffe4e6 0%, #fff1f2 100%); border-color: #f43f5e; }
 
     .seat-card.empty-seat {
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      background: #f8fafc;
       border-color: #cbd5e1;
       border-style: dashed;
       box-shadow: none;
     }
 
-    .seat-card.blank-seat {
-      background: rgba(255,255,255,0.45);
-      border: 1.5px dashed #e2e8f0;
-      box-shadow: none;
-      cursor: default;
+    .seat-num-badge {
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #64748b;
     }
 
-    .seat-pc-badge {
+    .seat-group-badge {
       position: absolute;
       top: 5px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 0.78rem;
-      font-weight: 900;
-      color: #0f172a;
-      background: rgba(255,255,255,0.92);
-      border: 1.5px solid rgba(71,85,105,0.45);
-      border-radius: 6px;
-      padding: 1px 7px;
-      line-height: 1.2;
-    }
-
-    .seat-task-btn {
-      position: absolute;
-      left: 6px;
-      top: 6px;
-      width: 23px;
-      height: 23px;
-      border-radius: 6px;
-      border: 1.5px solid #94a3b8;
-      background: rgba(255,255,255,0.92);
-      color: #64748b;
-      font-size: 13px;
-      font-weight: 900;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 3;
-    }
-
-    .seat-task-btn.checked {
-      background: #16a34a;
-      border-color: #15803d;
+      font-size: 0.66rem;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 99px;
+      background: #4f46e5;
       color: #fff;
     }
 
-    .seat-att-pill {
+    .seat-att-badge {
       position: absolute;
-      right: 6px;
-      top: 6px;
-      padding: 2px 6px;
+      top: 5px;
+      right: 5px;
+      font-size: 0.66rem;
+      font-weight: 800;
+      padding: 1px 6px;
       border-radius: 99px;
-      font-size: 0.68rem;
-      font-weight: 900;
       background: #fee2e2;
-      color: #991b1b;
-      z-index: 3;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
     }
 
-    .seat-photo-img {
-      width: 48px;
-      height: 60px;
+    .seat-photo {
+      width: 46px;
+      height: 58px;
       object-fit: cover;
-      border-radius: 8px;
-      border: 2px solid #ffffff;
-      box-shadow: 0 2px 6px rgba(15,23,42,0.16);
-      margin-top: 22px;
+      border-radius: 7px;
+      border: 1.5px solid #cbd5e1;
+      margin-top: 14px;
       margin-bottom: 3px;
-      background: #e2e8f0;
+      background: #f1f5f9;
     }
 
-    .seat-stu-info {
+    .seat-photo-placeholder {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #e0e7ff;
+      color: #4338ca;
+      font-weight: 900;
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      margin-top: 24px;
-      width: 100%;
-    }
-
-    .seat-card.has-photo .seat-stu-info {
-      margin-top: 2px;
-    }
-
-    .seat-stu-num {
-      background: #1d4ed8;
-      color: #fff;
-      font-size: 0.78rem;
-      font-weight: 900;
-      padding: 1px 7px;
-      border-radius: 99px;
-      flex-shrink: 0;
+      margin-top: 14px;
+      margin-bottom: 3px;
     }
 
     .seat-stu-name {
-      font-size: 1.05rem;
-      font-weight: 900;
+      font-size: 0.92rem;
+      font-weight: 800;
       color: #0f172a;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      max-width: 100%;
     }
 
-    .seat-note-dot {
-      position: absolute;
-      right: 7px;
-      bottom: 7px;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #d97706;
-      border: 1.5px solid #fff;
+    .seat-stu-no {
+      color: #4f46e5;
+      margin-right: 3px;
+      font-size: 0.8rem;
     }
 
-    .seat-group-pill {
-      position: absolute;
-      bottom: 4px;
-      left: 50%;
-      transform: translateX(-50%);
+    .seat-note-preview {
       font-size: 0.68rem;
-      font-weight: 900;
-      padding: 1px 7px;
-      border-radius: 8px;
-      color: #fff;
-      background: #4f46e5;
+      color: #92400e;
+      background: #fef3c7;
+      padding: 1px 5px;
+      border-radius: 4px;
+      margin-top: 2px;
+      max-width: 95%;
+      overflow: hidden;
+      text-overflow: ellipsis;
       white-space: nowrap;
     }
+
+    .seat-task-badge {
+      font-size: 0.66rem;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-top: 2px;
+    }
+    .seat-task-badge.task-완료 { background: #dcfce7; color: #15803d; }
+    .seat-task-badge.task-미완료 { background: #fee2e2; color: #b91c1c; }
+    .seat-task-badge.task-보완 { background: #fef3c7; color: #b45309; }
 
     .photo-dropzone {
       border: 2px dashed #6366f1;
       background: #eef2ff;
-      border-radius: 14px;
-      padding: 18px;
+      border-radius: 12px;
+      padding: 14px;
       text-align: center;
       cursor: pointer;
       transition: all 0.15s;
@@ -1773,61 +1669,102 @@
       border-color: #4f46e5;
     }
 
-    .roster-preview-grid {
+    .photo-match-preview-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 10px;
-      max-height: 320px;
+      grid-template-columns: repeat(auto-fill, minmax(82px, 1fr));
+      gap: 8px;
+      max-height: 260px;
       overflow-y: auto;
       padding: 6px;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-radius: 12px;
+      border-radius: 10px;
     }
 
-    .roster-student-card {
-      background: #fff;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 8px;
+    .photo-preview-item {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 6px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
-      font-size: 0.8rem;
-      position: relative;
+      font-size: 0.74rem;
+      text-align: center;
     }
 
-    .roster-student-card img {
-      width: 52px;
-      height: 65px;
+    .photo-preview-item img {
+      width: 48px;
+      height: 60px;
       object-fit: cover;
       border-radius: 6px;
+      margin-bottom: 3px;
+    }
+
+    .semester-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .schedule-editor-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    .schedule-editor-table th, .schedule-editor-table td {
       border: 1px solid #cbd5e1;
-      background: #f1f5f9;
+      padding: 6px;
+      text-align: center;
     }
 
-    /* 타이머 / 추첨기 플로팅 위젯 */
-    .mini-timer-floating {
-      position: fixed;
-      bottom: 24px;
-      left: 24px;
-      z-index: 1500;
-      background: #0f172a;
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 99px;
-      font-weight: 900;
-      font-size: 1.05rem;
-      box-shadow: var(--shadow-lg);
-      display: none;
+    .schedule-editor-table select {
+      width: 100%;
+      padding: 5px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    .archive-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .archive-item {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      cursor: pointer;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 12px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
     }
 
-    .mini-timer-floating.running {
-      display: inline-flex;
+    .timer-display-big {
+      font-size: 3.8rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      color: #1e1b4b;
+      margin: 6px 0 12px 0;
+    }
+
+    .lucky-winner-box {
+      min-height: 110px;
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     @media print {
@@ -1835,7 +1772,7 @@
         size: A4 landscape;
         margin: 6mm;
       }
-      .app-header, .control-panel, .calendar-quick-toolbar, .seating-mode-bar, .seating-controls-box, .mini-timer-floating {
+      .app-header, .control-panel, .calendar-quick-toolbar, .seating-toolbar {
         display: none !important;
       }
       .header-actions, .day-top-actions {
@@ -1852,7 +1789,7 @@
         padding: 0 !important;
         margin: 0 !important;
       }
-      .seating-container {
+      .seating-workspace {
         border: none !important;
         box-shadow: none !important;
         padding: 0 !important;
@@ -1867,42 +1804,34 @@
 </head>
 <body>
 
-  <!-- ===================================================================
-       바탕화면 위젯 전용 컨테이너 (이미지처럼 해당 날짜 수업만 깔끔하게 표시)
-       =================================================================== -->
+  <!-- 바탕화면 위젯 전용 컨테이너 -->
   <div class="widget-wrapper" id="widgetWrapper">
     <div id="widgetContentArea"></div>
   </div>
 
-  <!-- ===================================================================
-       전체 화면 헤더 & 메인 컨테이너
-       =================================================================== -->
+  <!-- 전체 화면 헤더 -->
   <header class="app-header">
     <div class="header-inner">
       <div class="brand-area">
         <div class="brand-icon">🗓️</div>
         <div class="brand-title">
-          <h1 id="headerMainTitle">혜정샘의 수업 진도 · 학급 현황 · 자리배치 통합 플래너</h1>
-          <p id="headerSubTitle">2026학년도 2학기 (2026-10-19 ~ 2026-12-31) | 진도 달력 · 교실 자리배치표 · 나이스 명렬/사진 · 클라우드 동기화</p>
+          <h1 id="headerMainTitleText">혜정샘의 수업 진도 & 학급 자리배치 통합 플래너</h1>
         </div>
       </div>
       <div class="header-actions">
-        <button class="btn btn-glass" id="firebaseSyncStatusBtn" onclick="openFirebaseModal()" title="파이어베이스(Firebase) 실시간 클라우드 데이터 동기화 설정 및 상태" style="background:rgba(245,158,11,0.25); border-color:rgba(251,191,36,0.5);">
-          🔥 <span id="firebaseStatusText">클라우드 연동 설정</span>
+        <button class="btn btn-glass" id="firebaseSyncStatusBtn" onclick="openFirebaseModal()" style="background:rgba(245,158,11,0.25); border-color:rgba(251,191,36,0.5);">
+          🔥 <span id="firebaseStatusText">클라우드 연동</span>
         </button>
-        <button class="btn btn-widget-launch" onclick="popOutDesktopWidget()" title="바탕화면 한쪽에 오늘 수업만 작게 띄워두는 위젯 창을 엽니다">
-          📌 오늘 수업 위젯 띄우기
+        <button class="btn btn-widget-launch" onclick="popOutDesktopWidget()">
+          📌 위젯 띄우기
         </button>
-        <button class="btn btn-glass" onclick="openRosterPhotoModal()" title="나이스(NEIS) 학생 명렬표(엑셀/CSV) 및 학생 사진(ZIP/폴더/파일)을 일괄 업로드합니다">
-          📸 명렬·나이스 사진 업로드
-        </button>
-        <button class="btn btn-glass" onclick="exportCSV()" title="엑셀에서 열 수 있는 CSV 파일로 저장합니다">📊 진도 엑셀(CSV)</button>
-        <button class="btn btn-glass" onclick="exportBackup()" title="현재까지 기록한 모든 데이터를 파일로 백업합니다">💾 백업 저장</button>
-        <label class="btn btn-glass" style="cursor:pointer;" title="백업해둔 JSON 파일을 불러옵니다">
-          📂 백업 불러오기
+        <button class="btn btn-glass" onclick="exportCSV()">📊 엑셀(CSV)</button>
+        <button class="btn btn-glass" onclick="exportBackup()">💾 백업</button>
+        <label class="btn btn-glass" style="cursor:pointer;">
+          📂 복원
           <input type="file" accept=".json" style="display:none;" onchange="importBackup(event)" />
         </label>
-        <button class="btn btn-white" onclick="window.print()">🖨️ 인쇄 / PDF</button>
+        <button class="btn btn-white" onclick="window.print()">🖨️ 인쇄</button>
       </div>
     </div>
   </header>
@@ -1912,149 +1841,101 @@
     <section class="control-panel">
       <div class="control-row">
         <div class="view-tabs">
-          <button class="view-tab active" id="tabBtn-calendar" onclick="switchMainView('calendar')">📅 달력형 진도 현황</button>
-          <button class="view-tab" id="tabBtn-seating" onclick="switchMainView('seating')">🪑 교실 자리배치표 · 출결 · 모둠/추첨</button>
-          <button class="view-tab" id="tabBtn-classBoard" onclick="switchMainView('classBoard')">🏫 반별 진도표 · 결시생 · 특이사항</button>
-          <button class="view-tab" id="tabBtn-curriculum" onclick="switchMainView('curriculum')">📚 1·2학년 진도표 설정</button>
-          <button class="view-tab" id="tabBtn-semester" onclick="switchMainView('semester')">🎓 학기/시간표 설정 · 초기화</button>
+          <button class="view-tab active" id="tabBtn-calendar" onclick="switchMainView('calendar')">📅 수업 진도 달력</button>
+          <button class="view-tab" id="tabBtn-seating" onclick="switchMainView('seating')">🪑 교실 자리배치표</button>
+          <button class="view-tab" id="tabBtn-classBoard" onclick="switchMainView('classBoard')">🏫 반별 진도·결시생</button>
+          <button class="view-tab" id="tabBtn-curriculum" onclick="switchMainView('curriculum')">📚 진도표 설정</button>
+          <button class="view-tab" id="tabBtn-semester" onclick="switchMainView('semester')">⚙️ 학기·시간표 설정</button>
         </div>
 
-        <div class="month-tabs" id="calendarMonthFilter">
-          <!-- 동적 월별 탭 렌더링 -->
-        </div>
+        <div class="month-tabs" id="calendarMonthFilter"></div>
       </div>
 
       <!-- Class Filter Bar -->
-      <div class="class-filter-bar" id="classFilterBar">
-        <!-- Rendered by JS -->
-      </div>
+      <div class="class-filter-bar" id="classFilterBar"></div>
     </section>
 
     <!-- VIEW 1: Calendar View -->
     <section id="view-calendar">
       <div class="calendar-quick-toolbar" id="calendarQuickToolbar">
-        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-          <span style="font-size:0.86rem; font-weight:800; color:#1e293b;">📌 주간 보기 제어:</span>
-          <button type="button" class="btn btn-outline" id="toggleCurrentWeekTopBtn" style="padding:6px 12px; font-size:0.8rem;" onclick="toggleKeepCurrentWeekOnTop()">
-            ⏫ 오늘이 속한 주 맨 위에 보기 (지난 주 자동 접기): 켜짐
-          </button>
-          <button type="button" class="btn btn-outline" style="padding:6px 12px; font-size:0.8rem;" onclick="collapseAllPastWeeks(true)">
-            📁 지나간 주 모두 접기
-          </button>
-          <button type="button" class="btn btn-outline" style="padding:6px 12px; font-size:0.8rem;" onclick="collapseAllPastWeeks(false)">
-            📂 모든 주 다 펼치기
-          </button>
-          <button type="button" class="btn btn-primary" style="padding:6px 12px; font-size:0.8rem;" onclick="scrollToTodayCell()">
-            🎯 오늘 날짜로 스크롤
-          </button>
-        </div>
-        <div style="font-size:0.8rem; color:#64748b; font-weight:600;">
-          💡 각 주차 바를 클릭하면 지나간 주를 개별적으로 접거나 펼칠 수 있으며, 수업을 클릭해 <strong>다른 날짜·교시로 이동/맞교체</strong>할 수 있습니다!
-        </div>
+        <label style="display:inline-flex; align-items:center; gap:5px; font-size:0.78rem; font-weight:800; color:#312e81; background:#eef2ff; border:1px solid #c7d2fe; padding:5px 10px; border-radius:8px; cursor:pointer;">
+          <input type="checkbox" id="keepCurrentWeekTopCheck" checked onchange="toggleKeepCurrentWeekOnTop(this.checked)" style="width:14px; height:14px; accent-color:#4f46e5;" />
+          <span>이번 주 맨 위 표시</span>
+        </label>
+        <button type="button" class="btn btn-outline" style="padding:5px 10px; font-size:0.78rem;" onclick="collapseAllPastWeeks()">📁 지난 주 접기</button>
+        <button type="button" class="btn btn-outline" style="padding:5px 10px; font-size:0.78rem;" onclick="expandAllWeeks()">📂 전체 펼치기</button>
       </div>
       <div id="calendarContainer"></div>
     </section>
 
-    <!-- VIEW 2: Integrated Classroom Seating Chart View (교실 자리배치표 통합 뷰) -->
+    <!-- VIEW 2: Integrated Classroom Seating Chart View -->
     <section id="view-seating" style="display:none;">
-      <div class="seating-container">
-        <div class="seating-top-bar">
-          <div style="flex:1 1 320px;">
-            <div class="seating-class-title">
-              <span id="seatingClassBadge" style="background:#4f46e5; color:#fff; padding:4px 14px; border-radius:10px; font-size:1.3rem;">1-1반</span>
-              <span id="seatingClassTitleText">1-1반 교실 자리배치표</span>
-              <span id="seatingRosterCountText" style="font-size:0.88rem; color:#64748b; font-weight:700;">(등록 학생: 0명)</span>
-            </div>
-            <div id="seatingMetaText" style="font-size:0.83rem; color:#64748b; margin-top:4px;">
-              우측의 [📸 명렬·나이스 사진 업로드] 버튼으로 반별 명렬표와 나이스 학생 사진을 한 번에 등록해 보세요!
-            </div>
-          </div>
-
-          <div class="seating-progress-banner" id="seatingProgressBanner">
-            이 반의 이전 수업 진도와 오늘 수업 진도가 여기에 자동으로 연동되어 표시됩니다.
-          </div>
-
-          <div class="seating-controls-box">
-            <div>
-              <label style="font-size:0.74rem; font-weight:800; color:#475569; display:block; margin-bottom:3px;">수업 날짜</label>
-              <input type="date" id="seatingDateInput" class="form-control" style="padding:6px 9px; width:142px; font-weight:700;" onchange="onSeatingDateOrPeriodChange()" />
-            </div>
-            <div>
-              <label style="font-size:0.74rem; font-weight:800; color:#475569; display:block; margin-bottom:3px;">교시</label>
-              <select id="seatingPeriodSelect" class="form-control" style="padding:6px 9px; width:96px; font-weight:700;" onchange="onSeatingDateOrPeriodChange()">
-                <option value="1">1교시</option>
-                <option value="2">2교시</option>
-                <option value="3">3교시</option>
-                <option value="4">4교시</option>
-                <option value="5">5교시</option>
-                <option value="6">6교시</option>
-                <option value="7">7교시</option>
-              </select>
-            </div>
-            <div>
-              <label style="font-size:0.74rem; font-weight:800; color:#475569; display:block; margin-bottom:3px;">학급(반) 선택</label>
-              <select id="seatingClassSelect" class="form-control" style="padding:6px 9px; width:125px; font-weight:800;" onchange="selectSeatingClass(this.value)"></select>
-            </div>
-            <button type="button" class="btn btn-primary" style="padding:7px 11px;" onclick="autoSelectSeatingByCurrentTime()" title="현재 요일·시각 또는 선택한 날짜·교시의 수업 반을 자동으로 불러옵니다">
-              ⚡ 시간표 반 자동적용
-            </button>
-          </div>
-        </div>
-
-        <!-- 자리배치표 도구 및 모드 바 -->
-        <div class="seating-mode-bar">
-          <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
-            <button type="button" class="seating-mode-btn active" id="seatModeBtn-move" onclick="setSeatingMode('move')">🪑 자리 이동 모드</button>
-            <button type="button" class="seating-mode-btn" id="seatModeBtn-info" onclick="setSeatingMode('info')">🙋‍♀️ 출결 · 특이사항 · 사진</button>
-            <button type="button" class="btn btn-outline" style="padding:7px 11px; font-size:0.8rem;" id="toggleSeatPhotoBtn" onclick="toggleShowSeatPhotos()">
-              🖼️ 사진 표시: 켜짐
-            </button>
-            <button type="button" class="btn btn-outline" style="padding:7px 11px; font-size:0.8rem;" onclick="toggleFlipSeatingView()">
-              🔄 교탁 상/하 뒤집기
-            </button>
-            <select id="seatingLayoutTypeSelect" class="form-control" style="width:auto; padding:6px 10px; font-size:0.8rem; font-weight:800;" onchange="onChangeSeatingLayoutType(this.value)">
-              <option value="lab">🖥️ 컴퓨터실 (31석 고정)</option>
-              <option value="classroom">🏫 일반교실 (행·열 설정)</option>
+      <div class="seating-workspace">
+        <div class="seating-toolbar">
+          <div class="seating-toolbar-group">
+            <select id="seatingClassSelect" class="form-control" style="width:105px; font-weight:800; padding:6px 8px;" onchange="onSeatingClassChange(this.value)"></select>
+            <input type="date" id="seatingDateInput" class="form-control" style="width:138px; font-weight:700; padding:6px 8px;" onchange="onSeatingDateOrPeriodChange()" />
+            <select id="seatingPeriodSelect" class="form-control" style="width:88px; font-weight:700; padding:6px 8px;" onchange="onSeatingDateOrPeriodChange()">
+              <option value="1">1교시</option>
+              <option value="2">2교시</option>
+              <option value="3">3교시</option>
+              <option value="4">4교시</option>
+              <option value="5">5교시</option>
+              <option value="6">6교시</option>
+              <option value="7">7교시</option>
             </select>
-            <span id="seatingClassroomDimBox" style="display:none; align-items:center; gap:4px; font-size:0.8rem; font-weight:700;">
-              열:<input type="number" id="seatingColsInput" min="1" max="10" value="5" style="width:48px; padding:4px 6px; border:1px solid #cbd5e1; border-radius:6px;" onchange="onChangeClassroomDimensions()" />
-              행:<input type="number" id="seatingRowsInput" min="1" max="10" value="6" style="width:48px; padding:4px 6px; border:1px solid #cbd5e1; border-radius:6px;" onchange="onChangeClassroomDimensions()" />
-            </span>
+            <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="useTodayLessonForSeating()">📍 오늘 수업</button>
           </div>
 
-          <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
-            <button type="button" class="btn btn-primary" style="padding:7px 12px; font-size:0.8rem; background:#0f766e;" onclick="openRosterPhotoModal()">
-              📸 명렬표 · 나이스 사진 업로드
+          <div class="seating-toolbar-group">
+            <select id="seatingLayoutTypeSelect" class="form-control" style="width:auto; font-weight:700; padding:6px 8px; font-size:0.78rem;" onchange="onSeatingLayoutTypeChange(this.value)">
+              <option value="lab">💻 컴퓨터실(31석)</option>
+              <option value="classroom">🏫 일반교실</option>
+            </select>
+            <div id="seatingCustomGridSizeBox" style="display:none; align-items:center; gap:4px; font-size:0.78rem; font-weight:700;">
+              <input type="number" id="seatingColsInput" min="1" max="12" value="5" style="width:44px; padding:4px; border:1px solid #cbd5e1; border-radius:6px;" onchange="onSeatingGridDimChange()" />열×
+              <input type="number" id="seatingRowsInput" min="1" max="12" value="6" style="width:44px; padding:4px; border:1px solid #cbd5e1; border-radius:6px;" onchange="onSeatingGridDimChange()" />행
+            </div>
+            <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="toggleSeatingFlip('vertical')">↕️ 상하반전</button>
+            <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="toggleSeatingFlip('horizontal')">↔️ 좌우반전</button>
+            <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.78rem; font-weight:700; cursor:pointer; padding:4px 6px;">
+              <input type="checkbox" id="seatingShowPhotoCheck" checked onchange="toggleSeatingPhotoDisplay(this.checked)" /> 사진
+            </label>
+            <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.78rem; font-weight:700; cursor:pointer; padding:4px 6px;">
+              <input type="checkbox" id="seatingShowGroupCheck" onchange="toggleSeatingGroupDisplay(this.checked)" /> 모둠
+            </label>
+          </div>
+        </div>
+
+        <div class="seating-toolbar" style="border-bottom:none; padding-bottom:4px;">
+          <div class="seating-toolbar-group">
+            <button type="button" class="btn btn-primary" style="padding:6px 12px; font-size:0.78rem; background:#4f46e5;" onclick="openRosterPhotoModal()">
+              📸 명렬·사진 업로드
             </button>
-            <button type="button" class="btn btn-outline" style="padding:7px 11px; font-size:0.8rem;" onclick="shuffleCurrentClassSeats()">🎲 자리 섞기</button>
-            <button type="button" class="btn btn-outline" style="padding:7px 11px; font-size:0.8rem;" onclick="arrangeSeatsByNumber(false)">🔢 번호순</button>
-            <button type="button" class="btn btn-outline" style="padding:7px 11px; font-size:0.8rem;" onclick="arrangeSeatsByNumber(true)">🔄 역순</button>
-            <button type="button" class="btn btn-outline" style="padding:7px 11px; font-size:0.8rem;" onclick="toggleAllTodayAssignments()">✓ 과제 전체체크</button>
-            <button type="button" class="btn btn-outline" style="padding:7px 11px; font-size:0.8rem;" onclick="openAssignmentReportModal()">📊 과제 확인/엑셀</button>
-            <button type="button" class="btn btn-outline" style="padding:7px 11px; font-size:0.8rem;" onclick="openTimerModal()">⏱️ 타이머</button>
-            <button type="button" class="btn btn-outline" style="padding:7px 11px; font-size:0.8rem;" onclick="openGroupModal()">👥 모둠 구성</button>
-            <button type="button" class="btn btn-outline" style="padding:7px 11px; font-size:0.8rem;" onclick="openLuckyDrawModal()">🎲 학생 추첨</button>
+            <button type="button" class="btn btn-outline" id="seatingMoveModeBtn" style="padding:6px 10px; font-size:0.78rem;" onclick="toggleSeatingMoveMode()">
+              🔄 자리 이동 모드: OFF
+            </button>
+            <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="shuffleSeatingRandom()">🎲 랜덤배치</button>
+            <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="assignSeatingByNumberOrder(false)">🔢 번호순</button>
+            <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="assignSeatingByNumberOrder(true)">🔢 역순</button>
+          </div>
+
+          <div class="seating-toolbar-group">
+            <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="openAssignmentReportModal()">📊 과제누적</button>
+            <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="openSeatingTimerModal()">⏱️ 타이머</button>
+            <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="openGroupMakerModal()">👥 모둠편성</button>
+            <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="openLuckyDrawModal()">🎰 발표뽑기</button>
+            <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="printSeatingChart()">🖨️ 인쇄</button>
           </div>
         </div>
 
-        <!-- 색상 범례 & 도움말 -->
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px; font-size:0.78rem; color:#475569;">
-          <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-            <span style="display:inline-flex; align-items:center; gap:4px; font-weight:700;"><span style="width:12px; height:12px; border-radius:50%; background:#dbeafe; border:2px solid #3b82f6; display:inline-block;"></span>보통</span>
-            <span style="display:inline-flex; align-items:center; gap:4px; font-weight:700;"><span style="width:12px; height:12px; border-radius:50%; background:#dcfce7; border:2px solid #22c55e; display:inline-block;"></span>우수</span>
-            <span style="display:inline-flex; align-items:center; gap:4px; font-weight:700;"><span style="width:12px; height:12px; border-radius:50%; background:#fee2e2; border:2px solid #ef4444; display:inline-block;"></span>부진</span>
-            <span style="display:inline-flex; align-items:center; gap:4px; font-weight:700;"><span style="width:12px; height:12px; border-radius:50%; background:#fef3c7; border:2px solid #f59e0b; display:inline-block;"></span>관찰</span>
-            <span style="display:inline-flex; align-items:center; gap:4px; font-weight:700;"><span style="width:12px; height:12px; border-radius:50%; background:#bbf7d0; border:2px solid #16a34a; display:inline-block;"></span>과제 제출 완료(✓)</span>
-          </div>
-          <span id="seatingModeHelpText" style="font-weight:700; color:#4f46e5;">💡 학생 좌석을 클릭한 뒤 옮길 자리를 클릭하면 자리가 맞바뀝니다.</span>
-        </div>
+        <div id="seatingHeaderSummaryBar" style="margin-bottom:10px; padding:8px 12px; background:#f8fafc; border-radius:10px; border:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-size:0.8rem; font-weight:700; color:#334155;"></div>
 
-        <!-- 좌석표 메인 영역 -->
-        <div class="seating-canvas-area" id="seatingCanvasArea"></div>
+        <div class="seating-stage" id="seatingStageContainer"></div>
       </div>
     </section>
 
-    <!-- VIEW 3: Class Board View (반별 진도표 + 결시생 현황 + 특이사항) -->
+    <!-- VIEW 3: Class Board View -->
     <section id="view-classBoard" style="display:none;">
       <div class="class-board-layout">
         <aside class="class-sidebar" id="classSidebar"></aside>
@@ -2062,141 +1943,129 @@
       </div>
     </section>
 
-    <!-- VIEW 4: Curriculum Manager (1학년 / 2학년 진도표 관리: 대분류 [수업 / 평가 / 기타] -> 진도 내용) -->
+    <!-- VIEW 4: Curriculum Manager -->
     <section id="view-curriculum" style="display:none;">
       <div class="curriculum-grid">
-        <!-- 1학년 진도표 -->
         <div class="curriculum-card">
-          <h3>📒 1학년 수업 진도표 설정 <span style="font-size:0.8rem; color:#64748b; font-weight:600;">(1-1 ~ 1-7반 공통)</span></h3>
-          <p style="font-size:0.84rem; color:#64748b;">먼저 <strong>대분류(📘수업 / 🚨평가 / 📌기타)</strong>를 선택한 뒤 진도 내용을 입력해 주세요. <strong>평가</strong>로 등록된 항목은 달력과 진도표에서 빨간색 강조 배지로 눈에 확 띄게 표시됩니다!</p>
-
+          <h3>📒 1학년 수업 진도표 설정</h3>
           <div class="curriculum-add-box">
             <div class="cat-selector-group">
-              <span style="font-size:0.82rem; font-weight:800; color:#334155; margin-right:4px;">1단계: 대분류 선택</span>
               <button type="button" class="cat-radio-btn active-수업" id="newCatG1-수업" onclick="setNewSyllabusCategory(1, '수업')">📘 수업</button>
-              <button type="button" class="cat-radio-btn" id="newCatG1-평가" onclick="setNewSyllabusCategory(1, '평가')">🚨 평가 (강조)</button>
+              <button type="button" class="cat-radio-btn" id="newCatG1-평가" onclick="setNewSyllabusCategory(1, '평가')">🚨 평가</button>
               <button type="button" class="cat-radio-btn" id="newCatG1-기타" onclick="setNewSyllabusCategory(1, '기타')">📌 기타</button>
             </div>
             <div class="curriculum-add-row">
-              <input type="text" id="newSyllabusG1" placeholder="2단계: 진도 또는 평가명을 입력하세요 (예: 조건문과 반복문 실습 / 실기 수행평가)" onkeydown="if(event.key==='Enter') addSyllabusItem(1)" />
-              <button class="btn btn-primary" onclick="addSyllabusItem(1)">+ 진도표에 추가</button>
+              <input type="text" id="newSyllabusG1" placeholder="진도 또는 평가명 입력" onkeydown="if(event.key==='Enter') addSyllabusItem(1)" />
+              <button class="btn btn-primary" onclick="addSyllabusItem(1)">+ 추가</button>
             </div>
           </div>
-
           <div class="syllabus-filter-tabs" id="sylFilterTabsG1">
             <button class="syl-filter-btn active" onclick="setSyllabusListFilter(1, 'ALL')">전체</button>
             <button class="syl-filter-btn" onclick="setSyllabusListFilter(1, '수업')">📘 수업</button>
             <button class="syl-filter-btn" onclick="setSyllabusListFilter(1, '평가')">🚨 평가</button>
             <button class="syl-filter-btn" onclick="setSyllabusListFilter(1, '기타')">📌 기타</button>
           </div>
-
           <div class="syllabus-list" id="syllabusListG1"></div>
         </div>
 
-        <!-- 2학년 진도표 -->
         <div class="curriculum-card">
-          <h3>📗 2학년 수업 진도표 설정 <span style="font-size:0.8rem; color:#64748b; font-weight:600;">(2-1 ~ 2-7반 공통)</span></h3>
-          <p style="font-size:0.84rem; color:#64748b;">먼저 <strong>대분류(📘수업 / 🚨평가 / 📌기타)</strong>를 선택한 뒤 진도 내용을 입력해 주세요. <strong>평가</strong>로 등록된 항목은 달력과 진도표에서 빨간색 강조 배지로 눈에 확 띄게 표시됩니다!</p>
-
+          <h3>📗 2학년 수업 진도표 설정</h3>
           <div class="curriculum-add-box">
             <div class="cat-selector-group">
-              <span style="font-size:0.82rem; font-weight:800; color:#334155; margin-right:4px;">1단계: 대분류 선택</span>
               <button type="button" class="cat-radio-btn active-수업" id="newCatG2-수업" onclick="setNewSyllabusCategory(2, '수업')">📘 수업</button>
-              <button type="button" class="cat-radio-btn" id="newCatG2-평가" onclick="setNewSyllabusCategory(2, '평가')">🚨 평가 (강조)</button>
+              <button type="button" class="cat-radio-btn" id="newCatG2-평가" onclick="setNewSyllabusCategory(2, '평가')">🚨 평가</button>
               <button type="button" class="cat-radio-btn" id="newCatG2-기타" onclick="setNewSyllabusCategory(2, '기타')">📌 기타</button>
             </div>
             <div class="curriculum-add-row">
-              <input type="text" id="newSyllabusG2" placeholder="2단계: 진도 또는 평가명을 입력하세요 (예: 피지컬 컴퓨팅 센서 제어 / 2학년 수행평가)" onkeydown="if(event.key==='Enter') addSyllabusItem(2)" />
-              <button class="btn btn-primary" onclick="addSyllabusItem(2)">+ 진도표에 추가</button>
+              <input type="text" id="newSyllabusG2" placeholder="진도 또는 평가명 입력" onkeydown="if(event.key==='Enter') addSyllabusItem(2)" />
+              <button class="btn btn-primary" onclick="addSyllabusItem(2)">+ 추가</button>
             </div>
           </div>
-
           <div class="syllabus-filter-tabs" id="sylFilterTabsG2">
             <button class="syl-filter-btn active" onclick="setSyllabusListFilter(2, 'ALL')">전체</button>
             <button class="syl-filter-btn" onclick="setSyllabusListFilter(2, '수업')">📘 수업</button>
             <button class="syl-filter-btn" onclick="setSyllabusListFilter(2, '평가')">🚨 평가</button>
             <button class="syl-filter-btn" onclick="setSyllabusListFilter(2, '기타')">📌 기타</button>
           </div>
-
           <div class="syllabus-list" id="syllabusListG2"></div>
         </div>
       </div>
     </section>
 
-    <!-- VIEW 5: Semester & Timetable Settings / Reset Manager (학기/시간표 설정 · 새 학기 및 초기화) -->
+    <!-- VIEW 5: Semester & Timetable Settings / Reset Manager -->
     <section id="view-semester" style="display:none;">
       <div class="curriculum-grid">
-        <!-- 카드 1: 학기 기간 & 새 학기 생성 / 초기화 -->
-        <div class="curriculum-card">
-          <h3>🎓 학년도 · 학기 기간 설정 및 새 학기 전환</h3>
-          <p style="font-size:0.84rem; color:#64748b;">
-            올해 한 해에만 한정되지 않고, 매년·매 학기마다 <strong>학기 이름</strong>과 <strong>수업 시작일 ~ 종료일</strong>을 자유롭게 변경하거나 새 학기를 시작할 수 있습니다!
-          </p>
-
-          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:12px;">
+        <div class="semester-card">
+          <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:12px;">⚙️ 학기 기간 · 학급 설정 및 초기화</h3>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-bottom:12px;">
             <div>
-              <label style="font-size:0.82rem; font-weight:800; color:#334155; display:block; margin-bottom:4px;">📌 학년도 / 학기 이름</label>
-              <input type="text" id="semTitleInput" class="form-control" placeholder="예: 2026학년도 2학기, 2027학년도 1학기" />
+              <label style="font-size:0.78rem; font-weight:800; color:#475569; display:block; margin-bottom:4px;">학기명</label>
+              <input type="text" id="semTitleInput" class="form-control" placeholder="예: 2026학년도 2학기" />
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-              <div>
-                <label style="font-size:0.82rem; font-weight:800; color:#334155; display:block; margin-bottom:4px;">📅 달력 시작일</label>
-                <input type="date" id="semStartDateInput" class="form-control" />
-              </div>
-              <div>
-                <label style="font-size:0.82rem; font-weight:800; color:#334155; display:block; margin-bottom:4px;">📅 달력 종료일</label>
-                <input type="date" id="semEndDateInput" class="form-control" />
-              </div>
+            <div>
+              <label style="font-size:0.78rem; font-weight:800; color:#475569; display:block; margin-bottom:4px;">시작일</label>
+              <input type="date" id="semStartDateInput" class="form-control" />
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-              <div>
-                <label style="font-size:0.82rem; font-weight:800; color:#334155; display:block; margin-bottom:4px;">📒 1학년 담당 반 목록 (쉼표 구분)</label>
-                <input type="text" id="semClassesG1Input" class="form-control" placeholder="1-1, 1-2, 1-3, 1-4, 1-5, 1-6, 1-7" />
-              </div>
-              <div>
-                <label style="font-size:0.82rem; font-weight:800; color:#334155; display:block; margin-bottom:4px;">📗 2학년 담당 반 목록 (쉼표 구분)</label>
-                <input type="text" id="semClassesG2Input" class="form-control" placeholder="2-1, 2-2, 2-3, 2-4, 2-5, 2-6, 2-7" />
-              </div>
-            </div>
-            <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:4px;">
-              <button type="button" class="btn btn-primary" onclick="saveSemesterSettings()">💾 현재 학기 기간·학급 설정 적용</button>
+            <div>
+              <label style="font-size:0.78rem; font-weight:800; color:#475569; display:block; margin-bottom:4px;">종료일</label>
+              <input type="date" id="semEndDateInput" class="form-control" />
             </div>
           </div>
-
-          <!-- 새 학기 보관 후 생성 & 아카이브 목록 -->
-          <div style="background:#eef2ff; border:1.5px solid #c7d2fe; border-radius:12px; padding:15px; display:flex; flex-direction:column; gap:10px;">
-            <div style="font-weight:800; font-size:0.95rem; color:#312e81;">🚀 새 학기 시작 마법사 (기존 학기 데이터 자동 보관)</div>
-            <p style="font-size:0.8rem; color:#4338ca;">
-              학기가 바뀔 때 아래 버튼을 누르면 <strong>현재 학기의 모든 진도·출결·자리배치 기록을 보관함(아카이브)에 안전하게 저장</strong>한 뒤, 깨끗한 새 학기 달력으로 초기화하여 시작할 수 있습니다!
-            </p>
-            <div style="display:flex; gap:8px; flex-wrap:wrap;">
-              <button type="button" class="btn btn-primary" onclick="startNewSemesterWithArchive()">✨ 현재 학기 보관 후 새 학기 새로 만들기</button>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
+            <div>
+              <label style="font-size:0.78rem; font-weight:800; color:#475569; display:block; margin-bottom:4px;">1학년 학급 (쉼표 구분)</label>
+              <input type="text" id="semClassesG1Input" class="form-control" />
             </div>
-            <div id="semesterArchivesListBox" style="margin-top:6px;"></div>
+            <div>
+              <label style="font-size:0.78rem; font-weight:800; color:#475569; display:block; margin-bottom:4px;">2학년 학급 (쉼표 구분)</label>
+              <input type="text" id="semClassesG2Input" class="form-control" />
+            </div>
+          </div>
+          <div style="display:flex; justify-content:flex-end; margin-bottom:18px;">
+            <button type="button" class="btn btn-primary" onclick="saveSemesterSettings()">💾 기간·학급 설정 적용</button>
           </div>
 
-          <!-- 항목별 선택 초기화 -->
-          <div style="background:#fef2f2; border:1.5px solid #fecaca; border-radius:12px; padding:15px; display:flex; flex-direction:column; gap:10px;">
-            <div style="font-weight:800; font-size:0.95rem; color:#991b1b;">🧹 항목별 맞춤 초기화 (원하는 데이터만 골라서 비우기)</div>
+          <div style="border-top:1px solid #e2e8f0; padding-top:14px; margin-bottom:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <span style="font-weight:800; font-size:0.92rem; color:#312e81;">🌱 새 학기 전환 및 이전 학기 보관함</span>
+              <button type="button" class="btn btn-primary" style="padding:6px 12px; font-size:0.8rem;" onclick="startNewSemesterWithArchive()">+ 현재 학기 보관 후 새 학기 시작</button>
+            </div>
+            <div class="archive-list" id="semesterArchiveListContainer"></div>
+          </div>
+
+          <div style="border-top:1px solid #e2e8f0; padding-top:14px;">
+            <div style="font-weight:800; font-size:0.9rem; color:#991b1b; margin-bottom:8px;">🧹 데이터 선택 초기화</div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-              <button type="button" class="btn btn-danger-soft" onclick="selectiveResetData('records')">🗓️ 날짜별 진도·결시생·교체 기록만 초기화</button>
-              <button type="button" class="btn btn-danger-soft" onclick="selectiveResetData('seating')">🪑 학생 명렬표·사진·자리배치만 초기화</button>
-              <button type="button" class="btn btn-danger-soft" onclick="selectiveResetData('syllabus')">📚 1·2학년 수업 진도표 목록 초기화</button>
-              <button type="button" class="btn btn-danger-soft" style="background:#dc2626; color:#fff;" onclick="selectiveResetData('all')">⚠️ 전체 데이터 완전 초기화</button>
+              <button type="button" class="btn btn-danger-soft" onclick="selectiveResetData('records')">🗓️ 수업/진도 기록만 초기화</button>
+              <button type="button" class="btn btn-danger-soft" onclick="selectiveResetData('seating')">🪑 자리배치·명렬·사진 초기화</button>
+              <button type="button" class="btn btn-danger-soft" onclick="selectiveResetData('syllabus')">📋 학년 진도표 목록 초기화</button>
+              <button type="button" class="btn btn-danger-soft" style="background:#dc2626; color:#fff;" onclick="selectiveResetData('all')">⚠️ 전체 초기화</button>
             </div>
           </div>
         </div>
 
-        <!-- 카드 2: 요일별 · 교시별 기본 시간표 설정 -->
-        <div class="curriculum-card">
-          <h3>⏰ 요일별 · 교시별 기본 시간표 설정</h3>
-          <p style="font-size:0.84rem; color:#64748b;">
-            학기마다 바뀌는 혜정샘의 정규 시간표를 아래 표에서 바로 수정하실 수 있습니다. 공란(`- 없음 -`)으로 두면 수업이 없는 공강 교시로 처리됩니다.
-          </p>
-          <div id="weeklyScheduleEditorBox" style="overflow-x:auto;"></div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
-            <button type="button" class="btn btn-outline" onclick="resetWeeklyScheduleToDefault()">↺ 2026년 2학기 기본 시간표로 복원</button>
-            <button type="button" class="btn btn-primary" onclick="saveWeeklyScheduleFromEditor()">💾 기본 시간표 저장 및 달력 반영</button>
+        <div class="semester-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 style="font-size:1.1rem; font-weight:800;">🗓️ 주간 기본 시간표 편집</h3>
+            <div style="display:flex; gap:6px;">
+              <button type="button" class="btn btn-outline" style="padding:5px 10px; font-size:0.78rem;" onclick="resetDefaultWeeklySchedule()">↺ 기본값 복원</button>
+              <button type="button" class="btn btn-primary" style="padding:5px 12px; font-size:0.78rem;" onclick="saveWeeklyScheduleFromEditor()">💾 시간표 저장</button>
+            </div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="schedule-editor-table">
+              <thead>
+                <tr style="background:#f8fafc;">
+                  <th>교시</th>
+                  <th>월</th>
+                  <th>화</th>
+                  <th>수</th>
+                  <th>목</th>
+                  <th>금</th>
+                </tr>
+              </thead>
+              <tbody id="weeklyScheduleEditorBody"></tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -2211,20 +2080,19 @@
         <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeLessonModal()">✕ 닫기</button>
       </div>
       <div class="modal-body">
-        <!-- 🔄 수업 교체 / 다른 날짜·교시·학급 변경 영역 -->
         <div class="schedule-change-box">
           <div class="change-title">
-            <span>🔄 수업 교체 · 날짜/교시 이동 · 반 변경</span>
+            <span>🔄 수업 교체 · 다른 날짜/교시로 이동</span>
             <div style="display:flex; gap:6px;" id="modalChangeActionBtns"></div>
           </div>
-          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap:10px;">
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:8px;">
             <div>
-              <label style="font-size:0.75rem; font-weight:800; color:#312e81; display:block; margin-bottom:3px;">📅 수업 날짜 (다른 날로 이동 가능!)</label>
-              <input type="date" id="modalTargetDateInput" class="form-control" style="padding:6px 9px; font-weight:700; border-color:#818cf8;" onchange="onModalTargetDateOrPeriodChange()" />
+              <label style="font-size:0.74rem; font-weight:800; color:#312e81; display:block; margin-bottom:3px;">📅 수업 날짜</label>
+              <input type="date" id="modalTargetDateInput" class="form-control" style="padding:6px 8px; font-weight:700; border-color:#818cf8;" onchange="onModalTargetDateOrPeriodChange()" />
             </div>
             <div>
-              <label style="font-size:0.75rem; font-weight:700; color:#475569; display:block; margin-bottom:3px;">⏰ 교시 변경</label>
-              <select id="modalPeriodSelect" class="form-control" style="padding:6px 9px; font-weight:700;" onchange="onModalTargetDateOrPeriodChange()">
+              <label style="font-size:0.74rem; font-weight:700; color:#475569; display:block; margin-bottom:3px;">⏰ 교시</label>
+              <select id="modalPeriodSelect" class="form-control" style="padding:6px 8px; font-weight:700;" onchange="onModalTargetDateOrPeriodChange()">
                 <option value="1">1교시 (09:00~09:45)</option>
                 <option value="2">2교시 (09:55~10:40)</option>
                 <option value="3">3교시 (10:50~11:35)</option>
@@ -2235,58 +2103,35 @@
               </select>
             </div>
             <div>
-              <label style="font-size:0.75rem; font-weight:700; color:#475569; display:block; margin-bottom:3px;">🏫 수업 학급 (반 교체)</label>
-              <select id="modalClassSelect" class="form-control" style="padding:6px 9px; font-weight:700;" onchange="onModalClassChange()">
-                <optgroup label="1학년">
-                  <option value="1-1">1-1반</option>
-                  <option value="1-2">1-2반</option>
-                  <option value="1-3">1-3반</option>
-                  <option value="1-4">1-4반</option>
-                  <option value="1-5">1-5반</option>
-                  <option value="1-6">1-6반</option>
-                  <option value="1-7">1-7반</option>
-                </optgroup>
-                <optgroup label="2학년">
-                  <option value="2-1">2-1반</option>
-                  <option value="2-2">2-2반</option>
-                  <option value="2-3">2-3반</option>
-                  <option value="2-4">2-4반</option>
-                  <option value="2-5">2-5반</option>
-                  <option value="2-6">2-6반</option>
-                  <option value="2-7">2-7반</option>
-                </optgroup>
-              </select>
+              <label style="font-size:0.74rem; font-weight:700; color:#475569; display:block; margin-bottom:3px;">🏫 학급(반)</label>
+              <select id="modalClassSelect" class="form-control" style="padding:6px 8px; font-weight:700;" onchange="onModalClassChange()"></select>
             </div>
             <div>
-              <label style="font-size:0.75rem; font-weight:700; color:#475569; display:block; margin-bottom:3px;">📌 교체/이동 사유 메모</label>
-              <input type="text" id="modalChangeNoteInput" class="form-control" style="padding:6px 9px;" placeholder="예: 11/12(목) 5교시와 교체, 보강 등" />
+              <label style="font-size:0.74rem; font-weight:700; color:#475569; display:block; margin-bottom:3px;">📌 변동 사유</label>
+              <input type="text" id="modalChangeNoteInput" class="form-control" style="padding:6px 8px;" placeholder="교체/보강 사유" />
             </div>
           </div>
-          <div id="modalDateMoveHintBox" style="display:none; margin-top:8px; padding:8px 11px; border-radius:8px; background:#e0e7ff; border:1px solid #818cf8; font-size:0.8rem; color:#1e1b4b; font-weight:700;">
-            <div id="modalDateMoveHintText"></div>
-            <label style="display:inline-flex; align-items:center; gap:6px; margin-top:5px; cursor:pointer; color:#312e81;">
-              <input type="checkbox" id="modalSwapWithTargetCheck" checked style="width:16px; height:16px; accent-color:#4f46e5;" />
-              <span>이동할 날짜·교시에 이미 내 수업이 있다면 두 수업을 1:1 맞교환(Swap)하기</span>
-            </label>
-          </div>
+          <label style="display:inline-flex; align-items:center; gap:6px; margin-top:8px; cursor:pointer; font-size:0.78rem; font-weight:700; color:#312e81;">
+            <input type="checkbox" id="modalSwapWithTargetCheck" checked onchange="onModalTargetDateOrPeriodChange()" style="width:15px; height:15px; accent-color:#4f46e5;" />
+            <span>이동할 날짜·교시에 다른 수업이 있으면 1:1 맞교환</span>
+          </label>
+          <div id="modalDateMoveHintBox" style="display:none; margin-top:6px; padding:7px 10px; border-radius:8px; font-size:0.78rem; font-weight:700;"></div>
         </div>
 
-        <!-- Quick status toggle -->
-        <div style="display:flex; gap:12px; align-items:center; justify-content:space-between; background:#f8fafc; padding:10px 14px; border-radius:10px; border:1px solid var(--border); flex-wrap:wrap;">
-          <label style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:0.9rem; cursor:pointer;">
-            <input type="checkbox" id="modalDoneCheck" style="width:18px; height:18px; accent-color:var(--success);" />
-            ✅ 이 시간 수업 완료 체크
+        <div style="display:flex; gap:12px; align-items:center; justify-content:space-between; background:#f8fafc; padding:9px 14px; border-radius:10px; border:1px solid var(--border); flex-wrap:wrap;">
+          <label style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:0.88rem; cursor:pointer;">
+            <input type="checkbox" id="modalDoneCheck" style="width:17px; height:17px; accent-color:var(--success);" />
+            ✅ 수업 완료
           </label>
-          <label style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:0.88rem; color:#64748b; cursor:pointer;">
-            <input type="checkbox" id="modalSkipCheck" style="width:17px; height:17px; accent-color:#64748b;" onchange="onToggleSkipInModal()" />
-            🚫 휴강/행사/지필평가 (차시에서 제외)
+          <label style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:0.85rem; color:#64748b; cursor:pointer;">
+            <input type="checkbox" id="modalSkipCheck" style="width:16px; height:16px; accent-color:#64748b;" onchange="onToggleSkipInModal()" />
+            🚫 휴강/행사 제외
           </label>
         </div>
 
-        <!-- Grade Syllabus Picker with Category Filter -->
         <div class="form-group">
           <label>
-            <span id="modalGradeSyllabusLabel">📌 학년 수업 진도표에서 빠른 선택</span>
+            <span id="modalGradeSyllabusLabel">📌 진도표에서 선택</span>
             <div style="display:flex; gap:4px;" id="modalSyllabusCatFilter">
               <button type="button" class="syl-filter-btn active" onclick="setModalSyllabusFilter('ALL')">전체</button>
               <button type="button" class="syl-filter-btn" onclick="setModalSyllabusFilter('수업')">📘 수업</button>
@@ -2297,11 +2142,10 @@
           <div class="quick-syllabus-chips" id="modalSyllabusChips"></div>
         </div>
 
-        <!-- Custom / Selected Category + Topic Input -->
         <div class="form-group">
           <label>
-            <span>✏️ 대분류(수업/평가/기타) 및 진도 주제</span>
-            <button type="button" class="btn btn-outline" style="padding:3px 8px; font-size:0.74rem;" onclick="addCurrentCustomTopicToSyllabus()">+ 이 주제를 학년 진도표에도 등록</button>
+            <span>✏️ 대분류 및 진도 주제</span>
+            <button type="button" class="btn btn-outline" style="padding:3px 8px; font-size:0.74rem;" onclick="addCurrentCustomTopicToSyllabus()">+ 진도표에 추가</button>
           </label>
           <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
             <div class="cat-selector-group">
@@ -2309,428 +2153,298 @@
               <button type="button" class="cat-radio-btn" id="modalCatBtn-평가" onclick="setModalLessonCategory('평가')">🚨 평가</button>
               <button type="button" class="cat-radio-btn" id="modalCatBtn-기타" onclick="setModalLessonCategory('기타')">📌 기타</button>
             </div>
-            <input type="text" id="modalTopicInput" class="form-control" style="flex:1; min-width:220px;" placeholder="위 진도표에서 클릭하거나 직접 진도/평가명을 입력하세요" />
+            <input type="text" id="modalTopicInput" class="form-control" style="flex:1; min-width:200px;" placeholder="진도/평가명 입력" />
           </div>
         </div>
 
-        <!-- Detailed Lesson Activity -->
         <div class="form-group">
-          <label>📝 세부 수업 내용 / 활동 메모</label>
-          <textarea id="modalContentInput" class="form-control" rows="2" placeholder="예: 교과서 84~89p, 실습과제 제출 확인, 모둠 발표 진행 등"></textarea>
+          <label>📝 세부 수업 내용</label>
+          <textarea id="modalContentInput" class="form-control" rows="2" placeholder="세부 활동 메모"></textarea>
         </div>
 
-        <!-- Absentee Status -->
-        <div class="form-group">
-          <label>
-            <span>🙋‍♀️ 결시생 현황 (번호/이름 및 사유)</span>
-            <span style="font-size:0.75rem; color:#b91c1c; font-weight:600;">결석·조퇴·결과·인정결 등</span>
-          </label>
-          <input type="text" id="modalAbsentInput" class="form-control" placeholder="예: 3번 김OO(병결), 15번 이OO(조퇴-병원)" />
-        </div>
-
-        <!-- Special Notes -->
-        <div class="form-group">
-          <label>
-            <span>⭐ 특이사항 / 전달사항</span>
-            <span style="font-size:0.75rem; color:#b45309; font-weight:600;">수행평가 미응시, 컴퓨터 고장, 다음 시간 준비물 등</span>
-          </label>
-          <textarea id="modalNoteInput" class="form-control" rows="2" placeholder="예: 7번 학생 다음 시간에 수행평가 재응시 안내 필요"></textarea>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div class="form-group">
+            <label>🙋‍♀️ 결시생 현황</label>
+            <input type="text" id="modalAbsentInput" class="form-control" placeholder="번호/이름(사유)" />
+          </div>
+          <div class="form-group">
+            <label>⭐ 특이사항</label>
+            <input type="text" id="modalNoteInput" class="form-control" placeholder="특이사항 메모" />
+          </div>
         </div>
       </div>
 
       <div class="modal-footer">
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <button class="btn btn-outline" id="modalOpenSeatingBtn" style="background:#eef2ff; color:#4f46e5; border-color:#c7d2fe;" onclick="openSeatingFromLessonModal()">🪑 이 시간 교실 자리배치표 열기</button>
-          <button class="btn btn-outline" id="modalOpenClassBoardBtn" onclick="openClassBoardFromModal()">🏫 이 반 전체 진도·결시생 모아보기</button>
+          <button class="btn btn-outline" id="modalOpenSeatingBtn" style="background:#eef2ff; color:#4f46e5; border-color:#c7d2fe;" onclick="openSeatingChartFromModal()">🪑 자리배치표</button>
+          <button class="btn btn-outline" id="modalOpenClassBoardBtn" onclick="openClassBoardFromModal()">🏫 반별 진도표</button>
         </div>
         <div style="display:flex; gap:8px;">
           <button class="btn btn-outline" onclick="closeLessonModal()">취소</button>
-          <button class="btn btn-primary" onclick="saveLessonModal()">💾 저장하기</button>
+          <button class="btn btn-primary" onclick="saveLessonModal()">💾 저장</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Add Extra Class Modal (수업 추가 / 보강 모달) -->
+  <!-- Add Extra Class Modal -->
   <div class="modal-backdrop" id="addLessonModalBackdrop" onclick="if(event.target===this) closeAddLessonModal()">
-    <div class="modal-box" style="max-width:480px;">
+    <div class="modal-box" style="max-width:440px;">
       <div class="modal-header">
-        <div id="addModalHeaderTitle" style="font-weight:800; font-size:1.1rem;">➕ 수업 추가 / 교체 보강 등록</div>
-        <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeAddLessonModal()">✕ 닫기</button>
+        <div id="addModalHeaderTitle" style="font-weight:800; font-size:1.05rem;">➕ 수업 추가 / 보강</div>
+        <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeAddLessonModal()">✕</button>
       </div>
       <div class="modal-body">
-        <p style="font-size:0.84rem; color:#475569;">
-          다른 선생님과 수업을 교체하여 들어오게 되었거나 보강이 생긴 경우, 아래에서 <strong>교시</strong>와 <strong>학급</strong>을 선택해 추가해 주세요.
-        </p>
         <div class="form-group">
-          <label>⏰ 교시 선택</label>
+          <label>⏰ 교시</label>
           <select id="addModalPeriodSelect" class="form-control">
-            <option value="1">1교시 (09:00~09:45)</option>
-            <option value="2">2교시 (09:55~10:40)</option>
-            <option value="3">3교시 (10:50~11:35)</option>
-            <option value="4">4교시 (11:45~12:30)</option>
-            <option value="5">5교시 (13:40~14:25)</option>
-            <option value="6">6교시 (14:35~15:20)</option>
-            <option value="7">7교시 (15:30~16:15)</option>
+            <option value="1">1교시</option>
+            <option value="2">2교시</option>
+            <option value="3">3교시</option>
+            <option value="4">4교시</option>
+            <option value="5">5교시</option>
+            <option value="6">6교시</option>
+            <option value="7">7교시</option>
           </select>
         </div>
         <div class="form-group">
-          <label>🏫 추가할 학급 선택</label>
-          <select id="addModalClassSelect" class="form-control">
-            <optgroup label="1학년">
-              <option value="1-1">1-1반</option>
-              <option value="1-2">1-2반</option>
-              <option value="1-3">1-3반</option>
-              <option value="1-4">1-4반</option>
-              <option value="1-5">1-5반</option>
-              <option value="1-6">1-6반</option>
-              <option value="1-7">1-7반</option>
-            </optgroup>
-            <optgroup label="2학년">
-              <option value="2-1">2-1반</option>
-              <option value="2-2">2-2반</option>
-              <option value="2-3">2-3반</option>
-              <option value="2-4">2-4반</option>
-              <option value="2-5">2-5반</option>
-              <option value="2-6">2-6반</option>
-              <option value="2-7">2-7반</option>
-            </optgroup>
-          </select>
+          <label>🏫 학급</label>
+          <select id="addModalClassSelect" class="form-control"></select>
         </div>
         <div class="form-group">
-          <label>📌 추가/교체 사유 메모 (선택)</label>
-          <input type="text" id="addModalReasonInput" class="form-control" placeholder="예: 3교시 수학과 수업 교체, 보강 수업 등" />
+          <label>📌 사유 (선택)</label>
+          <input type="text" id="addModalReasonInput" class="form-control" placeholder="예: 보강, 수업 교체" />
         </div>
       </div>
       <div class="modal-footer" style="justify-content:flex-end;">
         <button class="btn btn-outline" onclick="closeAddLessonModal()">취소</button>
-        <button class="btn btn-primary" onclick="confirmAddLesson()">➕ 이 날짜에 수업 추가</button>
+        <button class="btn btn-primary" onclick="confirmAddLesson()">➕ 추가</button>
       </div>
     </div>
   </div>
 
-  <!-- Firebase Cloud Sync Modal (파이어베이스 실시간 연동 설정 모달) -->
+  <!-- Firebase Cloud Sync Modal -->
   <div class="modal-backdrop" id="firebaseModalBackdrop" onclick="if(event.target===this) closeFirebaseModal()">
-    <div class="modal-box" style="max-width:540px;">
+    <div class="modal-box" style="max-width:500px;">
       <div class="modal-header">
-        <div style="font-weight:800; font-size:1.1rem; display:flex; align-items:center; gap:8px;">
-          <span>🔥 파이어베이스(Firebase) 실시간 클라우드 동기화</span>
-        </div>
-        <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeFirebaseModal()">✕ 닫기</button>
+        <div style="font-weight:800; font-size:1.05rem;">🔥 파이어베이스 클라우드 동기화</div>
+        <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeFirebaseModal()">✕</button>
       </div>
       <div class="modal-body">
-        <p style="font-size:0.84rem; color:#475569; line-height:1.55;">
-          파이어베이스 프로젝트 ID 또는 Realtime Database 주소를 연결하면, <strong>학교 컴퓨터 · 집 컴퓨터 · 태블릿 · 스마트폰 · 바탕화면 위젯</strong> 어디서 수정하든 모든 수업 진도와 결시생 현황이 실시간으로 자동 동기화됩니다!
-        </p>
         <div class="form-group">
-          <label>🔥 파이어베이스 프로젝트 ID (Project ID) 또는 DB URL</label>
-          <input type="text" id="firebaseEndpointInput" class="form-control" placeholder="예: hyejeong-class-planner 또는 https://프로젝트명-default-rtdb.firebaseio.com" />
-          <span style="font-size:0.75rem; color:#64748b;">프로젝트 ID만 입력해도 Firestore / Realtime DB 주소로 자동 연결됩니다.</span>
+          <label>프로젝트 ID 또는 DB URL</label>
+          <input type="text" id="firebaseEndpointInput" class="form-control" />
         </div>
-        <div id="firebaseModalStatusBox" style="padding:10px 12px; border-radius:9px; background:#f8fafc; border:1px solid #e2e8f0; font-size:0.82rem; color:#334155;">
-          현재 상태: 확인 중...
-        </div>
+        <div id="firebaseModalStatusBox" style="padding:10px; border-radius:8px; background:#f8fafc; border:1px solid #e2e8f0; font-size:0.82rem;"></div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-outline" onclick="forcePushToFirebase()">☁️ 현재 달력 데이터 클라우드로 즉시 업로드</button>
+        <button class="btn btn-outline" onclick="forcePushToFirebase()">☁️ 즉시 업로드</button>
         <div style="display:flex; gap:8px;">
           <button class="btn btn-outline" onclick="closeFirebaseModal()">닫기</button>
-          <button class="btn btn-primary" onclick="saveFirebaseConfigFromModal()">💾 연결 저장</button>
+          <button class="btn btn-primary" onclick="saveFirebaseConfigFromModal()">💾 저장</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ===================================================================
-       [신규 모달 1] 학생 명렬표(엑셀/CSV/붙여넣기) & 나이스(NEIS) 사진 일괄 업로드 모달
-       =================================================================== -->
+  <!-- 학생 명렬표 & 나이스 사진 일괄 업로드 모달 -->
   <div class="modal-backdrop" id="rosterPhotoModalBackdrop" onclick="if(event.target===this) closeRosterPhotoModal()">
-    <div class="modal-box" style="max-width:860px;">
+    <div class="modal-box" style="max-width:820px;">
       <div class="modal-header">
-        <div style="font-weight:800; font-size:1.12rem; display:flex; align-items:center; gap:8px;">
-          <span>📸 반별 학생 명렬표 & 나이스(NEIS) 학생 사진 자동 매칭 업로드</span>
-        </div>
+        <div style="font-weight:800; font-size:1.08rem;">📸 학생 명렬표 & 나이스 사진 업로드</div>
         <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeRosterPhotoModal()">✕ 닫기</button>
       </div>
-      <div class="modal-body" style="gap:14px;">
-        <!-- 대상 학급 선택 바 -->
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; background:#f8fafc; padding:12px 14px; border-radius:12px; border:1px solid #e2e8f0;">
-          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-            <span style="font-weight:800; font-size:0.9rem; color:#1e293b;">🏫 관리할 학급(반) 선택:</span>
-            <select id="rpModalClassSelect" class="form-control" style="width:140px; font-weight:800;" onchange="onChangeRpModalClass(this.value)"></select>
-            <span id="rpModalClassSummary" style="font-size:0.82rem; color:#4f46e5; font-weight:700;"></span>
+      <div class="modal-body" style="gap:12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; background:#f8fafc; padding:10px 14px; border-radius:10px; border:1px solid #e2e8f0;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-weight:800; font-size:0.86rem;">🏫 학급 선택:</span>
+            <select id="rosterModalClassSelect" class="form-control" style="width:120px; font-weight:800;" onchange="onRosterModalClassChange(this.value)"></select>
+            <span id="rosterPhotoStatusBanner" style="font-size:0.8rem; color:#4f46e5; font-weight:700;"></span>
           </div>
-          <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            <button type="button" class="btn btn-outline" style="padding:5px 10px; font-size:0.78rem;" onclick="downloadSampleRosterCSV()">📥 명렬표 양식(CSV) 샘플 다운로드</button>
-            <button type="button" class="btn btn-danger-soft" style="padding:5px 10px; font-size:0.78rem;" onclick="clearCurrentClassPhotos()">🗑️ 이 반 사진만 비우기</button>
+          <div style="display:flex; gap:6px;">
+            <button type="button" class="btn btn-outline" style="padding:5px 10px; font-size:0.76rem;" onclick="loadSampleRosterForCurrentClass()">예시 명렬 넣기</button>
+            <button type="button" class="btn btn-danger-soft" style="padding:5px 10px; font-size:0.76rem;" onclick="clearCurrentClassPhotos()">🗑️ 사진 초기화</button>
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap:14px;">
-          <!-- 좌측: 1단계 명렬표 업로드 / 붙여넣기 -->
-          <div style="border:1.5px solid #cbd5e1; border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:10px;">
-            <div style="font-weight:800; font-size:0.95rem; color:#0f172a;">1️⃣ 학생 명렬표 등록 (엑셀 · CSV · 붙여넣기)</div>
-            <p style="font-size:0.78rem; color:#475569; line-height:1.45;">
-              • <strong>나이스 명렬표 엑셀(.xlsx/.xls/.csv)</strong> 파일을 올리시면 자동으로 인식합니다!<br/>
-              • 파일 안에 <strong>[학년, 반, 번호, 성명]</strong> 열이 함께 있으면 <strong>전 학급(1-1~2-7) 명렬이 한 번에 자동 분류</strong>되어 들어갑니다!
-            </p>
-            <div style="display:flex; gap:8px; flex-wrap:wrap;">
-              <label class="btn btn-primary" style="cursor:pointer; flex:1; justify-content:center;">
-                📂 명렬표 파일 업로드 (.xlsx / .csv / .txt)
-                <input type="file" accept=".xlsx,.xls,.csv,.txt" multiple style="display:none;" onchange="handleRosterFilesUpload(event)" />
-              </label>
-            </div>
-            <div>
-              <label style="font-size:0.78rem; font-weight:700; color:#475569; display:block; margin-bottom:4px;">또는 아래에 [번호 이름] 형태로 직접 붙여넣기:</label>
-              <textarea id="rpModalPasteTextarea" class="form-control" rows="6" placeholder="엑셀이나 한글에서 복사해 그대로 붙여넣으세요!&#10;예시 1 (번호 + 이름):&#10;1	김가은&#10;2	박나래&#10;3	이도윤&#10;&#10;예시 2 (이름만 줄바꿈):&#10;김가은&#10;박나래"></textarea>
-            </div>
-            <button type="button" class="btn btn-primary" style="justify-content:center;" onclick="saveRosterFromModalTextarea()">
-              💾 현재 반 명렬표 저장 + 번호순 좌석 자동 배치
-            </button>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:12px;">
+          <div style="border:1px solid #cbd5e1; border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:8px;">
+            <div style="font-weight:800; font-size:0.9rem;">1️⃣ 학생 명렬표 업로드 (.xlsx / .csv / 붙여넣기)</div>
+            <label class="btn btn-primary" style="cursor:pointer; justify-content:center; padding:8px;">
+              📂 나이스 명렬표 파일 선택 (.xlsx / .csv)
+              <input type="file" id="rosterFileInput" accept=".xlsx,.xls,.csv,.txt" multiple style="display:none;" onchange="handleRosterFilesUpload(this.files)" />
+            </label>
+            <textarea id="rosterTextareaInput" class="form-control" rows="6" placeholder="1	김가은&#10;2	김도윤"></textarea>
+            <button type="button" class="btn btn-primary" style="justify-content:center;" onclick="saveRosterFromModalTextarea()">💾 명렬 저장 및 좌석 반영</button>
           </div>
 
-          <!-- 우측: 2단계 나이스 학생 사진 일괄 업로드 -->
-          <div style="border:1.5px solid #818cf8; background:#fafaff; border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:10px;">
-            <div style="font-weight:800; font-size:0.95rem; color:#312e81;">2️⃣ 나이스(NEIS) 학생 사진 자동 매칭 업로드</div>
-            <p style="font-size:0.78rem; color:#4338ca; line-height:1.48;">
-              나이스에서 다운로드한 사진들을 그대로 올려주세요! 아래 파일명 규칙을 모두 자동으로 인식해 학생에게 찾아 넣어줍니다:<br/>
-              • <strong>번호+이름</strong>: <code>1_김가은.jpg</code>, <code>01 김가은.png</code>, <code>1번 김가은.jpg</code><br/>
-              • <strong>이름만 / 번호만</strong>: <code>김가은.jpg</code> 또는 <code>1.jpg</code>, <code>01.png</code><br/>
-              • <strong>학번(전학급 자동분류)</strong>: <code>10101.jpg</code>, <code>20415_이도윤.jpg</code>, <code>1-2-3_박나래.jpg</code>
-            </p>
-
+          <div style="border:1px solid #818cf8; background:#fafaff; border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:8px;">
+            <div style="font-weight:800; font-size:0.9rem; color:#312e81;">2️⃣ 나이스 학생 사진 자동 매칭 (.jpg / .png / .zip)</div>
             <div class="photo-dropzone" onclick="document.getElementById('neisPhotoFilesInput').click()">
-              <div style="font-size:1.6rem; margin-bottom:4px;">🖼️ 📦</div>
-              <div style="font-weight:800; font-size:0.9rem; color:#312e81;">여기를 클릭하여 사진 파일들(.jpg/.png) 또는 나이스 사진 압축파일(.zip) 선택</div>
-              <div style="font-size:0.76rem; color:#6366f1; margin-top:3px;">여러 장을 한꺼번에 선택(Ctrl+A)하거나 .zip 파일 1개를 통째로 올리셔도 됩니다!</div>
-              <input type="file" id="neisPhotoFilesInput" accept="image/*,.zip" multiple style="display:none;" onchange="handleNeisPhotoUpload(event)" />
+              <div style="font-size:1.4rem;">🖼️ 📦</div>
+              <div style="font-weight:800; font-size:0.85rem; color:#312e81;">클릭하여 사진 파일들 또는 .zip 압축파일 업로드</div>
+              <div style="font-size:0.74rem; color:#6366f1; margin-top:2px;">번호·이름·학번 파일명을 자동 인식하여 매칭합니다</div>
+              <input type="file" id="neisPhotoFilesInput" accept="image/*,.zip" multiple style="display:none;" onchange="handleNeisPhotoUpload(this.files)" />
             </div>
-
-            <div style="display:flex; gap:8px; flex-wrap:wrap;">
-              <label class="btn btn-outline" style="cursor:pointer; flex:1; justify-content:center; background:#fff;">
-                📁 사진 폴더 통째로 선택하기
-                <input type="file" webkitdirectory directory multiple style="display:none;" onchange="handleNeisPhotoUpload(event)" />
-              </label>
-            </div>
-
-            <div id="neisPhotoUploadStatus" style="font-size:0.8rem; color:#0f766e; font-weight:700; min-height:20px;"></div>
+            <label class="btn btn-outline" style="cursor:pointer; justify-content:center; background:#fff; padding:6px;">
+              📁 사진 폴더 통째로 선택
+              <input type="file" id="neisPhotoFolderInput" webkitdirectory directory multiple style="display:none;" onchange="handleNeisPhotoUpload(this.files)" />
+            </label>
+            <div class="photo-match-preview-grid" id="photoMatchPreviewGrid"></div>
           </div>
         </div>
-
-        <!-- 하단: 현재 선택 반의 명렬 & 매칭된 사진 미리보기 그리드 -->
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-            <span style="font-weight:800; font-size:0.88rem; color:#1e293b;">👥 현재 학급 학생 명렬 및 사진 매칭 현황 (학생 카드를 클릭하면 개별 사진 변경 가능)</span>
-            <input type="file" id="singleStudentPhotoInput" accept="image/*" style="display:none;" onchange="handleSingleStudentPhotoChange(event)" />
-          </div>
-          <div class="roster-preview-grid" id="rpModalPreviewGrid"></div>
-        </div>
-      </div>
-      <div class="modal-footer" style="justify-content:flex-end;">
-        <button class="btn btn-primary" onclick="closeRosterPhotoModal()">✅ 완료 및 닫기</button>
       </div>
     </div>
   </div>
 
-  <!-- ===================================================================
-       [신규 모달 2] 좌석 학생 클릭 시 출결 · 과제 제출 · 특이사항 · 사진 모달
-       =================================================================== -->
+  <!-- 좌석 클릭 시 학생 출결 · 과제 · 특이사항 · 사진 모달 -->
   <div class="modal-backdrop" id="seatStudentModalBackdrop" onclick="if(event.target===this) closeSeatStudentModal()">
-    <div class="modal-box" style="max-width:520px;">
+    <div class="modal-box" style="max-width:480px;">
       <div class="modal-header">
-        <div id="seatStuModalTitle" style="font-weight:800; font-size:1.1rem;">학생 출결 · 과제 · 특이사항</div>
-        <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeSeatStudentModal()">✕ 닫기</button>
+        <div id="seatModalHeaderTitle" style="font-weight:800; font-size:1.05rem;">🪑 좌석 설정</div>
+        <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeSeatStudentModal()">✕</button>
       </div>
-      <div class="modal-body" style="gap:12px;">
-        <div style="display:flex; gap:14px; align-items:center; background:#f8fafc; padding:12px; border-radius:12px; border:1px solid #e2e8f0;">
-          <img id="seatStuModalPhoto" src="" alt="학생 사진" style="width:64px; height:80px; object-fit:cover; border-radius:10px; border:2px solid #cbd5e1; background:#e2e8f0; display:none;" />
+      <div class="modal-body" style="gap:10px;">
+        <div style="display:flex; gap:12px; align-items:center; background:#f8fafc; padding:10px; border-radius:10px; border:1px solid #e2e8f0;">
+          <div id="seatModalPhotoPreviewBox" style="width:54px; height:68px; border-radius:8px; border:1px solid #cbd5e1; background:#fff; display:flex; align-items:center; justify-content:center; overflow:hidden; flex-shrink:0;"></div>
           <div style="flex:1;">
-            <div id="seatStuModalSubInfo" style="font-weight:800; font-size:0.95rem; color:#1e293b;"></div>
-            <div style="margin-top:6px; display:flex; gap:6px; flex-wrap:wrap;">
-              <label class="btn btn-outline" style="padding:4px 9px; font-size:0.75rem; cursor:pointer;">
-                📷 개별 사진 등록/변경
-                <input type="file" accept="image/*" style="display:none;" onchange="uploadPhotoForModalStudent(event)" />
+            <label style="font-size:0.75rem; font-weight:800; color:#475569; display:block; margin-bottom:3px;">배정 학생</label>
+            <select id="seatModalAssignSelect" class="form-control" style="padding:6px; font-weight:800;" onchange="onSeatModalAssignChange(this.value)"></select>
+            <div style="display:flex; gap:6px; margin-top:6px;">
+              <label class="btn btn-outline" style="padding:3px 8px; font-size:0.72rem; cursor:pointer;">
+                📷 사진 변경
+                <input type="file" accept="image/*" style="display:none;" onchange="uploadSingleStudentPhoto(event)" />
               </label>
+              <button type="button" class="btn btn-outline" style="padding:3px 8px; font-size:0.72rem;" onclick="clearSingleStudentPhoto()">삭제</button>
             </div>
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-          <div>
-            <label style="font-size:0.8rem; font-weight:800; color:#b91c1c; display:block; margin-bottom:4px;">🙋‍♀️ 오늘 출결 상태 (달력과 자동연동)</label>
-            <select id="seatStuAttStatus" class="form-control">
-              <option value="">출석 (정상)</option>
-              <option value="결석">결석</option>
-              <option value="조퇴">조퇴</option>
-              <option value="결과">결과</option>
-              <option value="지각">지각</option>
-              <option value="인정">인정결석/공결</option>
-            </select>
+        <div>
+          <label style="font-size:0.78rem; font-weight:800; color:#334155; display:block; margin-bottom:4px;">🙋‍♀️ 출결 체크 (달력 결시생과 자동 연동)</label>
+          <div style="display:flex; gap:5px; flex-wrap:wrap; margin-bottom:6px;">
+            <button type="button" class="btn btn-outline" id="seatAttBtn-출석" style="padding:5px 10px; font-size:0.78rem;" onclick="setSeatModalAtt('출석')">출석</button>
+            <button type="button" class="btn btn-outline" id="seatAttBtn-결석" style="padding:5px 10px; font-size:0.78rem;" onclick="setSeatModalAtt('결석')">결석</button>
+            <button type="button" class="btn btn-outline" id="seatAttBtn-조퇴" style="padding:5px 10px; font-size:0.78rem;" onclick="setSeatModalAtt('조퇴')">조퇴</button>
+            <button type="button" class="btn btn-outline" id="seatAttBtn-결과" style="padding:5px 10px; font-size:0.78rem;" onclick="setSeatModalAtt('결과')">결과</button>
+            <button type="button" class="btn btn-outline" id="seatAttBtn-지각" style="padding:5px 10px; font-size:0.78rem;" onclick="setSeatModalAtt('지각')">지각</button>
+            <button type="button" class="btn btn-outline" id="seatAttBtn-인정" style="padding:5px 10px; font-size:0.78rem;" onclick="setSeatModalAtt('인정')">인정</button>
           </div>
-          <div>
-            <label style="font-size:0.8rem; font-weight:800; color:#475569; display:block; margin-bottom:4px;">📌 결석/조퇴 사유 메모</label>
-            <input type="text" id="seatStuAttMemo" class="form-control" placeholder="예: 병결, 병원 조퇴, 체험학습 등" />
-          </div>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-          <div>
-            <label style="font-size:0.8rem; font-weight:800; color:#15803d; display:block; margin-bottom:4px;">✓ 오늘 과제 제출 여부</label>
-            <select id="seatStuTaskStatus" class="form-control">
-              <option value="">미체크 (0)</option>
-              <option value="checked">제출 완료 (1)</option>
-              <option value="unchecked">미제출 (0)</option>
-            </select>
-          </div>
-          <div>
-            <label style="font-size:0.8rem; font-weight:800; color:#475569; display:block; margin-bottom:4px;">🎨 좌석 카드 색상 (수준/구분)</label>
-            <select id="seatStuLevelSelect" class="form-control">
-              <option value="normal">보통 (파랑)</option>
-              <option value="excellent">우수 (초록)</option>
-              <option value="low">부진/도움필요 (빨강)</option>
-              <option value="observe">관찰/주의 (노랑)</option>
-            </select>
-          </div>
+          <input type="text" id="seatModalAttMemoInput" class="form-control" style="padding:6px 9px;" placeholder="출결 사유 (예: 병결, 병원 조퇴 등)" />
         </div>
 
         <div>
-          <label style="font-size:0.8rem; font-weight:800; color:#b45309; display:block; margin-bottom:4px;">⭐ 학생 개별 특이사항 / 상시 메모</label>
-          <textarea id="seatStuNoteInput" class="form-control" rows="2" placeholder="예: 앞자리 선호, 정보 도우미, 수행평가 재응시 안내 필요 등"></textarea>
+          <label style="font-size:0.78rem; font-weight:800; color:#334155; display:block; margin-bottom:4px;">📝 오늘 과제 수행</label>
+          <div style="display:flex; gap:5px; flex-wrap:wrap; margin-bottom:6px;">
+            <button type="button" class="btn btn-outline" id="seatTaskBtn-" style="padding:5px 10px; font-size:0.78rem;" onclick="setSeatModalTask('')">미확인</button>
+            <button type="button" class="btn btn-outline" id="seatTaskBtn-완료" style="padding:5px 10px; font-size:0.78rem;" onclick="setSeatModalTask('완료')">완료</button>
+            <button type="button" class="btn btn-outline" id="seatTaskBtn-보완" style="padding:5px 10px; font-size:0.78rem;" onclick="setSeatModalTask('보완')">보완</button>
+            <button type="button" class="btn btn-outline" id="seatTaskBtn-미완료" style="padding:5px 10px; font-size:0.78rem;" onclick="setSeatModalTask('미완료')">미완료</button>
+          </div>
+          <input type="text" id="seatModalTaskMemoInput" class="form-control" style="padding:6px 9px;" placeholder="과제 메모 (선택)" />
+        </div>
+
+        <div>
+          <label style="font-size:0.78rem; font-weight:800; color:#334155; display:block; margin-bottom:4px;">🎨 좌석 색상 & 학생 상시 메모</label>
+          <div style="display:flex; gap:6px; margin-bottom:6px;">
+            <button type="button" class="btn btn-outline" id="seatLvlBtn-0" style="padding:4px 10px; font-size:0.75rem; background:#eff6ff;" onclick="setSeatModalLevel(0)">기본</button>
+            <button type="button" class="btn btn-outline" id="seatLvlBtn-1" style="padding:4px 10px; font-size:0.75rem; background:#dcfce7;" onclick="setSeatModalLevel(1)">우수(초록)</button>
+            <button type="button" class="btn btn-outline" id="seatLvlBtn-2" style="padding:4px 10px; font-size:0.75rem; background:#fef9c3;" onclick="setSeatModalLevel(2)">관찰(노랑)</button>
+            <button type="button" class="btn btn-outline" id="seatLvlBtn-3" style="padding:4px 10px; font-size:0.75rem; background:#ffe4e6;" onclick="setSeatModalLevel(3)">도움(분홍)</button>
+          </div>
+          <input type="text" id="seatModalStuNoteInput" class="form-control" style="padding:6px 9px;" placeholder="학생 상시 특이사항 (예: 정보 도우미)" />
         </div>
       </div>
       <div class="modal-footer" style="justify-content:flex-end;">
         <button class="btn btn-outline" onclick="closeSeatStudentModal()">취소</button>
-        <button class="btn btn-primary" onclick="saveSeatStudentModal()">💾 저장하기 (진도달력 결시생 자동반영)</button>
+        <button class="btn btn-primary" onclick="saveSeatStudentModal()">💾 저장</button>
       </div>
     </div>
   </div>
 
-  <!-- ===================================================================
-       [신규 모달 3] 과제 제출 누적 확인 및 엑셀 다운로드 모달
-       =================================================================== -->
-  <div class="modal-backdrop" id="assignmentReportModalBackdrop" onclick="if(event.target===this) closeAssignmentReportModal()">
-    <div class="modal-box" style="max-width:860px;">
+  <!-- 과제 누적 리포트 모달 -->
+  <div class="modal-backdrop" id="assignmentReportModalBackdrop" onclick="if(event.target===this) document.getElementById('assignmentReportModalBackdrop').classList.remove('open')">
+    <div class="modal-box" style="max-width:780px;">
       <div class="modal-header">
-        <div style="font-weight:800; font-size:1.1rem;">📊 반별 과제 제출 및 출결 누적 확인</div>
-        <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeAssignmentReportModal()">✕ 닫기</button>
+        <div id="assignmentReportHeaderTitle" style="font-weight:800; font-size:1.05rem;">📊 과제 누적 리포트</div>
+        <div style="display:flex; gap:6px;">
+          <button type="button" class="btn btn-primary" style="padding:5px 10px; font-size:0.78rem;" onclick="exportAssignmentReportCSV()">📊 CSV 저장</button>
+          <button class="btn btn-outline" style="padding:5px 10px;" onclick="document.getElementById('assignmentReportModalBackdrop').classList.remove('open')">✕</button>
+        </div>
       </div>
       <div class="modal-body">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <label style="font-weight:800; font-size:0.85rem;">학급 선택:</label>
-            <select id="assignReportClassSelect" class="form-control" style="width:130px; font-weight:800;" onchange="renderAssignmentReportTable()"></select>
-          </div>
-          <button type="button" class="btn btn-primary" onclick="exportAssignmentReportCSV()">📊 이 반 과제·출결 누적 엑셀(CSV) 저장</button>
-        </div>
-        <div id="assignmentReportTableContainer" style="overflow-x:auto; max-height:460px;"></div>
+        <div id="assignmentReportTableContainer" style="overflow-x:auto; max-height:420px;"></div>
       </div>
     </div>
   </div>
 
-  <!-- ===================================================================
-       [신규 모달 4] 수업 타이머 / 모둠 구성 / 학생 추첨기 모달
-       =================================================================== -->
-  <div class="modal-backdrop" id="timerModalBackdrop" onclick="if(event.target===this) closeTimerModal()">
+  <!-- 수업 타이머 모달 -->
+  <div class="modal-backdrop" id="timerModalBackdrop" onclick="if(event.target===this) document.getElementById('timerModalBackdrop').classList.remove('open')">
+    <div class="modal-box" style="max-width:420px; text-align:center;">
+      <div class="modal-header">
+        <div style="font-weight:800; font-size:1.05rem;">⏱️ 수업 타이머</div>
+        <button class="btn btn-outline" style="padding:5px 10px;" onclick="document.getElementById('timerModalBackdrop').classList.remove('open')">✕</button>
+      </div>
+      <div class="modal-body" style="align-items:center;">
+        <div class="timer-display-big" id="timerDigitalDisplay">05:00</div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:center;">
+          <button type="button" class="btn btn-outline" style="padding:5px 10px;" onclick="setTimerPreset(60)">1분</button>
+          <button type="button" class="btn btn-outline" style="padding:5px 10px;" onclick="setTimerPreset(180)">3분</button>
+          <button type="button" class="btn btn-outline" style="padding:5px 10px;" onclick="setTimerPreset(300)">5분</button>
+          <button type="button" class="btn btn-outline" style="padding:5px 10px;" onclick="setTimerPreset(600)">10분</button>
+          <button type="button" class="btn btn-outline" style="padding:5px 10px;" onclick="addTimerSeconds(30)">+30초</button>
+        </div>
+        <div style="display:flex; gap:8px; justify-content:center; margin-top:8px;">
+          <button type="button" class="btn btn-primary" id="timerStartPauseBtn" style="padding:8px 22px;" onclick="toggleTimerStartPause()">▶ 시작</button>
+          <button type="button" class="btn btn-outline" style="padding:8px 16px;" onclick="resetTimer()">↺ 리셋</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모둠 편성 모달 -->
+  <div class="modal-backdrop" id="groupModalBackdrop" onclick="if(event.target===this) document.getElementById('groupModalBackdrop').classList.remove('open')">
+    <div class="modal-box" style="max-width:680px;">
+      <div class="modal-header">
+        <div style="font-weight:800; font-size:1.05rem;">👥 모둠 편성</div>
+        <button class="btn btn-outline" style="padding:5px 10px;" onclick="document.getElementById('groupModalBackdrop').classList.remove('open')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <label style="font-size:0.84rem; font-weight:800;">모둠 수:</label>
+          <input type="number" id="groupCountInput" class="form-control" min="2" max="12" value="6" style="width:70px;" />
+          <label style="display:inline-flex; align-items:center; gap:5px; font-size:0.82rem; font-weight:700; cursor:pointer;">
+            <input type="checkbox" id="groupExcludeAbsentCheck" checked /> 결석/조퇴생 제외
+          </label>
+          <button type="button" class="btn btn-primary" onclick="generateGroupsRandom()">🎲 랜덤 모둠 편성</button>
+          <button type="button" class="btn btn-danger-soft" onclick="clearGroups()">🗑️ 초기화</button>
+        </div>
+        <div id="groupResultGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(190px, 1fr)); gap:10px; max-height:360px; overflow-y:auto;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 발표자 뽑기 모달 -->
+  <div class="modal-backdrop" id="luckyDrawModalBackdrop" onclick="if(event.target===this) document.getElementById('luckyDrawModalBackdrop').classList.remove('open')">
     <div class="modal-box" style="max-width:460px; text-align:center;">
       <div class="modal-header">
-        <div style="font-weight:800; font-size:1.1rem;">⏱️ 수업 활동 타이머</div>
-        <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeTimerModal()">✕ 닫기</button>
-      </div>
-      <div class="modal-body" style="align-items:center;">
-        <div id="timerBigDisplay" style="font-size:4.2rem; font-weight:900; font-variant-numeric:tabular-nums; color:#0f172a; margin:8px 0;">05:00</div>
-        <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:center;">
-          <button type="button" class="btn btn-outline" onclick="setTimerSeconds(60)">1분</button>
-          <button type="button" class="btn btn-outline" onclick="setTimerSeconds(180)">3분</button>
-          <button type="button" class="btn btn-outline" onclick="setTimerSeconds(300)">5분</button>
-          <button type="button" class="btn btn-outline" onclick="setTimerSeconds(600)">10분</button>
-          <button type="button" class="btn btn-outline" onclick="setTimerSeconds(900)">15분</button>
-          <button type="button" class="btn btn-outline" onclick="setTimerSeconds(1200)">20분</button>
-        </div>
-        <div style="display:flex; gap:6px; justify-content:center; margin-top:4px;">
-          <button type="button" class="btn btn-outline" style="padding:4px 10px; font-size:0.78rem;" onclick="addTimerSeconds(30)">+30초</button>
-          <button type="button" class="btn btn-outline" style="padding:4px 10px; font-size:0.78rem;" onclick="addTimerSeconds(60)">+1분</button>
-          <button type="button" class="btn btn-outline" style="padding:4px 10px; font-size:0.78rem;" onclick="addTimerSeconds(-30)">-30초</button>
-        </div>
-        <div style="display:flex; gap:10px; justify-content:center; margin-top:10px;">
-          <button type="button" class="btn btn-primary" id="timerStartPauseBtn" style="padding:10px 24px; font-size:1rem;" onclick="toggleTimerRunning()">▶ 시작</button>
-          <button type="button" class="btn btn-outline" style="padding:10px 18px;" onclick="resetTimerClock()">↺ 초기화</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="mini-timer-floating" id="miniTimerFloating" onclick="openTimerModal()">
-    <span>⏱️</span>
-    <span id="miniTimerFloatingText">05:00</span>
-  </div>
-
-  <!-- 모둠 구성 모달 -->
-  <div class="modal-backdrop" id="groupModalBackdrop" onclick="if(event.target===this) closeGroupModal()">
-    <div class="modal-box" style="max-width:760px;">
-      <div class="modal-header">
-        <div style="font-weight:800; font-size:1.1rem;">👥 모둠 자동 구성 및 배정</div>
-        <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeGroupModal()">✕ 닫기</button>
+        <div style="font-weight:800; font-size:1.05rem;">🎰 발표자 랜덤 뽑기</div>
+        <button class="btn btn-outline" style="padding:5px 10px;" onclick="document.getElementById('luckyDrawModalBackdrop').classList.remove('open')">✕</button>
       </div>
       <div class="modal-body">
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:10px;">
-          <div>
-            <label style="font-size:0.78rem; font-weight:800; color:#475569; display:block; margin-bottom:4px;">모둠 분할 방식</label>
-            <select id="groupSplitMode" class="form-control">
-              <option value="count">모둠 개수 기준 (예: 6개 모둠)</option>
-              <option value="size">모둠당 인원수 기준 (예: 4명씩)</option>
-            </select>
-          </div>
-          <div>
-            <label style="font-size:0.78rem; font-weight:800; color:#475569; display:block; margin-bottom:4px;">모둠 수 또는 인원 수</label>
-            <input type="number" id="groupCountInput" class="form-control" min="2" max="15" value="6" />
-          </div>
-          <div>
-            <label style="font-size:0.78rem; font-weight:800; color:#475569; display:block; margin-bottom:4px;">배정 기준</label>
-            <select id="groupStrategy" class="form-control">
-              <option value="random">무작위 랜덤 배정</option>
-              <option value="balanced">수준별(우수/보통/부진) 균등 배정</option>
-              <option value="order">번호순 배정</option>
-            </select>
-          </div>
-        </div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button type="button" class="btn btn-primary" onclick="generateClassGroups()">🎲 모둠 자동 생성</button>
-          <button type="button" class="btn btn-outline" onclick="toggleShowGroupBadgesOnSeats()">🏷️ 좌석표에 모둠 배지 표시 켜기/끄기</button>
-          <button type="button" class="btn btn-danger-soft" onclick="clearClassGroups()">🗑️ 모둠 초기화</button>
-        </div>
-        <div id="groupResultGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:10px; max-height:380px; overflow-y:auto;"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 학생 추첨기 모달 -->
-  <div class="modal-backdrop" id="luckyDrawModalBackdrop" onclick="if(event.target===this) closeLuckyDrawModal()">
-    <div class="modal-box" style="max-width:520px; text-align:center;">
-      <div class="modal-header">
-        <div style="font-weight:800; font-size:1.1rem;">🎲 발표자 / 행운의 주인공 무작위 추첨</div>
-        <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeLuckyDrawModal()">✕ 닫기</button>
-      </div>
-      <div class="modal-body" style="align-items:center;">
-        <div style="display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap;">
-          <label style="font-size:0.85rem; font-weight:800;">추첨 인원:</label>
-          <select id="luckyDrawCountSelect" class="form-control" style="width:110px; font-weight:800;">
+        <div style="display:flex; gap:10px; align-items:center; justify-content:center; margin-bottom:8px;">
+          <select id="luckyDrawCountSelect" class="form-control" style="width:100px; font-weight:800;">
             <option value="1">1명 뽑기</option>
             <option value="2">2명 뽑기</option>
             <option value="3">3명 뽑기</option>
             <option value="4">4명 뽑기</option>
-            <option value="5">5명 뽑기</option>
           </select>
-          <label style="display:inline-flex; align-items:center; gap:5px; font-size:0.84rem; font-weight:700; cursor:pointer;">
-            <input type="checkbox" id="luckyDrawExcludeAbsent" checked style="width:16px; height:16px;" />
-            오늘 결석/조퇴생 제외
+          <label style="display:inline-flex; align-items:center; gap:5px; font-size:0.82rem; font-weight:700; cursor:pointer;">
+            <input type="checkbox" id="luckyDrawExcludeAbsentCheck" checked /> 결석생 제외
           </label>
         </div>
-        <div id="luckyDrawStage" style="width:100%; min-height:150px; background:linear-gradient(135deg, #1e293b, #0f172a); border:3px solid #4f46e5; border-radius:18px; padding:20px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#38bdf8; font-size:2rem; font-weight:900;">
-          🎲 추첨 대기 중
-        </div>
-        <div style="display:flex; gap:8px; justify-content:center;">
-          <button type="button" class="btn btn-primary" style="padding:12px 28px; font-size:1.02rem;" onclick="runLuckyDraw()">🎉 두구두구 추첨하기!</button>
-        </div>
+        <div class="lucky-winner-box" id="luckyDrawResultBox"></div>
+        <button type="button" class="btn btn-primary" style="justify-content:center; padding:10px;" onclick="runLuckyDraw()">🎉 추첨하기!</button>
       </div>
     </div>
   </div>
@@ -4196,15 +3910,14 @@
 
       let statusTagHtml = '';
       if (isCurrentWeek) {
-        statusTagHtml = `<span class="week-tag current">🌟 이번 주 (오늘 포함)</span>`;
+        statusTagHtml = `<span class="week-tag current">이번 주</span>`;
       } else if (isPastWeek) {
-        statusTagHtml = `<span class="week-tag past">📁 지난 주 ${collapsed ? '(접힘 - 클릭하여 펼치기)' : '(펼쳐짐)'}</span>`;
-      } else {
-        statusTagHtml = `<span class="week-tag" style="background:#e0f2fe; color:#0369a1;">📅 예정 주</span>`;
+        statusTagHtml = `<span class="week-tag past">지난 주</span>`;
       }
 
       let html = `
         <div class="week-toggle-bar ${isCurrentWeek ? 'current-week-bar current-week-anchor' : ''} ${collapsed ? 'collapsed-bar' : ''}"
+             style="grid-column: 1 / -1;"
              onclick="toggleWeekCollapse('${week.weekKey}')">
           <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
             <span style="font-size:0.85rem; width:18px; display:inline-block; text-align:center;">${collapsed ? '▶' : '▼'}</span>
@@ -4212,7 +3925,7 @@
             ${statusTagHtml}
           </div>
           <div style="display:flex; align-items:center; gap:10px; font-size:0.78rem;">
-            <span>수업 <strong>${totalLessons}</strong>회 · 완료 <strong>${doneLessons}</strong>회</span>
+            <span>수업 <strong>${totalLessons}</strong> · 완료 <strong>${doneLessons}</strong></span>
             <span style="font-weight:800; color:${isCurrentWeek ? '#4338ca' : '#64748b'};">${collapsed ? '펼치기 ▾' : '접기 ▴'}</span>
           </div>
         </div>
@@ -4363,11 +4076,7 @@
           <div class="month-header">
             <h2>
               <span>🗓️ ${cfg.title}</span>
-              <span class="month-pill">${cfg.subtitle}</span>
             </h2>
-            <span style="font-size:0.82rem; color:#64748b; font-weight:600;">
-              💡 각 주차 바를 클릭하면 주 단위로 <strong>접기/펼치기</strong>가 가능하며, <strong>🚨평가</strong> 수업은 붉은 테두리로 강조됩니다!
-            </span>
           </div>
           <div class="calendar-grid">
             <div class="weekday-header">월요일 (MON)</div>
@@ -4377,18 +4086,11 @@
             <div class="weekday-header">금요일 (FRI)</div>
       `;
 
-      // 만약 '오늘이 포함된 주를 맨 위에 고정'이 켜져 있고 이번 달에 현재 주가 포함되어 있다면:
-      // 이번 주와 이후 주를 먼저 위쪽에 보여주고, 이번 달 안의 지나간 주들을 접힌 상태로 표시하거나 순서대로 접어서 보여줍니다.
-      // 지나간 주들이 이미 1줄짜리 바 형태로 접혀 있더라도, 오늘이 포함된 주가 달력 최상단 바로 첫 줄에 보이도록
-      // 현재 주 & 예정 주를 먼저 렌더링하고, 지나간 주들은 상단 접힘 바 또는 하단에 배치합니다.
       if (appState.keepCurrentWeekOnTop) {
         const pastWeeksInM = weeks.filter(w => w.friStr < refMonStr);
         const activeAndFutureWeeksInM = weeks.filter(w => w.friStr >= refMonStr);
 
         if (activeAndFutureWeeksInM.length > 0 && pastWeeksInM.length > 0) {
-          // 오늘이 포함된 주가 가장 위에 바로 보이도록 현재/예정 주를 먼저 렌더링하고,
-          // 같은 달의 지나간 주는 바로 위(또는 아래)에서 클릭해 펼칠 수 있도록 합니다.
-          // 사용자 요청: "지나간 주는 접을 수 있는 기능을 만들어줘. 오늘의 날짜가 들어간 주가 가장 위에 보이도록 해 주면 좋을거 같아."
           activeAndFutureWeeksInM.forEach(w => {
             html += renderSingleWeekBlockHtml(w, sessionLookup, todayStr, refMonStr);
           });
@@ -4427,7 +4129,7 @@
         const refD = new Date(refMonStr + 'T00:00:00');
         const friD = new Date(refD);
         friD.setDate(refD.getDate() + 4);
-        infoLabel.innerHTML = `📌 기준 주간: <strong>${refD.getMonth() + 1}/${refD.getDate()}(월) ~ ${friD.getMonth() + 1}/${friD.getDate()}(금)</strong>`;
+        infoLabel.innerHTML = `📌 이번 주: <strong>${refD.getMonth() + 1}/${refD.getDate()}(월) ~ ${friD.getMonth() + 1}/${friD.getDate()}(금)</strong>`;
       }
 
       const sessionLookup = {};
@@ -4441,9 +4143,6 @@
       let html = '';
 
       if (currentMonthFilter === 'all' && appState.keepCurrentWeekOnTop) {
-        // 오늘 날짜가 속한 주가 있는 달(및 이후 달)을 가장 위에 배치하고,
-        // 완전히 지나간 이전 달(예: 11월 기준 10월)은 아래쪽(또는 접힌 섹션)으로 배치하여
-        // 화면을 열자마자 '오늘의 날짜가 들어간 주'가 가장 위에 바로 보이도록 함!
         const currentAndFutureMonths = [];
         const pastMonths = [];
 
@@ -4457,34 +4156,13 @@
           }
         });
 
-        if (pastMonths.length > 0) {
-          const pastMonthNames = pastMonths.map(m => m.cfg.title).join(', ');
-          html += `
-            <div style="margin-bottom:14px; background:#f8fafc; border:1.5px dashed #cbd5e1; border-radius:14px; padding:10px 16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
-              <div style="display:flex; align-items:center; gap:8px; font-size:0.86rem; font-weight:800; color:#475569;">
-                <span>📁 지나간 달(${pastMonthNames})은 접혀서 오늘의 주간이 가장 위에 표시되고 있습니다.</span>
-              </div>
-              <button type="button" class="btn btn-outline" style="padding:5px 12px; font-size:0.78rem;" onclick="togglePastMonthsVisibility()">
-                ${expandPastMonthsInTopMode ? '▴ 지나간 달 숨기기 (오늘 주간 최상단 유지)' : `▾ 지나간 달(${pastMonthNames}) 위에서 펼쳐보기`}
-              </button>
-            </div>
-          `;
-          if (expandPastMonthsInTopMode) {
-            pastMonths.forEach(({ cfg, weeks }) => {
-              html += renderMonthSectionHtml(cfg, weeks, sessionLookup, todayStr, refMonStr);
-            });
-          }
-        }
-
         currentAndFutureMonths.forEach(({ cfg, weeks }) => {
           html += renderMonthSectionHtml(cfg, weeks, sessionLookup, todayStr, refMonStr);
         });
 
-        if (pastMonths.length > 0 && !expandPastMonthsInTopMode) {
-          pastMonths.forEach(({ cfg, weeks }) => {
-            html += renderMonthSectionHtml(cfg, weeks, sessionLookup, todayStr, refMonStr);
-          });
-        }
+        pastMonths.forEach(({ cfg, weeks }) => {
+          html += renderMonthSectionHtml(cfg, weeks, sessionLookup, todayStr, refMonStr);
+        });
       } else {
         monthConfigs.forEach(cfg => {
           if (currentMonthFilter !== 'all' && String(cfg.month) !== String(currentMonthFilter) && String(cfg.key) !== String(currentMonthFilter)) {

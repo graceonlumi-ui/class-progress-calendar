@@ -1,0 +1,26 @@
+{
+  "name": "class-board",
+  "version": "1.0.0",
+  "description": "교실 전자칠판용 스마트 학급알리미",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "class-board",
+    "smart-classroom",
+    "comcigan",
+    "neis"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.20.0",
+    "comcigan.ts": "^1.2.2",
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "iconv-lite": "^0.7.3",
+    "ws": "^8.22.0"
+  }
+}

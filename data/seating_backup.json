@@ -1,0 +1,86 @@
+{
+    "classes":  {
+
+                },
+    "currentClass":  "",
+    "mode":  "move",
+    "selectedSeat":  "",
+    "selectedStudentNo":  "",
+    "periods":  {
+                    "1":  {
+                              "start":  "09:00",
+                              "end":  "09:45"
+                          },
+                    "2":  {
+                              "start":  "09:55",
+                              "end":  "10:40"
+                          },
+                    "3":  {
+                              "start":  "10:50",
+                              "end":  "11:35"
+                          },
+                    "4":  {
+                              "start":  "11:45",
+                              "end":  "12:30"
+                          },
+                    "5":  {
+                              "start":  "13:30",
+                              "end":  "14:15"
+                          },
+                    "6":  {
+                              "start":  "14:25",
+                              "end":  "15:10"
+                          },
+                    "7":  {
+                              "start":  "15:20",
+                              "end":  "16:05"
+                          }
+                },
+    "timetable":  {
+                      "월":  {
+
+                            },
+                      "화":  {
+
+                            },
+                      "수":  {
+
+                            },
+                      "목":  {
+
+                            },
+                      "금":  {
+
+                            }
+                  },
+    "attendance":  {
+
+                   },
+    "assignments":  {
+
+                    },
+    "progress":  {
+
+                 },
+    "groups":  {
+
+               },
+    "drawHistory":  {
+
+                    },
+    "googleSheetsSync":  {
+                             "enabled":  true,
+                             "webAppUrl":  "https://script.google.com/macros/s/AKfycbzk8hnadocq8V2YvltrPZfcdjtj8fQjaIL1tWVtYOXLumkRiRkqqniDBGWxrv0TUmcf/exec",
+                             "autoSync":  true
+                         },
+    "githubSync":  {
+                       "enabled":  false,
+                       "token":  "",
+                       "owner":  "",
+                       "repo":  "classroom_seating",
+                       "branch":  "main",
+                       "path":  "seating_data.json",
+                       "encrypt":  true,
+                       "password":  ""
+                   }
+}
