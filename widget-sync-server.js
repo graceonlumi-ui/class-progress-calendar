@@ -135,6 +135,12 @@ function mergeAppState(existing, incoming) {
   if (!incoming) return existing;
 
   const merged = {
+    semesterConfig: incoming.semesterConfig || existing.semesterConfig,
+    semesterArchives: Array.isArray(incoming.semesterArchives) && incoming.semesterArchives.length >= (existing.semesterArchives || []).length
+      ? incoming.semesterArchives
+      : (existing.semesterArchives || incoming.semesterArchives || []),
+    collapsedWeeks: { ...(existing.collapsedWeeks || {}), ...(incoming.collapsedWeeks || {}) },
+    keepCurrentWeekOnTop: incoming.keepCurrentWeekOnTop !== undefined ? incoming.keepCurrentWeekOnTop : (existing.keepCurrentWeekOnTop !== undefined ? existing.keepCurrentWeekOnTop : true),
     syllabus: incoming.syllabus || existing.syllabus || { 1: [], 2: [] },
     records: {},
     classMemos: { ...(existing.classMemos || {}), ...(incoming.classMemos || {}) },
@@ -143,6 +149,7 @@ function mergeAppState(existing, incoming) {
     addedLessons: Array.isArray(incoming.addedLessons) && incoming.addedLessons.length >= (existing.addedLessons || []).length
       ? incoming.addedLessons
       : (incoming.addedLessons || existing.addedLessons || []),
+    seatingData: incoming.seatingData || existing.seatingData || { classes: {}, attendance: {}, assignments: {}, showPhotos: true, showGroupBadges: false },
     updatedAt: Date.now()
   };
 
