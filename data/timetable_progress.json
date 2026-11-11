@@ -1,4 +1,119 @@
 {
+  "semesterConfig": {
+    "title": "2026학년도 2학기",
+    "startDate": "2026-10-19",
+    "endDate": "2026-12-31",
+    "classesG1": [
+      "1-1",
+      "1-2",
+      "1-3",
+      "1-4",
+      "1-5",
+      "1-6",
+      "1-7"
+    ],
+    "classesG2": [
+      "2-1",
+      "2-2",
+      "2-3",
+      "2-4",
+      "2-5",
+      "2-6",
+      "2-7"
+    ],
+    "weeklySchedule": [
+      null,
+      [
+        {
+          "className": "1-2",
+          "grade": 1,
+          "period": 1
+        },
+        {
+          "className": "2-7",
+          "grade": 2,
+          "period": 2
+        },
+        {
+          "className": "2-2",
+          "grade": 2,
+          "period": 4
+        },
+        {
+          "className": "1-4",
+          "grade": 1,
+          "period": 5
+        }
+      ],
+      [
+        {
+          "className": "2-4",
+          "grade": 2,
+          "period": 2
+        },
+        {
+          "className": "2-5",
+          "grade": 2,
+          "period": 7
+        }
+      ],
+      [
+        {
+          "className": "1-1",
+          "grade": 1,
+          "period": 3
+        },
+        {
+          "className": "1-6",
+          "grade": 1,
+          "period": 4
+        },
+        {
+          "className": "2-3",
+          "grade": 2,
+          "period": 6
+        }
+      ],
+      [
+        {
+          "className": "2-1",
+          "grade": 2,
+          "period": 2
+        },
+        {
+          "className": "1-5",
+          "grade": 1,
+          "period": 4
+        },
+        {
+          "className": "1-7",
+          "grade": 1,
+          "period": 7
+        }
+      ],
+      [
+        {
+          "className": "1-3",
+          "grade": 1,
+          "period": 2
+        },
+        {
+          "className": "2-6",
+          "grade": 2,
+          "period": 3
+        }
+      ]
+    ]
+  },
+  "semesterArchives": [],
+  "collapsedWeeks": {
+    "2026-10_W2026-10-19": true,
+    "2026-10_W2026-10-26": true,
+    "2026-11_W2026-11-02": false,
+    "2026-11_W2026-11-09": false,
+    "2026-11_W2026-11-16": false
+  },
+  "keepCurrentWeekOnTop": true,
   "syllabus": {
     "1": [
       {
@@ -340,11 +455,11 @@
       "_updatedAt": 1793580882291
     },
     "2026-11-09_1-2": {
-      "_updatedAt": 1793582194356,
+      "_updatedAt": 1794188555445,
       "absent": "",
       "category": "수업",
       "content": "",
-      "done": false,
+      "done": true,
       "note": "",
       "skip": false,
       "topic": "4) 이미지 학습 : 안전한 계단, 캠코더"
@@ -408,17 +523,7 @@
       "topic": "3) 이미지 학습 : 산불 감지"
     },
     "2026-11-27_1-3": {
-      "_updatedAt": 1793844212778,
-      "absent": "",
-      "category": "수업",
-      "content": "",
-      "done": false,
-      "note": "",
-      "skip": false,
-      "topic": "4) 이미지 학습 : 안전한 계단, 손동작 인식(캠코더)"
-    },
-    "2026-12-04_1-3": {
-      "_updatedAt": 1793844215538,
+      "_updatedAt": 1793947086804,
       "absent": "",
       "category": "수업",
       "content": "",
@@ -426,6 +531,16 @@
       "note": "",
       "skip": false,
       "topic": "5) 사운드 학습"
+    },
+    "2026-12-04_1-3": {
+      "_updatedAt": 1793947092745,
+      "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "6) 모션 학습"
     },
     "2026-10-26_1-4": {
       "_updatedAt": 1792990952947,
@@ -448,11 +563,11 @@
       "_updatedAt": 1793580890864
     },
     "2026-11-09_1-4": {
-      "_updatedAt": 1793582275546,
+      "_updatedAt": 1794266986710,
       "absent": "",
       "category": "수업",
       "content": "",
-      "done": false,
+      "done": true,
       "note": "",
       "skip": false,
       "topic": "4) 이미지 학습 : 안전한 계단, 캠코더"
@@ -538,14 +653,14 @@
       "_updatedAt": 1793580908536
     },
     "2026-11-11_1-6": {
-      "_updatedAt": 1793582318204,
-      "absent": "",
       "category": "수업",
+      "topic": "5) 사운드 학습",
       "content": "",
-      "done": false,
+      "absent": "",
       "note": "",
+      "done": false,
       "skip": false,
-      "topic": "4) 이미지 학습 : 안전한 계단, 캠코더"
+      "_updatedAt": 1794266945979
     },
     "2026-11-18_1-6": {
       "_updatedAt": 1793582319940,
@@ -653,13 +768,14 @@
       "skip": false
     },
     "2026-11-09_2-2": {
-      "category": "수업",
-      "topic": "3-2) 이미지 학습 : 산불 감지, 안전 계단",
-      "content": "",
+      "_updatedAt": 1794266982983,
       "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "3-2) 이미지 학습 : 산불 감지, 안전 계단"
     },
     "2026-11-16_2-2": {
       "category": "수업",
@@ -873,13 +989,14 @@
       "skip": false
     },
     "2026-11-09_2-7": {
-      "category": "수업",
-      "topic": "3-1) 인공지능 이론, 동물 분류",
-      "content": "",
+      "_updatedAt": 1794188559132,
       "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": true,
       "note": "",
-      "done": false,
-      "skip": false
+      "skip": false,
+      "topic": "3-1) 인공지능 이론, 동물 분류"
     },
     "2026-11-16_2-7": {
       "category": "수업",
@@ -1139,17 +1256,7 @@
       "topic": "수행평가(2) AI 모델"
     },
     "2026-12-11_1-3": {
-      "_updatedAt": 1793844218893,
-      "absent": "",
-      "category": "수업",
-      "content": "",
-      "done": false,
-      "note": "",
-      "skip": false,
-      "topic": "6) 모션 학습"
-    },
-    "2026-12-18_1-3": {
-      "_updatedAt": 1793844221167,
+      "_updatedAt": 1793947096576,
       "absent": "",
       "category": "평가",
       "content": "",
@@ -1157,6 +1264,16 @@
       "note": "",
       "skip": false,
       "topic": "수행평가(2) AI 모델"
+    },
+    "2026-12-18_1-3": {
+      "_updatedAt": 1793947179198,
+      "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "8) 스프레스시트 기초"
     },
     "2026-12-09_2-3": {
       "_updatedAt": 1793592877283,
@@ -1277,6 +1394,176 @@
       "done": false,
       "skip": false,
       "_updatedAt": 1793946990837
+    },
+    "2026-12-17_1-5": {
+      "_updatedAt": 1793947170660,
+      "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "8) 스프레스시트 기초"
+    },
+    "2026-12-17_1-7": {
+      "_updatedAt": 1793947174555,
+      "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "8) 스프레스시트 기초"
+    },
+    "2026-12-17_2-1": {
+      "_updatedAt": 1793947150235,
+      "absent": "",
+      "category": "기타",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "타자배틀"
+    },
+    "2026-12-18_2-6": {
+      "_updatedAt": 1793947183451,
+      "absent": "",
+      "category": "기타",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "타자배틀"
+    },
+    "2026-12-21_1-2": {
+      "_updatedAt": 1793947206971,
+      "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "8) 스프레스시트 기초"
+    },
+    "2026-12-21_1-4": {
+      "_updatedAt": 1793947216967,
+      "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "8) 스프레스시트 기초"
+    },
+    "2026-12-21_2-2": {
+      "_updatedAt": 1793947213507,
+      "absent": "",
+      "category": "기타",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "타자배틀"
+    },
+    "2026-12-21_2-7": {
+      "_updatedAt": 1793947210382,
+      "absent": "",
+      "category": "기타",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "타자배틀"
+    },
+    "2026-12-22_2-4": {
+      "_updatedAt": 1793947235717,
+      "absent": "",
+      "category": "기타",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "타자배틀"
+    },
+    "2026-12-22_2-5": {
+      "_updatedAt": 1793947239128,
+      "absent": "",
+      "category": "기타",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "타자배틀"
+    },
+    "2026-12-23_1-1": {
+      "_updatedAt": 1793947224176,
+      "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "8) 스프레스시트 기초"
+    },
+    "2026-12-23_1-6": {
+      "_updatedAt": 1793947227939,
+      "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "8) 스프레스시트 기초"
+    },
+    "2026-12-23_2-3": {
+      "_updatedAt": 1793947242587,
+      "absent": "",
+      "category": "기타",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "타자배틀"
+    },
+    "2026-12-28_1-2": {
+      "_updatedAt": 1793947290495,
+      "absent": "",
+      "category": "기타",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "7) 타자배틀"
+    },
+    "2026-12-28_1-4": {
+      "_updatedAt": 1793947293710,
+      "absent": "",
+      "category": "기타",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "7) 타자배틀"
+    },
+    "added_2026-11-27_P1_1-1_1793947035849": {
+      "_updatedAt": 1793947083348,
+      "absent": "",
+      "category": "수업",
+      "content": "",
+      "done": false,
+      "note": "",
+      "skip": false,
+      "topic": "4) 이미지 학습 : 안전한 계단, 손동작 인식(캠코더)"
+    },
+    "added_2026-11-10_P1_1-6_1794266928467": {
+      "category": "수업",
+      "topic": "4) 이미지 학습 : 안전한 계단, 손동작 인식(캠코더)",
+      "content": "",
+      "absent": "",
+      "note": "",
+      "done": false,
+      "skip": false,
+      "_updatedAt": 1794266940503
     }
   },
   "classMemos": {},
@@ -1301,6 +1588,10 @@
     "2026-11-25_P6_2-3": {
       "deleted": true,
       "changeNote": "타교과 교체/수업 빠짐"
+    },
+    "2026-11-18_P4_1-6": {
+      "deleted": true,
+      "changeNote": "➡️ 11/10 1교시로 이동"
     }
   },
   "addedLessons": [
@@ -1312,19 +1603,3262 @@
       "changeNote": "대강"
     },
     {
-      "id": "2026-10-21_P5_2-6_1792540652999",
-      "dateStr": "2026-10-21",
-      "period": 5,
+      "changeNote": "보강/교체 추가",
       "className": "2-6",
-      "changeNote": "보강/교체 추가"
+      "dateStr": "2026-10-21",
+      "id": "2026-10-21_P5_2-6_1792540652999",
+      "period": 5
     },
     {
-      "id": "2026-11-27_P1_1-1_1793947035849",
+      "changeNote": "11/10(화) 2교시 수업 이동",
+      "className": "2-4",
+      "dateStr": "2026-11-05",
+      "id": "2026-11-05_P5_2-4_1793843845005",
+      "period": 5
+    },
+    {
+      "changeNote": "11/25(수) 6교시 수업 교체",
+      "className": "2-3",
+      "dateStr": "2026-11-24",
+      "id": "2026-11-24_P6_2-3_1793843989282",
+      "period": 6
+    },
+    {
+      "changeNote": "수업 빌림",
+      "className": "1-3",
       "dateStr": "2026-11-27",
+      "id": "2026-11-27_P1_1-1_1793947035849",
+      "period": 1
+    },
+    {
+      "id": "2026-11-10_P1_1-6_1794266928467",
+      "dateStr": "2026-11-10",
       "period": 1,
-      "className": "1-1",
-      "changeNote": "수업 빌림"
+      "className": "1-6",
+      "changeNote": "⬅️ 11/18 4교시에서 이동"
     }
   ],
-  "updatedAt": 1793947035855
+  "seatingData": {
+    "classes": {
+      "1-1": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "권보민",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "김규빈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "김기원",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "김나윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "김리원",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김민서",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "김선주",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "김시원",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "김지혁",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "김지효",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "김현서",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "남규림",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "민유석",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "박대선",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "박찬원",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "우현제",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "이도권",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "이서진",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "전지후",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "정은호",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "주승훈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "차유나",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "최범진",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "최효린",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "하나윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "최지우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-1_26.jpg"
+          }
+        ],
+        "homeroom": "서혜원",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "26",
+          "2": "25",
+          "3": "24",
+          "4": "23",
+          "5": "22",
+          "6": "21",
+          "7": "20",
+          "8": "19",
+          "9": "18",
+          "10": "17",
+          "11": "16",
+          "12": "15",
+          "13": "14",
+          "14": "13",
+          "15": "12",
+          "16": "11",
+          "17": "10",
+          "18": "9",
+          "19": "8",
+          "20": "7",
+          "21": "6",
+          "22": "5",
+          "23": "4",
+          "24": "3",
+          "25": "2",
+          "26": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "1-2": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "김권화",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "김서영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "김재원",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "김지안",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "김채은",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김태인",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "박수연",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "박유진",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "배소은",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "변준호",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "손윤후",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "송윤경",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "안다율",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "안지원",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "양지승",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "엄예준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "유하정",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "윤제훈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "이원준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "이지환",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "장서빈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "진우현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "천성범",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "한정빈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "한채아",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "홍수인",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-2_26.jpg"
+          }
+        ],
+        "homeroom": "장윤진",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "26",
+          "2": "25",
+          "3": "24",
+          "4": "23",
+          "5": "22",
+          "6": "21",
+          "7": "20",
+          "8": "19",
+          "9": "18",
+          "10": "17",
+          "11": "16",
+          "12": "15",
+          "13": "14",
+          "14": "13",
+          "15": "12",
+          "16": "11",
+          "17": "10",
+          "18": "9",
+          "19": "8",
+          "20": "7",
+          "21": "6",
+          "22": "5",
+          "23": "4",
+          "24": "3",
+          "25": "2",
+          "26": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "1-3": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "김단우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "김민채",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "김보미",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "김수지",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "김시우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김지수",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "김지우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "김태희",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "김현도",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "노다현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "박시은",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "변성현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "변시후",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "신별하",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "신성호",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "양지호",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "이승우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "이시온",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "이재준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "정서아",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "주하율",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "최수진",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "최예희",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "최태훈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "현승민",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "황예담",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-3_26.jpg"
+          }
+        ],
+        "homeroom": "이윤주",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "26",
+          "2": "25",
+          "3": "24",
+          "4": "23",
+          "5": "22",
+          "6": "21",
+          "7": "20",
+          "8": "19",
+          "9": "18",
+          "10": "17",
+          "11": "16",
+          "12": "15",
+          "13": "14",
+          "14": "13",
+          "15": "12",
+          "16": "11",
+          "17": "10",
+          "18": "9",
+          "19": "8",
+          "20": "7",
+          "21": "6",
+          "22": "5",
+          "23": "4",
+          "24": "3",
+          "25": "2",
+          "26": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "1-4": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "GAO RUI",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "강민아",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "강성우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "권단우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "권효주",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김건우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "김보현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "김수현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "김한슬",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "박슬아",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "박지영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "박지현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "백민아",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "서인영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "송승율",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "신지희",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "유지민",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "윤세아",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "이예림",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "이유호",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "이인석",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "이재준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "이한울",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "이호재",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "정의산",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "최환웅",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-4_26.jpg"
+          }
+        ],
+        "homeroom": "전향",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "26",
+          "2": "25",
+          "3": "24",
+          "4": "23",
+          "5": "22",
+          "6": "21",
+          "7": "20",
+          "8": "19",
+          "9": "18",
+          "10": "17",
+          "11": "16",
+          "12": "15",
+          "13": "14",
+          "14": "13",
+          "15": "12",
+          "16": "11",
+          "17": "10",
+          "18": "9",
+          "19": "8",
+          "20": "7",
+          "21": "6",
+          "22": "5",
+          "23": "4",
+          "24": "3",
+          "25": "2",
+          "26": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "1-5": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "강리우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "공도경",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "권사랑",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "김동욱",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "김민찬",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김민채",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "김종휘",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "김태연",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "김태완",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "김해밀",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "박성하",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "박지호",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "안은찬",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "염지호",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "이도형",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "이서윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "이연우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "이윤성",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "정민영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "정이솔",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "정현승",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "조민석",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "조소윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "주승현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "주정연",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "홍윤후",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-5_26.jpg"
+          }
+        ],
+        "homeroom": "강윤미",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "26",
+          "2": "25",
+          "3": "24",
+          "4": "23",
+          "5": "22",
+          "6": "21",
+          "7": "20",
+          "8": "19",
+          "9": "18",
+          "10": "17",
+          "11": "16",
+          "12": "15",
+          "13": "14",
+          "14": "13",
+          "15": "12",
+          "16": "11",
+          "17": "10",
+          "18": "9",
+          "19": "8",
+          "20": "7",
+          "21": "6",
+          "22": "5",
+          "23": "4",
+          "24": "3",
+          "25": "2",
+          "26": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "1-6": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "강나윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "강승연",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "권규은",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "김나경",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "김동윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김민성",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "김서후",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "김성준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "김승윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "박수영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "박지현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "신가연",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "신지용",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "신지호",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "안효선",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "양하윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_16.jpg"
+          },
+          {
+            "no": 18,
+            "name": "이도영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "이민균",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "이지후",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "이효주",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "임동건",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "전하운",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "정시훈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "정주헌",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "최윤찬",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_26.jpg"
+          },
+          {
+            "no": 27,
+            "name": "박소이",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-6_27.jpg"
+          }
+        ],
+        "homeroom": "박가령",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "27",
+          "2": "26",
+          "3": "25",
+          "4": "24",
+          "5": "23",
+          "6": "22",
+          "7": "21",
+          "8": "20",
+          "9": "19",
+          "10": "18",
+          "11": "16",
+          "12": "15",
+          "13": "14",
+          "14": "13",
+          "15": "12",
+          "16": "11",
+          "17": "10",
+          "18": "9",
+          "19": "8",
+          "20": "7",
+          "21": "6",
+          "22": "5",
+          "23": "4",
+          "24": "3",
+          "25": "2",
+          "26": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "1-7": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "강채윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "구하연",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "권지유",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "김나영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "김담현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김민재",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "김재훈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "김정민",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "박성원",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "변영빈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "신비",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "신연우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "윤예성",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "이나현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "이시후",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "이예솔",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "이예준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "이지후",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "전현택",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "정도진",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "조성빈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "조예슬",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "조현재",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "최보미",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "최수지",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "함광현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/1-7_26.jpg"
+          }
+        ],
+        "homeroom": "신종옥",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "26",
+          "2": "25",
+          "3": "24",
+          "4": "23",
+          "5": "22",
+          "6": "21",
+          "7": "20",
+          "8": "19",
+          "9": "18",
+          "10": "17",
+          "11": "16",
+          "12": "15",
+          "13": "14",
+          "14": "13",
+          "15": "12",
+          "16": "11",
+          "17": "10",
+          "18": "9",
+          "19": "8",
+          "20": "7",
+          "21": "6",
+          "22": "5",
+          "23": "4",
+          "24": "3",
+          "25": "2",
+          "26": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "2-1": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "고현준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "공민서",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "권노을",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "김난주",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "김상오",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김서윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "김소현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "김아인",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "김지우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "김하람",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "김하연",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "김효준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "박민준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "손정우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "안소은",
+            "level": 0,
+            "note": "",
+            "photo": ""
+          },
+          {
+            "no": 16,
+            "name": "안지아",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "엄윤하",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "이시형",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "이재용",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "이지윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "장민국",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "정재민",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "조경현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "주현진",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "최시윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "황시우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_26.jpg"
+          },
+          {
+            "no": 27,
+            "name": "황지용",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-1_27.jpg"
+          }
+        ],
+        "homeroom": "",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "27",
+          "2": "26",
+          "3": "25",
+          "4": "24",
+          "5": "23",
+          "6": "22",
+          "7": "21",
+          "8": "20",
+          "9": "19",
+          "10": "18",
+          "11": "17",
+          "12": "16",
+          "13": "15",
+          "14": "14",
+          "15": "13",
+          "16": "12",
+          "17": "11",
+          "18": "10",
+          "19": "9",
+          "20": "8",
+          "21": "7",
+          "22": "6",
+          "23": "5",
+          "24": "4",
+          "25": "3",
+          "26": "2",
+          "27": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "2-2": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "강윤아",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "김건우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "김승준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "김나영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "김나현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김지인",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "박서애",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "박세은",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "박솔제",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "박시연",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "박정우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "배서연",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "서현웅",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "성연수",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "송유나",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "유지우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "윤지원",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "이건희",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "이성은",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "이재현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "이현겸",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "전시후",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "최효린",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "홍민준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "홍예나",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "황가온",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_26.jpg"
+          },
+          {
+            "no": 27,
+            "name": "황지우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-2_27.jpg"
+          }
+        ],
+        "homeroom": "",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "27",
+          "2": "26",
+          "3": "25",
+          "4": "24",
+          "5": "23",
+          "6": "22",
+          "7": "21",
+          "8": "20",
+          "9": "19",
+          "10": "18",
+          "11": "17",
+          "12": "16",
+          "13": "15",
+          "14": "14",
+          "15": "13",
+          "16": "12",
+          "17": "11",
+          "18": "10",
+          "19": "9",
+          "20": "8",
+          "21": "7",
+          "22": "6",
+          "23": "5",
+          "24": "4",
+          "25": "3",
+          "26": "2",
+          "27": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "2-3": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "고은별하",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "김건하",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "김동현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "김민서",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "김수연",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김승겸",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "김시윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "김재민",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "김정원",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "박건우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "배서현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "서지윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "손주영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "안수빈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "은준서",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "이가은",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "이시은",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "이연지",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "이용진",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "이한율",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "정세윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "조유나",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "진효민",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "최지윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "하도윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "한휴승",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_26.jpg"
+          },
+          {
+            "no": 27,
+            "name": "황서현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-3_27.jpg"
+          }
+        ],
+        "homeroom": "",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "27",
+          "2": "26",
+          "3": "25",
+          "4": "24",
+          "5": "23",
+          "6": "22",
+          "7": "21",
+          "8": "20",
+          "9": "19",
+          "10": "18",
+          "11": "17",
+          "12": "16",
+          "13": "15",
+          "14": "14",
+          "15": "13",
+          "16": "12",
+          "17": "11",
+          "18": "10",
+          "19": "9",
+          "20": "8",
+          "21": "7",
+          "22": "6",
+          "23": "5",
+          "24": "4",
+          "25": "3",
+          "26": "2",
+          "27": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "2-4": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "김가민",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "김나영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "김민영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "김민준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "김세정",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김승윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "김유성",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "김지태",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "김채원",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "박도현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "박성우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "박세영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "박준현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "안나현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "오태훈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "이신우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "이연진",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "이예나",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "이지유",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "임은지",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "장태인",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "전하민",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "정영돈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "정우현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "추정훈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "하예림",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_26.jpg"
+          },
+          {
+            "no": 27,
+            "name": "홍채원",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-4_27.jpg"
+          }
+        ],
+        "homeroom": "",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "27",
+          "2": "26",
+          "3": "25",
+          "4": "24",
+          "5": "23",
+          "6": "22",
+          "7": "21",
+          "8": "20",
+          "9": "19",
+          "10": "18",
+          "11": "17",
+          "12": "16",
+          "13": "15",
+          "14": "14",
+          "15": "13",
+          "16": "12",
+          "17": "11",
+          "18": "10",
+          "19": "9",
+          "20": "8",
+          "21": "7",
+          "22": "6",
+          "23": "5",
+          "24": "4",
+          "25": "3",
+          "26": "2",
+          "27": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "2-5": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "강시온",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "김나영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "김다온",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "김단예",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "김동현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김민주",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "김선준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "김현진",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "남해솔",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "박성현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "박은빈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "박재진",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "백승아",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "엄가인",
+            "level": 0,
+            "note": "",
+            "photo": ""
+          },
+          {
+            "no": 15,
+            "name": "윤서율",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "윤준상",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "이우진",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "이재희",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "이채현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "이현주",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "전아준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "최인서",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "최재원",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "최지우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "최호주",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "한승석",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_26.jpg"
+          },
+          {
+            "no": 27,
+            "name": "한아인",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_27.jpg"
+          },
+          {
+            "no": 28,
+            "name": "황보은후",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-5_28.jpg"
+          }
+        ],
+        "homeroom": "",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "28",
+          "2": "27",
+          "3": "26",
+          "4": "25",
+          "5": "24",
+          "6": "23",
+          "7": "22",
+          "8": "21",
+          "9": "20",
+          "10": "19",
+          "11": "18",
+          "12": "17",
+          "13": "16",
+          "14": "15",
+          "15": "14",
+          "16": "13",
+          "17": "12",
+          "18": "11",
+          "19": "10",
+          "20": "9",
+          "21": "8",
+          "22": "7",
+          "23": "6",
+          "24": "5",
+          "25": "4",
+          "26": "3",
+          "27": "2",
+          "28": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "2-6": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "김민찬",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "김연희",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "노규담",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "문지현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "박시연",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "박정현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "박준수",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "배서언",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "배지우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "변효림",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "서재이",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "심민준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "양승호",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "염이금",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "염휘윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "이가온",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "이서준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "이석준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "이아인",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "이왕율",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "이유한",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "이주용",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "이지윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "임나경",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "장현우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "최하늘",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_26.jpg"
+          },
+          {
+            "no": 27,
+            "name": "추현서",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-6_27.jpg"
+          }
+        ],
+        "homeroom": "",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "27",
+          "2": "26",
+          "3": "25",
+          "4": "24",
+          "5": "23",
+          "6": "22",
+          "7": "21",
+          "8": "20",
+          "9": "19",
+          "10": "18",
+          "11": "17",
+          "12": "16",
+          "13": "15",
+          "14": "14",
+          "15": "13",
+          "16": "12",
+          "17": "11",
+          "18": "10",
+          "19": "9",
+          "20": "8",
+          "21": "7",
+          "22": "6",
+          "23": "5",
+          "24": "4",
+          "25": "3",
+          "26": "2",
+          "27": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      },
+      "2-7": {
+        "roster": [
+          {
+            "no": 1,
+            "name": "김가람",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_1.jpg"
+          },
+          {
+            "no": 2,
+            "name": "김가빈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_2.jpg"
+          },
+          {
+            "no": 3,
+            "name": "김건우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_3.jpg"
+          },
+          {
+            "no": 4,
+            "name": "김도영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_4.jpg"
+          },
+          {
+            "no": 5,
+            "name": "김민서",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_5.jpg"
+          },
+          {
+            "no": 6,
+            "name": "김신우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_6.jpg"
+          },
+          {
+            "no": 7,
+            "name": "김주영",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_7.jpg"
+          },
+          {
+            "no": 8,
+            "name": "김준우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_8.jpg"
+          },
+          {
+            "no": 9,
+            "name": "박서은",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_9.jpg"
+          },
+          {
+            "no": 10,
+            "name": "박시후",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_10.jpg"
+          },
+          {
+            "no": 11,
+            "name": "배민준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_11.jpg"
+          },
+          {
+            "no": 12,
+            "name": "신승윤",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_12.jpg"
+          },
+          {
+            "no": 13,
+            "name": "신현주",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_13.jpg"
+          },
+          {
+            "no": 14,
+            "name": "엄지아",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_14.jpg"
+          },
+          {
+            "no": 15,
+            "name": "오현우",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_15.jpg"
+          },
+          {
+            "no": 16,
+            "name": "이다은",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_16.jpg"
+          },
+          {
+            "no": 17,
+            "name": "이승록",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_17.jpg"
+          },
+          {
+            "no": 18,
+            "name": "이은진",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_18.jpg"
+          },
+          {
+            "no": 19,
+            "name": "이하준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_19.jpg"
+          },
+          {
+            "no": 20,
+            "name": "이현",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_20.jpg"
+          },
+          {
+            "no": 21,
+            "name": "임다빈",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_21.jpg"
+          },
+          {
+            "no": 22,
+            "name": "임태완",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_22.jpg"
+          },
+          {
+            "no": 23,
+            "name": "장효주",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_23.jpg"
+          },
+          {
+            "no": 24,
+            "name": "전현준",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_24.jpg"
+          },
+          {
+            "no": 25,
+            "name": "정윤서",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_25.jpg"
+          },
+          {
+            "no": 26,
+            "name": "최다연",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_26.jpg"
+          },
+          {
+            "no": 27,
+            "name": "서은솔",
+            "level": 0,
+            "note": "",
+            "photo": "photos/2-7_27.jpg"
+          }
+        ],
+        "homeroom": "",
+        "layout": {
+          "type": "lab",
+          "rows": 6,
+          "cols": 5,
+          "flipVertical": true,
+          "flipHorizontal": false
+        },
+        "seating": {
+          "1": "27",
+          "2": "26",
+          "3": "25",
+          "4": "24",
+          "5": "23",
+          "6": "22",
+          "7": "21",
+          "8": "20",
+          "9": "19",
+          "10": "18",
+          "11": "17",
+          "12": "16",
+          "13": "15",
+          "14": "14",
+          "15": "13",
+          "16": "12",
+          "17": "11",
+          "18": "10",
+          "19": "9",
+          "20": "8",
+          "21": "7",
+          "22": "6",
+          "23": "5",
+          "24": "4",
+          "25": "3",
+          "26": "2",
+          "27": "1"
+        },
+        "groups": [],
+        "_roster2026PhotoAppliedV3": true,
+        "_updatedAt": 1794374250382
+      }
+    },
+    "attendance": {},
+    "assignments": {},
+    "showPhotos": true,
+    "showGroupBadges": false
+  },
+  "updatedAt": 1794374250382
 }

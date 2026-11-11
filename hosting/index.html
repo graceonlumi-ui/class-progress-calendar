@@ -1465,63 +1465,87 @@
     }
 
     .seating-stage {
-      border: 1.5px solid #cbd5e1;
-      border-radius: 16px;
-      background: #f8fafc;
-      padding: 16px;
-      min-height: 480px;
+      border: 1px solid #cbd5e1;
+      border-radius: 20px;
+      background:
+        linear-gradient(90deg, rgba(148,163,184,.10) 1px, transparent 1px),
+        linear-gradient(rgba(148,163,184,.10) 1px, transparent 1px),
+        #f8fafc;
+      background-size: 32px 32px;
+      padding: clamp(8px, 1vw, 16px);
+      min-height: 540px;
+      overflow: hidden;
     }
 
     .podium-box {
       text-align: center;
       font-weight: 900;
+      letter-spacing: -0.03em;
       color: #334155;
       background: #ffffff;
       border: 2px dashed #94a3b8;
-      border-radius: 12px;
-      padding: 8px 24px;
-      margin: 0 auto 14px auto;
-      max-width: 360px;
-      font-size: 0.9rem;
+      border-radius: 16px;
+      padding: 12px;
+      margin-bottom: 14px;
+      width: 100%;
+      max-width: none;
+      font-size: 0.92rem;
     }
 
-    .seating-grid-lab {
+    .podium-box.bottom {
+      margin-top: 14px;
+      margin-bottom: 0;
+    }
+
+    .seat-rows {
+      width: 100%;
       display: grid;
-      grid-template-columns: repeat(3, minmax(110px, 1fr)) 36px repeat(4, minmax(110px, 1fr));
-      gap: 8px;
+      gap: clamp(6px, 0.9vw, 14px);
+    }
+
+    .lab-row {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(26px, .34fr) repeat(4, minmax(0, 1fr));
+      gap: clamp(4px, 0.75vw, 12px);
       align-items: stretch;
+    }
+
+    .lab-row.mirrored {
+      grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(26px, .34fr) repeat(3, minmax(0, 1fr));
     }
 
     .seating-grid-custom {
       display: grid;
-      gap: 8px;
+      gap: clamp(4px, 0.75vw, 12px);
       align-items: stretch;
     }
 
     .seating-aisle {
-      min-height: 92px;
-      border-radius: 10px;
+      min-height: clamp(64px, 8.2vw, 114px);
+      border-radius: 16px;
       border: 1px dashed #cbd5e1;
-      background: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.55);
       display: flex;
       justify-content: center;
       align-items: center;
       color: #94a3b8;
-      font-size: 0.72rem;
-      font-weight: 800;
+      font-size: clamp(10px, .9vw, 12px);
+      font-weight: 900;
       writing-mode: vertical-rl;
     }
 
     .seat-card {
       position: relative;
-      min-height: 100px;
-      border-radius: 14px;
-      border: 2px solid #93c5fd;
-      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
-      padding: 8px 6px;
+      min-height: clamp(64px, 8.2vw, 114px);
+      border-radius: clamp(14px, 1.4vw, 20px);
+      border: 3px solid #3b82f6;
+      background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+      padding: clamp(6px, .8vw, 10px);
       cursor: pointer;
-      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.06);
-      transition: transform 0.1s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      overflow: visible;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.16);
+      transition: transform 0.08s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -1532,127 +1556,219 @@
 
     .seat-card:hover {
       transform: translateY(-2px);
-      border-color: #2563eb;
-      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.16);
+      border-color: #1d4ed8;
+      box-shadow: 0 14px 26px rgba(37, 99, 235, 0.24);
     }
 
     .seat-card.swap-source {
-      border-color: #f59e0b !important;
+      border-color: #111827 !important;
       background: #fef3c7 !important;
-      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.35) !important;
+      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.35) !important;
     }
 
     .seat-card.level-1 { background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%); border-color: #22c55e; }
-    .seat-card.level-2 { background: linear-gradient(135deg, #fef9c3 0%, #fffbeb 100%); border-color: #eab308; }
-    .seat-card.level-3 { background: linear-gradient(135deg, #ffe4e6 0%, #fff1f2 100%); border-color: #f43f5e; }
+    .seat-card.level-2 { background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%); border-color: #f59e0b; }
+    .seat-card.level-3 { background: linear-gradient(135deg, #fee2e2 0%, #fff1f2 100%); border-color: #ef4444; }
+
+    .seat-card.task-checked {
+      background: linear-gradient(135deg, #bbf7d0 0%, #ecfdf5 100%) !important;
+      border-color: #16a34a !important;
+      box-shadow: 0 10px 22px rgba(22, 163, 74, 0.24);
+    }
 
     .seat-card.empty-seat {
-      background: #f8fafc;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       border-color: #cbd5e1;
       border-style: dashed;
       box-shadow: none;
     }
 
-    .seat-num-badge {
+    .seat-card.blank-seat {
+      background: rgba(255,255,255,0.46);
+      border-color: #e2e8f0;
+      border-style: dashed;
+      box-shadow: none;
+      color: #cbd5e1;
+      cursor: default;
+    }
+
+    .seat-card.blank-seat:hover {
+      transform: none;
+      border-color: #e2e8f0;
+      box-shadow: none;
+    }
+
+    .pc-no {
       position: absolute;
-      top: 5px;
-      left: 6px;
-      font-size: 0.7rem;
-      font-weight: 800;
+      top: clamp(6px, .7vw, 9px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: clamp(44px, 4.6vw, 64px);
+      height: clamp(30px, 3vw, 40px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(14px, 1.85vw, 30px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: #0f172a;
+      background: rgba(255,255,255,0.92);
+      border: 2px solid rgba(71,85,105,0.55);
+      border-radius: 8px;
+      padding: 0 8px;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .task-check {
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      width: 25px;
+      height: 25px;
+      padding: 0;
+      border-radius: 7px;
+      border: 2px solid #94a3b8;
+      background: rgba(255,255,255,0.92);
       color: #64748b;
+      font-size: 15px;
+      line-height: 1;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      cursor: pointer;
+    }
+
+    .task-check.checked {
+      background: #16a34a;
+      border-color: #15803d;
+      color: #ffffff;
+    }
+
+    .student-line {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(4px, .55vw, 8px);
+      width: 100%;
+      min-width: 0;
+      padding-top: clamp(28px, 3.2vw, 42px);
+    }
+
+    .student-line.with-photo {
+      padding-top: 2px;
+    }
+
+    .student-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: clamp(30px, 2.8vw, 42px);
+      height: clamp(22px, 2.1vw, 30px);
+      padding: 0 clamp(6px, .6vw, 10px);
+      border-radius: 999px;
+      background: #1d4ed8;
+      color: #ffffff;
+      font-size: clamp(11px, 1.15vw, 18px);
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .student-name {
+      font-size: clamp(13px, 1.65vw, 26px);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #0f172a;
+      line-height: 1.08;
+      min-width: 0;
+    }
+
+    .empty-name {
+      color: #64748b;
+      font-size: clamp(13px, 1.25vw, 19px);
+      font-weight: 900;
+      margin-top: clamp(28px, 3.2vw, 42px);
+      text-align: center;
+    }
+
+    .seat-card.blank-seat .empty-name {
+      color: #cbd5e1;
+      margin-top: 0;
     }
 
     .seat-group-badge {
       position: absolute;
-      top: 5px;
+      bottom: 6px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 0.66rem;
+      font-size: 0.68rem;
       font-weight: 800;
-      padding: 1px 6px;
+      padding: 1px 7px;
       border-radius: 99px;
       background: #4f46e5;
       color: #fff;
+      z-index: 2;
     }
 
     .seat-att-badge {
       position: absolute;
-      top: 5px;
-      right: 5px;
-      font-size: 0.66rem;
-      font-weight: 800;
-      padding: 1px 6px;
+      top: 7px;
+      right: 7px;
+      font-size: 0.68rem;
+      font-weight: 900;
+      padding: 2px 7px;
       border-radius: 99px;
       background: #fee2e2;
-      color: #b91c1c;
+      color: #991b1b;
       border: 1px solid #fca5a5;
+      z-index: 2;
     }
 
     .seat-photo {
-      width: 46px;
-      height: 58px;
+      width: 52px;
+      height: 64px;
       object-fit: cover;
-      border-radius: 7px;
-      border: 1.5px solid #cbd5e1;
-      margin-top: 14px;
+      border-radius: 8px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.14);
+      margin-top: 38px;
       margin-bottom: 3px;
       background: #f1f5f9;
     }
 
     .seat-photo-placeholder {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: #e0e7ff;
-      color: #4338ca;
+      width: 52px;
+      height: 64px;
+      border-radius: 8px;
+      border: 1.5px dashed #cbd5e1;
+      background: rgba(255, 255, 255, 0.65);
+      color: #64748b;
       font-weight: 900;
-      font-size: 0.9rem;
+      font-size: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 14px;
+      margin-top: 38px;
       margin-bottom: 3px;
     }
 
-    .seat-stu-name {
-      font-size: 0.92rem;
-      font-weight: 800;
-      color: #0f172a;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
+    .seat-note-dot {
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #d97706;
+      border: 2px solid #fff;
     }
-
-    .seat-stu-no {
-      color: #4f46e5;
-      margin-right: 3px;
-      font-size: 0.8rem;
-    }
-
-    .seat-note-preview {
-      font-size: 0.68rem;
-      color: #92400e;
-      background: #fef3c7;
-      padding: 1px 5px;
-      border-radius: 4px;
-      margin-top: 2px;
-      max-width: 95%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .seat-task-badge {
-      font-size: 0.66rem;
-      font-weight: 800;
-      padding: 1px 6px;
-      border-radius: 4px;
-      margin-top: 2px;
-    }
-    .seat-task-badge.task-완료 { background: #dcfce7; color: #15803d; }
-    .seat-task-badge.task-미완료 { background: #fee2e2; color: #b91c1c; }
-    .seat-task-badge.task-보완 { background: #fef3c7; color: #b45309; }
 
     .photo-dropzone {
       border: 2px dashed #6366f1;
@@ -2279,12 +2395,12 @@
           </div>
 
           <div style="border:1px solid #818cf8; background:#fafaff; border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:8px;">
-            <div style="font-weight:800; font-size:0.9rem; color:#312e81;">2️⃣ 나이스 학생 사진 자동 매칭 (.jpg / .png / .zip)</div>
+            <div style="font-weight:800; font-size:0.9rem; color:#312e81;">2️⃣ 나이스 학생 사진 자동 매칭 (.xlsx / .jpg / .png / .zip)</div>
             <div class="photo-dropzone" onclick="document.getElementById('neisPhotoFilesInput').click()">
               <div style="font-size:1.4rem;">🖼️ 📦</div>
-              <div style="font-weight:800; font-size:0.85rem; color:#312e81;">클릭하여 사진 파일들 또는 .zip 압축파일 업로드</div>
-              <div style="font-size:0.74rem; color:#6366f1; margin-top:2px;">번호·이름·학번 파일명을 자동 인식하여 매칭합니다</div>
-              <input type="file" id="neisPhotoFilesInput" accept="image/*,.zip" multiple style="display:none;" onchange="handleNeisPhotoUpload(this.files)" />
+              <div style="font-weight:800; font-size:0.85rem; color:#312e81;">클릭하여 나이스 사진명렬표(.xlsx), 사진 파일들 또는 .zip 업로드</div>
+              <div style="font-size:0.74rem; color:#6366f1; margin-top:2px;">나이스 교과별수강학생사진명렬표(.xlsx) 또는 사진 파일명을 자동 인식합니다</div>
+              <input type="file" id="neisPhotoFilesInput" accept="image/*,.zip,.xlsx" multiple style="display:none;" onchange="handleNeisPhotoUpload(this.files)" />
             </div>
             <label class="btn btn-outline" style="cursor:pointer; justify-content:center; background:#fff; padding:6px;">
               📁 사진 폴더 통째로 선택
@@ -2727,6 +2843,11 @@
       return result;
     }
 
+    function isPlaceholderRosterList(roster) {
+      if (!Array.isArray(roster) || roster.length === 0) return true;
+      return roster.every(s => !s || !s.name || /^\d+번\s*학생$/.test(String(s.name).trim()));
+    }
+
     function mergeSeatingDataSafe(baseSeat, incSeat) {
       if (!incSeat) return baseSeat;
       if (!baseSeat) return incSeat;
@@ -2744,10 +2865,14 @@
           if (!c1) {
             merged.classes[cls] = c2;
           } else if (c2) {
+            const c1Dummy = isPlaceholderRosterList(c1.roster);
+            const c2Dummy = isPlaceholderRosterList(c2.roster);
+            if (c2Dummy && !c1Dummy) {
+              return; // 더미 명렬로 실제 명렬을 덮어쓰지 않음
+            }
             const t1 = c1._updatedAt || 0;
             const t2 = c2._updatedAt || 0;
-            if (t2 >= t1) {
-              // 보존: 만약 c1에만 사진이 있고 c2에 사진이 비어있는 경우 병합
+            if ((c1Dummy && !c2Dummy) || t2 >= t1) {
               const roster1Map = {};
               (c1.roster || []).forEach(s => { if (s.photo) roster1Map[s.no] = s.photo; });
               const mergedRoster = (c2.roster || []).map(s => ({
@@ -5572,13 +5697,26 @@
     /*************************************************************************
      * 12. 교실 자리배치표 통합 기능 (#view-seating) + 달력 결시생 양방향 연동
      *************************************************************************/
+    const HOMEROOM_TEACHERS_2026 = {"1-1":"서혜원","1-2":"장윤진","1-3":"이윤주","1-4":"전향","1-5":"강윤미","1-6":"박가령","1-7":"신종옥"};
+    const DEFAULT_CLASS_ROSTERS_2026 = {"1-1":[{"no":1,"name":"권보민","photo":"photos/1-1_1.jpg"},{"no":2,"name":"김규빈","photo":"photos/1-1_2.jpg"},{"no":3,"name":"김기원","photo":"photos/1-1_3.jpg"},{"no":4,"name":"김나윤","photo":"photos/1-1_4.jpg"},{"no":5,"name":"김리원","photo":"photos/1-1_5.jpg"},{"no":6,"name":"김민서","photo":"photos/1-1_6.jpg"},{"no":7,"name":"김선주","photo":"photos/1-1_7.jpg"},{"no":8,"name":"김시원","photo":"photos/1-1_8.jpg"},{"no":9,"name":"김지혁","photo":"photos/1-1_9.jpg"},{"no":10,"name":"김지효","photo":"photos/1-1_10.jpg"},{"no":11,"name":"김현서","photo":"photos/1-1_11.jpg"},{"no":12,"name":"남규림","photo":"photos/1-1_12.jpg"},{"no":13,"name":"민유석","photo":"photos/1-1_13.jpg"},{"no":14,"name":"박대선","photo":"photos/1-1_14.jpg"},{"no":15,"name":"박찬원","photo":"photos/1-1_15.jpg"},{"no":16,"name":"우현제","photo":"photos/1-1_16.jpg"},{"no":17,"name":"이도권","photo":"photos/1-1_17.jpg"},{"no":18,"name":"이서진","photo":"photos/1-1_18.jpg"},{"no":19,"name":"전지후","photo":"photos/1-1_19.jpg"},{"no":20,"name":"정은호","photo":"photos/1-1_20.jpg"},{"no":21,"name":"주승훈","photo":"photos/1-1_21.jpg"},{"no":22,"name":"차유나","photo":"photos/1-1_22.jpg"},{"no":23,"name":"최범진","photo":"photos/1-1_23.jpg"},{"no":24,"name":"최효린","photo":"photos/1-1_24.jpg"},{"no":25,"name":"하나윤","photo":"photos/1-1_25.jpg"},{"no":26,"name":"최지우","photo":"photos/1-1_26.jpg"}],"1-2":[{"no":1,"name":"김권화","photo":"photos/1-2_1.jpg"},{"no":2,"name":"김서영","photo":"photos/1-2_2.jpg"},{"no":3,"name":"김재원","photo":"photos/1-2_3.jpg"},{"no":4,"name":"김지안","photo":"photos/1-2_4.jpg"},{"no":5,"name":"김채은","photo":"photos/1-2_5.jpg"},{"no":6,"name":"김태인","photo":"photos/1-2_6.jpg"},{"no":7,"name":"박수연","photo":"photos/1-2_7.jpg"},{"no":8,"name":"박유진","photo":"photos/1-2_8.jpg"},{"no":9,"name":"배소은","photo":"photos/1-2_9.jpg"},{"no":10,"name":"변준호","photo":"photos/1-2_10.jpg"},{"no":11,"name":"손윤후","photo":"photos/1-2_11.jpg"},{"no":12,"name":"송윤경","photo":"photos/1-2_12.jpg"},{"no":13,"name":"안다율","photo":"photos/1-2_13.jpg"},{"no":14,"name":"안지원","photo":"photos/1-2_14.jpg"},{"no":15,"name":"양지승","photo":"photos/1-2_15.jpg"},{"no":16,"name":"엄예준","photo":"photos/1-2_16.jpg"},{"no":17,"name":"유하정","photo":"photos/1-2_17.jpg"},{"no":18,"name":"윤제훈","photo":"photos/1-2_18.jpg"},{"no":19,"name":"이원준","photo":"photos/1-2_19.jpg"},{"no":20,"name":"이지환","photo":"photos/1-2_20.jpg"},{"no":21,"name":"장서빈","photo":"photos/1-2_21.jpg"},{"no":22,"name":"진우현","photo":"photos/1-2_22.jpg"},{"no":23,"name":"천성범","photo":"photos/1-2_23.jpg"},{"no":24,"name":"한정빈","photo":"photos/1-2_24.jpg"},{"no":25,"name":"한채아","photo":"photos/1-2_25.jpg"},{"no":26,"name":"홍수인","photo":"photos/1-2_26.jpg"}],"1-3":[{"no":1,"name":"김단우","photo":"photos/1-3_1.jpg"},{"no":2,"name":"김민채","photo":"photos/1-3_2.jpg"},{"no":3,"name":"김보미","photo":"photos/1-3_3.jpg"},{"no":4,"name":"김수지","photo":"photos/1-3_4.jpg"},{"no":5,"name":"김시우","photo":"photos/1-3_5.jpg"},{"no":6,"name":"김지수","photo":"photos/1-3_6.jpg"},{"no":7,"name":"김지우","photo":"photos/1-3_7.jpg"},{"no":8,"name":"김태희","photo":"photos/1-3_8.jpg"},{"no":9,"name":"김현도","photo":"photos/1-3_9.jpg"},{"no":10,"name":"노다현","photo":"photos/1-3_10.jpg"},{"no":11,"name":"박시은","photo":"photos/1-3_11.jpg"},{"no":12,"name":"변성현","photo":"photos/1-3_12.jpg"},{"no":13,"name":"변시후","photo":"photos/1-3_13.jpg"},{"no":14,"name":"신별하","photo":"photos/1-3_14.jpg"},{"no":15,"name":"신성호","photo":"photos/1-3_15.jpg"},{"no":16,"name":"양지호","photo":"photos/1-3_16.jpg"},{"no":17,"name":"이승우","photo":"photos/1-3_17.jpg"},{"no":18,"name":"이시온","photo":"photos/1-3_18.jpg"},{"no":19,"name":"이재준","photo":"photos/1-3_19.jpg"},{"no":20,"name":"정서아","photo":"photos/1-3_20.jpg"},{"no":21,"name":"주하율","photo":"photos/1-3_21.jpg"},{"no":22,"name":"최수진","photo":"photos/1-3_22.jpg"},{"no":23,"name":"최예희","photo":"photos/1-3_23.jpg"},{"no":24,"name":"최태훈","photo":"photos/1-3_24.jpg"},{"no":25,"name":"현승민","photo":"photos/1-3_25.jpg"},{"no":26,"name":"황예담","photo":"photos/1-3_26.jpg"}],"1-4":[{"no":1,"name":"GAO RUI","photo":"photos/1-4_1.jpg"},{"no":2,"name":"강민아","photo":"photos/1-4_2.jpg"},{"no":3,"name":"강성우","photo":"photos/1-4_3.jpg"},{"no":4,"name":"권단우","photo":"photos/1-4_4.jpg"},{"no":5,"name":"권효주","photo":"photos/1-4_5.jpg"},{"no":6,"name":"김건우","photo":"photos/1-4_6.jpg"},{"no":7,"name":"김보현","photo":"photos/1-4_7.jpg"},{"no":8,"name":"김수현","photo":"photos/1-4_8.jpg"},{"no":9,"name":"김한슬","photo":"photos/1-4_9.jpg"},{"no":10,"name":"박슬아","photo":"photos/1-4_10.jpg"},{"no":11,"name":"박지영","photo":"photos/1-4_11.jpg"},{"no":12,"name":"박지현","photo":"photos/1-4_12.jpg"},{"no":13,"name":"백민아","photo":"photos/1-4_13.jpg"},{"no":14,"name":"서인영","photo":"photos/1-4_14.jpg"},{"no":15,"name":"송승율","photo":"photos/1-4_15.jpg"},{"no":16,"name":"신지희","photo":"photos/1-4_16.jpg"},{"no":17,"name":"유지민","photo":"photos/1-4_17.jpg"},{"no":18,"name":"윤세아","photo":"photos/1-4_18.jpg"},{"no":19,"name":"이예림","photo":"photos/1-4_19.jpg"},{"no":20,"name":"이유호","photo":"photos/1-4_20.jpg"},{"no":21,"name":"이인석","photo":"photos/1-4_21.jpg"},{"no":22,"name":"이재준","photo":"photos/1-4_22.jpg"},{"no":23,"name":"이한울","photo":"photos/1-4_23.jpg"},{"no":24,"name":"이호재","photo":"photos/1-4_24.jpg"},{"no":25,"name":"정의산","photo":"photos/1-4_25.jpg"},{"no":26,"name":"최환웅","photo":"photos/1-4_26.jpg"}],"1-5":[{"no":1,"name":"강리우","photo":"photos/1-5_1.jpg"},{"no":2,"name":"공도경","photo":"photos/1-5_2.jpg"},{"no":3,"name":"권사랑","photo":"photos/1-5_3.jpg"},{"no":4,"name":"김동욱","photo":"photos/1-5_4.jpg"},{"no":5,"name":"김민찬","photo":"photos/1-5_5.jpg"},{"no":6,"name":"김민채","photo":"photos/1-5_6.jpg"},{"no":7,"name":"김종휘","photo":"photos/1-5_7.jpg"},{"no":8,"name":"김태연","photo":"photos/1-5_8.jpg"},{"no":9,"name":"김태완","photo":"photos/1-5_9.jpg"},{"no":10,"name":"김해밀","photo":"photos/1-5_10.jpg"},{"no":11,"name":"박성하","photo":"photos/1-5_11.jpg"},{"no":12,"name":"박지호","photo":"photos/1-5_12.jpg"},{"no":13,"name":"안은찬","photo":"photos/1-5_13.jpg"},{"no":14,"name":"염지호","photo":"photos/1-5_14.jpg"},{"no":15,"name":"이도형","photo":"photos/1-5_15.jpg"},{"no":16,"name":"이서윤","photo":"photos/1-5_16.jpg"},{"no":17,"name":"이연우","photo":"photos/1-5_17.jpg"},{"no":18,"name":"이윤성","photo":"photos/1-5_18.jpg"},{"no":19,"name":"정민영","photo":"photos/1-5_19.jpg"},{"no":20,"name":"정이솔","photo":"photos/1-5_20.jpg"},{"no":21,"name":"정현승","photo":"photos/1-5_21.jpg"},{"no":22,"name":"조민석","photo":"photos/1-5_22.jpg"},{"no":23,"name":"조소윤","photo":"photos/1-5_23.jpg"},{"no":24,"name":"주승현","photo":"photos/1-5_24.jpg"},{"no":25,"name":"주정연","photo":"photos/1-5_25.jpg"},{"no":26,"name":"홍윤후","photo":"photos/1-5_26.jpg"}],"1-6":[{"no":1,"name":"강나윤","photo":"photos/1-6_1.jpg"},{"no":2,"name":"강승연","photo":"photos/1-6_2.jpg"},{"no":3,"name":"권규은","photo":"photos/1-6_3.jpg"},{"no":4,"name":"김나경","photo":"photos/1-6_4.jpg"},{"no":5,"name":"김동윤","photo":"photos/1-6_5.jpg"},{"no":6,"name":"김민성","photo":"photos/1-6_6.jpg"},{"no":7,"name":"김서후","photo":"photos/1-6_7.jpg"},{"no":8,"name":"김성준","photo":"photos/1-6_8.jpg"},{"no":9,"name":"김승윤","photo":"photos/1-6_9.jpg"},{"no":10,"name":"박수영","photo":"photos/1-6_10.jpg"},{"no":11,"name":"박지현","photo":"photos/1-6_11.jpg"},{"no":12,"name":"신가연","photo":"photos/1-6_12.jpg"},{"no":13,"name":"신지용","photo":"photos/1-6_13.jpg"},{"no":14,"name":"신지호","photo":"photos/1-6_14.jpg"},{"no":15,"name":"안효선","photo":"photos/1-6_15.jpg"},{"no":16,"name":"양하윤","photo":"photos/1-6_16.jpg"},{"no":18,"name":"이도영","photo":"photos/1-6_18.jpg"},{"no":19,"name":"이민균","photo":"photos/1-6_19.jpg"},{"no":20,"name":"이지후","photo":"photos/1-6_20.jpg"},{"no":21,"name":"이효주","photo":"photos/1-6_21.jpg"},{"no":22,"name":"임동건","photo":"photos/1-6_22.jpg"},{"no":23,"name":"전하운","photo":"photos/1-6_23.jpg"},{"no":24,"name":"정시훈","photo":"photos/1-6_24.jpg"},{"no":25,"name":"정주헌","photo":"photos/1-6_25.jpg"},{"no":26,"name":"최윤찬","photo":"photos/1-6_26.jpg"},{"no":27,"name":"박소이","photo":"photos/1-6_27.jpg"}],"1-7":[{"no":1,"name":"강채윤","photo":"photos/1-7_1.jpg"},{"no":2,"name":"구하연","photo":"photos/1-7_2.jpg"},{"no":3,"name":"권지유","photo":"photos/1-7_3.jpg"},{"no":4,"name":"김나영","photo":"photos/1-7_4.jpg"},{"no":5,"name":"김담현","photo":"photos/1-7_5.jpg"},{"no":6,"name":"김민재","photo":"photos/1-7_6.jpg"},{"no":7,"name":"김재훈","photo":"photos/1-7_7.jpg"},{"no":8,"name":"김정민","photo":"photos/1-7_8.jpg"},{"no":9,"name":"박성원","photo":"photos/1-7_9.jpg"},{"no":10,"name":"변영빈","photo":"photos/1-7_10.jpg"},{"no":11,"name":"신비","photo":"photos/1-7_11.jpg"},{"no":12,"name":"신연우","photo":"photos/1-7_12.jpg"},{"no":13,"name":"윤예성","photo":"photos/1-7_13.jpg"},{"no":14,"name":"이나현","photo":"photos/1-7_14.jpg"},{"no":15,"name":"이시후","photo":"photos/1-7_15.jpg"},{"no":16,"name":"이예솔","photo":"photos/1-7_16.jpg"},{"no":17,"name":"이예준","photo":"photos/1-7_17.jpg"},{"no":18,"name":"이지후","photo":"photos/1-7_18.jpg"},{"no":19,"name":"전현택","photo":"photos/1-7_19.jpg"},{"no":20,"name":"정도진","photo":"photos/1-7_20.jpg"},{"no":21,"name":"조성빈","photo":"photos/1-7_21.jpg"},{"no":22,"name":"조예슬","photo":"photos/1-7_22.jpg"},{"no":23,"name":"조현재","photo":"photos/1-7_23.jpg"},{"no":24,"name":"최보미","photo":"photos/1-7_24.jpg"},{"no":25,"name":"최수지","photo":"photos/1-7_25.jpg"},{"no":26,"name":"함광현","photo":"photos/1-7_26.jpg"}],"2-1":[{"no":1,"name":"고현준","photo":"photos/2-1_1.jpg"},{"no":2,"name":"공민서","photo":"photos/2-1_2.jpg"},{"no":3,"name":"권노을","photo":"photos/2-1_3.jpg"},{"no":4,"name":"김난주","photo":"photos/2-1_4.jpg"},{"no":5,"name":"김상오","photo":"photos/2-1_5.jpg"},{"no":6,"name":"김서윤","photo":"photos/2-1_6.jpg"},{"no":7,"name":"김소현","photo":"photos/2-1_7.jpg"},{"no":8,"name":"김아인","photo":"photos/2-1_8.jpg"},{"no":9,"name":"김지우","photo":"photos/2-1_9.jpg"},{"no":10,"name":"김하람","photo":"photos/2-1_10.jpg"},{"no":11,"name":"김하연","photo":"photos/2-1_11.jpg"},{"no":12,"name":"김효준","photo":"photos/2-1_12.jpg"},{"no":13,"name":"박민준","photo":"photos/2-1_13.jpg"},{"no":14,"name":"손정우","photo":"photos/2-1_14.jpg"},{"no":15,"name":"안소은","photo":""},{"no":16,"name":"안지아","photo":"photos/2-1_16.jpg"},{"no":17,"name":"엄윤하","photo":"photos/2-1_17.jpg"},{"no":18,"name":"이시형","photo":"photos/2-1_18.jpg"},{"no":19,"name":"이재용","photo":"photos/2-1_19.jpg"},{"no":20,"name":"이지윤","photo":"photos/2-1_20.jpg"},{"no":21,"name":"장민국","photo":"photos/2-1_21.jpg"},{"no":22,"name":"정재민","photo":"photos/2-1_22.jpg"},{"no":23,"name":"조경현","photo":"photos/2-1_23.jpg"},{"no":24,"name":"주현진","photo":"photos/2-1_24.jpg"},{"no":25,"name":"최시윤","photo":"photos/2-1_25.jpg"},{"no":26,"name":"황시우","photo":"photos/2-1_26.jpg"},{"no":27,"name":"황지용","photo":"photos/2-1_27.jpg"}],"2-2":[{"no":1,"name":"강윤아","photo":"photos/2-2_1.jpg"},{"no":2,"name":"김건우","photo":"photos/2-2_2.jpg"},{"no":3,"name":"김승준","photo":"photos/2-2_3.jpg"},{"no":4,"name":"김나영","photo":"photos/2-2_4.jpg"},{"no":5,"name":"김나현","photo":"photos/2-2_5.jpg"},{"no":6,"name":"김지인","photo":"photos/2-2_6.jpg"},{"no":7,"name":"박서애","photo":"photos/2-2_7.jpg"},{"no":8,"name":"박세은","photo":"photos/2-2_8.jpg"},{"no":9,"name":"박솔제","photo":"photos/2-2_9.jpg"},{"no":10,"name":"박시연","photo":"photos/2-2_10.jpg"},{"no":11,"name":"박정우","photo":"photos/2-2_11.jpg"},{"no":12,"name":"배서연","photo":"photos/2-2_12.jpg"},{"no":13,"name":"서현웅","photo":"photos/2-2_13.jpg"},{"no":14,"name":"성연수","photo":"photos/2-2_14.jpg"},{"no":15,"name":"송유나","photo":"photos/2-2_15.jpg"},{"no":16,"name":"유지우","photo":"photos/2-2_16.jpg"},{"no":17,"name":"윤지원","photo":"photos/2-2_17.jpg"},{"no":18,"name":"이건희","photo":"photos/2-2_18.jpg"},{"no":19,"name":"이성은","photo":"photos/2-2_19.jpg"},{"no":20,"name":"이재현","photo":"photos/2-2_20.jpg"},{"no":21,"name":"이현겸","photo":"photos/2-2_21.jpg"},{"no":22,"name":"전시후","photo":"photos/2-2_22.jpg"},{"no":23,"name":"최효린","photo":"photos/2-2_23.jpg"},{"no":24,"name":"홍민준","photo":"photos/2-2_24.jpg"},{"no":25,"name":"홍예나","photo":"photos/2-2_25.jpg"},{"no":26,"name":"황가온","photo":"photos/2-2_26.jpg"},{"no":27,"name":"황지우","photo":"photos/2-2_27.jpg"}],"2-3":[{"no":1,"name":"고은별하","photo":"photos/2-3_1.jpg"},{"no":2,"name":"김건하","photo":"photos/2-3_2.jpg"},{"no":3,"name":"김동현","photo":"photos/2-3_3.jpg"},{"no":4,"name":"김민서","photo":"photos/2-3_4.jpg"},{"no":5,"name":"김수연","photo":"photos/2-3_5.jpg"},{"no":6,"name":"김승겸","photo":"photos/2-3_6.jpg"},{"no":7,"name":"김시윤","photo":"photos/2-3_7.jpg"},{"no":8,"name":"김재민","photo":"photos/2-3_8.jpg"},{"no":9,"name":"김정원","photo":"photos/2-3_9.jpg"},{"no":10,"name":"박건우","photo":"photos/2-3_10.jpg"},{"no":11,"name":"배서현","photo":"photos/2-3_11.jpg"},{"no":12,"name":"서지윤","photo":"photos/2-3_12.jpg"},{"no":13,"name":"손주영","photo":"photos/2-3_13.jpg"},{"no":14,"name":"안수빈","photo":"photos/2-3_14.jpg"},{"no":15,"name":"은준서","photo":"photos/2-3_15.jpg"},{"no":16,"name":"이가은","photo":"photos/2-3_16.jpg"},{"no":17,"name":"이시은","photo":"photos/2-3_17.jpg"},{"no":18,"name":"이연지","photo":"photos/2-3_18.jpg"},{"no":19,"name":"이용진","photo":"photos/2-3_19.jpg"},{"no":20,"name":"이한율","photo":"photos/2-3_20.jpg"},{"no":21,"name":"정세윤","photo":"photos/2-3_21.jpg"},{"no":22,"name":"조유나","photo":"photos/2-3_22.jpg"},{"no":23,"name":"진효민","photo":"photos/2-3_23.jpg"},{"no":24,"name":"최지윤","photo":"photos/2-3_24.jpg"},{"no":25,"name":"하도윤","photo":"photos/2-3_25.jpg"},{"no":26,"name":"한휴승","photo":"photos/2-3_26.jpg"},{"no":27,"name":"황서현","photo":"photos/2-3_27.jpg"}],"2-4":[{"no":1,"name":"김가민","photo":"photos/2-4_1.jpg"},{"no":2,"name":"김나영","photo":"photos/2-4_2.jpg"},{"no":3,"name":"김민영","photo":"photos/2-4_3.jpg"},{"no":4,"name":"김민준","photo":"photos/2-4_4.jpg"},{"no":5,"name":"김세정","photo":"photos/2-4_5.jpg"},{"no":6,"name":"김승윤","photo":"photos/2-4_6.jpg"},{"no":7,"name":"김유성","photo":"photos/2-4_7.jpg"},{"no":8,"name":"김지태","photo":"photos/2-4_8.jpg"},{"no":9,"name":"김채원","photo":"photos/2-4_9.jpg"},{"no":10,"name":"박도현","photo":"photos/2-4_10.jpg"},{"no":11,"name":"박성우","photo":"photos/2-4_11.jpg"},{"no":12,"name":"박세영","photo":"photos/2-4_12.jpg"},{"no":13,"name":"박준현","photo":"photos/2-4_13.jpg"},{"no":14,"name":"안나현","photo":"photos/2-4_14.jpg"},{"no":15,"name":"오태훈","photo":"photos/2-4_15.jpg"},{"no":16,"name":"이신우","photo":"photos/2-4_16.jpg"},{"no":17,"name":"이연진","photo":"photos/2-4_17.jpg"},{"no":18,"name":"이예나","photo":"photos/2-4_18.jpg"},{"no":19,"name":"이지유","photo":"photos/2-4_19.jpg"},{"no":20,"name":"임은지","photo":"photos/2-4_20.jpg"},{"no":21,"name":"장태인","photo":"photos/2-4_21.jpg"},{"no":22,"name":"전하민","photo":"photos/2-4_22.jpg"},{"no":23,"name":"정영돈","photo":"photos/2-4_23.jpg"},{"no":24,"name":"정우현","photo":"photos/2-4_24.jpg"},{"no":25,"name":"추정훈","photo":"photos/2-4_25.jpg"},{"no":26,"name":"하예림","photo":"photos/2-4_26.jpg"},{"no":27,"name":"홍채원","photo":"photos/2-4_27.jpg"}],"2-5":[{"no":1,"name":"강시온","photo":"photos/2-5_1.jpg"},{"no":2,"name":"김나영","photo":"photos/2-5_2.jpg"},{"no":3,"name":"김다온","photo":"photos/2-5_3.jpg"},{"no":4,"name":"김단예","photo":"photos/2-5_4.jpg"},{"no":5,"name":"김동현","photo":"photos/2-5_5.jpg"},{"no":6,"name":"김민주","photo":"photos/2-5_6.jpg"},{"no":7,"name":"김선준","photo":"photos/2-5_7.jpg"},{"no":8,"name":"김현진","photo":"photos/2-5_8.jpg"},{"no":9,"name":"남해솔","photo":"photos/2-5_9.jpg"},{"no":10,"name":"박성현","photo":"photos/2-5_10.jpg"},{"no":11,"name":"박은빈","photo":"photos/2-5_11.jpg"},{"no":12,"name":"박재진","photo":"photos/2-5_12.jpg"},{"no":13,"name":"백승아","photo":"photos/2-5_13.jpg"},{"no":14,"name":"엄가인","photo":""},{"no":15,"name":"윤서율","photo":"photos/2-5_15.jpg"},{"no":16,"name":"윤준상","photo":"photos/2-5_16.jpg"},{"no":17,"name":"이우진","photo":"photos/2-5_17.jpg"},{"no":18,"name":"이재희","photo":"photos/2-5_18.jpg"},{"no":19,"name":"이채현","photo":"photos/2-5_19.jpg"},{"no":20,"name":"이현주","photo":"photos/2-5_20.jpg"},{"no":21,"name":"전아준","photo":"photos/2-5_21.jpg"},{"no":22,"name":"최인서","photo":"photos/2-5_22.jpg"},{"no":23,"name":"최재원","photo":"photos/2-5_23.jpg"},{"no":24,"name":"최지우","photo":"photos/2-5_24.jpg"},{"no":25,"name":"최호주","photo":"photos/2-5_25.jpg"},{"no":26,"name":"한승석","photo":"photos/2-5_26.jpg"},{"no":27,"name":"한아인","photo":"photos/2-5_27.jpg"},{"no":28,"name":"황보은후","photo":"photos/2-5_28.jpg"}],"2-6":[{"no":1,"name":"김민찬","photo":"photos/2-6_1.jpg"},{"no":2,"name":"김연희","photo":"photos/2-6_2.jpg"},{"no":3,"name":"노규담","photo":"photos/2-6_3.jpg"},{"no":4,"name":"문지현","photo":"photos/2-6_4.jpg"},{"no":5,"name":"박시연","photo":"photos/2-6_5.jpg"},{"no":6,"name":"박정현","photo":"photos/2-6_6.jpg"},{"no":7,"name":"박준수","photo":"photos/2-6_7.jpg"},{"no":8,"name":"배서언","photo":"photos/2-6_8.jpg"},{"no":9,"name":"배지우","photo":"photos/2-6_9.jpg"},{"no":10,"name":"변효림","photo":"photos/2-6_10.jpg"},{"no":11,"name":"서재이","photo":"photos/2-6_11.jpg"},{"no":12,"name":"심민준","photo":"photos/2-6_12.jpg"},{"no":13,"name":"양승호","photo":"photos/2-6_13.jpg"},{"no":14,"name":"염이금","photo":"photos/2-6_14.jpg"},{"no":15,"name":"염휘윤","photo":"photos/2-6_15.jpg"},{"no":16,"name":"이가온","photo":"photos/2-6_16.jpg"},{"no":17,"name":"이서준","photo":"photos/2-6_17.jpg"},{"no":18,"name":"이석준","photo":"photos/2-6_18.jpg"},{"no":19,"name":"이아인","photo":"photos/2-6_19.jpg"},{"no":20,"name":"이왕율","photo":"photos/2-6_20.jpg"},{"no":21,"name":"이유한","photo":"photos/2-6_21.jpg"},{"no":22,"name":"이주용","photo":"photos/2-6_22.jpg"},{"no":23,"name":"이지윤","photo":"photos/2-6_23.jpg"},{"no":24,"name":"임나경","photo":"photos/2-6_24.jpg"},{"no":25,"name":"장현우","photo":"photos/2-6_25.jpg"},{"no":26,"name":"최하늘","photo":"photos/2-6_26.jpg"},{"no":27,"name":"추현서","photo":"photos/2-6_27.jpg"}],"2-7":[{"no":1,"name":"김가람","photo":"photos/2-7_1.jpg"},{"no":2,"name":"김가빈","photo":"photos/2-7_2.jpg"},{"no":3,"name":"김건우","photo":"photos/2-7_3.jpg"},{"no":4,"name":"김도영","photo":"photos/2-7_4.jpg"},{"no":5,"name":"김민서","photo":"photos/2-7_5.jpg"},{"no":6,"name":"김신우","photo":"photos/2-7_6.jpg"},{"no":7,"name":"김주영","photo":"photos/2-7_7.jpg"},{"no":8,"name":"김준우","photo":"photos/2-7_8.jpg"},{"no":9,"name":"박서은","photo":"photos/2-7_9.jpg"},{"no":10,"name":"박시후","photo":"photos/2-7_10.jpg"},{"no":11,"name":"배민준","photo":"photos/2-7_11.jpg"},{"no":12,"name":"신승윤","photo":"photos/2-7_12.jpg"},{"no":13,"name":"신현주","photo":"photos/2-7_13.jpg"},{"no":14,"name":"엄지아","photo":"photos/2-7_14.jpg"},{"no":15,"name":"오현우","photo":"photos/2-7_15.jpg"},{"no":16,"name":"이다은","photo":"photos/2-7_16.jpg"},{"no":17,"name":"이승록","photo":"photos/2-7_17.jpg"},{"no":18,"name":"이은진","photo":"photos/2-7_18.jpg"},{"no":19,"name":"이하준","photo":"photos/2-7_19.jpg"},{"no":20,"name":"이현","photo":"photos/2-7_20.jpg"},{"no":21,"name":"임다빈","photo":"photos/2-7_21.jpg"},{"no":22,"name":"임태완","photo":"photos/2-7_22.jpg"},{"no":23,"name":"장효주","photo":"photos/2-7_23.jpg"},{"no":24,"name":"전현준","photo":"photos/2-7_24.jpg"},{"no":25,"name":"정윤서","photo":"photos/2-7_25.jpg"},{"no":26,"name":"최다연","photo":"photos/2-7_26.jpg"},{"no":27,"name":"서은솔","photo":"photos/2-7_27.jpg"}]};
+
     const SAMPLE_KOREAN_NAMES = [
       '김가은','김도윤','김민서','김민준','김서연','김서준','김시우','김아윤','김예준','김유진',
       '김주원','김지민','김지우','김지호','김채원','김하은','박건우','박도현','박민재','박서현',
       '박소율','박수빈','박시현','박연우','박예은','박유나','박준서','박지안','박지훈','박현우'
     ];
 
-    function buildDefaultRoster(count = 28) {
+    function buildDefaultRoster(clsOrCount = 28) {
+      if (typeof clsOrCount === 'string' && DEFAULT_CLASS_ROSTERS_2026[clsOrCount]) {
+        return DEFAULT_CLASS_ROSTERS_2026[clsOrCount].map(s => ({
+          no: Number(s.no),
+          name: String(s.name),
+          level: 0,
+          note: '',
+          photo: s.photo || ''
+        }));
+      }
+      const count = typeof clsOrCount === 'number' ? clsOrCount : 27;
       const list = [];
       for (let i = 1; i <= count; i++) {
         list.push({
@@ -5590,6 +5728,18 @@
         });
       }
       return list;
+    }
+
+    function buildReverseSeatingForRoster(roster, totalSeats = 31) {
+      const sorted = [...(roster || [])].sort((a, b) => Number(a.no) - Number(b.no));
+      const reversed = sorted.reverse();
+      const seating = {};
+      for (let seat = 1; seat <= totalSeats; seat++) {
+        if (reversed[seat - 1]) {
+          seating[String(seat)] = String(reversed[seat - 1].no);
+        }
+      }
+      return seating;
     }
 
     function ensureSeatingStateRoot() {
@@ -5607,37 +5757,91 @@
       if (!appState.seatingData.assignments) appState.seatingData.assignments = {};
       if (appState.seatingData.showPhotos === undefined) appState.seatingData.showPhotos = true;
       if (appState.seatingData.showGroupBadges === undefined) appState.seatingData.showGroupBadges = false;
+
+      // 2026학년도 1·2학년 전체 14개 학급 명렬 및 사진 자동 보장
+      Object.keys(DEFAULT_CLASS_ROSTERS_2026).forEach(clsKey => {
+        if (!appState.seatingData.classes[clsKey]) {
+          const roster = buildDefaultRoster(clsKey);
+          appState.seatingData.classes[clsKey] = {
+            roster,
+            homeroom: HOMEROOM_TEACHERS_2026[clsKey] || '',
+            layout: {
+              type: 'lab',
+              rows: 6,
+              cols: 5,
+              flipVertical: true,
+              flipHorizontal: false
+            },
+            seating: buildReverseSeatingForRoster(roster, 31),
+            groups: [],
+            _roster2026PhotoAppliedV3: true,
+            _updatedAt: Date.now()
+          };
+        }
+      });
     }
 
     function ensureClassSeatingData(cls) {
       ensureSeatingStateRoot();
       if (!appState.seatingData.classes[cls]) {
-        const roster = buildDefaultRoster(28);
-        const seating = {};
-        roster.forEach((stu, idx) => {
-          seating[String(idx + 1)] = String(stu.no);
-        });
+        const roster = buildDefaultRoster(cls);
         appState.seatingData.classes[cls] = {
           roster,
+          homeroom: HOMEROOM_TEACHERS_2026[cls] || '',
           layout: {
-            type: 'lab', // 'lab' (컴퓨터실 31석) | 'classroom' (일반 교실)
+            type: 'lab',
             rows: 6,
             cols: 5,
             flipVertical: true,
             flipHorizontal: false
           },
-          seating,
+          seating: buildReverseSeatingForRoster(roster, 31),
           groups: [],
+          _roster2026PhotoAppliedV3: true,
           _updatedAt: Date.now()
         };
       } else {
         const cData = appState.seatingData.classes[cls];
-        if (!Array.isArray(cData.roster)) cData.roster = buildDefaultRoster(28);
         if (!cData.layout) {
           cData.layout = { type: 'lab', rows: 6, cols: 5, flipVertical: true, flipHorizontal: false };
         }
-        if (!cData.seating) cData.seating = {};
         if (!Array.isArray(cData.groups)) cData.groups = [];
+        if (HOMEROOM_TEACHERS_2026[cls] && !cData.homeroom) {
+          cData.homeroom = HOMEROOM_TEACHERS_2026[cls];
+        }
+
+        // 기존 더미 명렬("1번 학생")이거나 2026 사진 명렬이 아직 적용되지 않은 경우 자동 업그레이드
+        if (DEFAULT_CLASS_ROSTERS_2026[cls] && (isPlaceholderRosterList(cData.roster) || !cData._roster2026PhotoAppliedV3)) {
+          const prevMap = {};
+          (cData.roster || []).forEach(s => { prevMap[String(s.no)] = s; });
+          cData.roster = DEFAULT_CLASS_ROSTERS_2026[cls].map(defStu => {
+            const oldS = prevMap[String(defStu.no)] || {};
+            return {
+              no: Number(defStu.no),
+              name: defStu.name,
+              level: oldS.level || 0,
+              note: oldS.note || '',
+              photo: (oldS.photo && oldS.photo.startsWith('data:')) ? oldS.photo : (defStu.photo || oldS.photo || '')
+            };
+          });
+          cData.seating = buildReverseSeatingForRoster(cData.roster, getTotalSeatsForClass(cData));
+          cData.layout.flipVertical = true;
+          cData.layout.flipHorizontal = false;
+          cData._roster2026PhotoAppliedV3 = true;
+          cData._updatedAt = Date.now();
+        } else if (DEFAULT_CLASS_ROSTERS_2026[cls]) {
+          // 사진 경로가 비어있는 학생에게 기본 나이스 사진 경로 보충
+          const defPhotoMap = {};
+          DEFAULT_CLASS_ROSTERS_2026[cls].forEach(d => { if (d.photo) defPhotoMap[String(d.no)] = d.photo; });
+          (cData.roster || []).forEach(s => {
+            if (!s.photo && defPhotoMap[String(s.no)]) {
+              s.photo = defPhotoMap[String(s.no)];
+            }
+          });
+        }
+        if (!cData.seating || Object.keys(cData.seating).length === 0) {
+          cData.seating = buildReverseSeatingForRoster(cData.roster, getTotalSeatsForClass(cData));
+        }
       }
       return appState.seatingData.classes[cls];
     }
@@ -5922,7 +6126,60 @@
       window.print();
     }
 
+    function toggleSeatTaskFromCard(event, stuNo) {
+      event.stopPropagation();
+      const cls = seatingSelectedClass;
+      const dateStr = seatingSelectedDate || getDefaultWidgetDateStr();
+      const cur = getStudentTaskObj(cls, dateStr, stuNo);
+      const nextStatus = cur.status === '완료' ? '' : '완료';
+      setStudentTaskObj(cls, dateStr, stuNo, nextStatus, cur.memo || '');
+      saveState(nextStatus === '완료' ? `✅ ${stuNo}번 과제 제출 체크!` : `↩️ ${stuNo}번 과제 체크 해제`);
+      renderAll();
+    }
+
+    function getLabRowsDefinition(flipVertical, flipHorizontal) {
+      const baseRows = [
+        { left: [1, 2, null], right: [3, 4, null, null], label: '통로' },
+        { left: [5, 6, 7], right: [8, 9, 10, 11], label: '' },
+        { left: [12, 13, 14], right: [15, 16, 17, 18], label: '' },
+        { left: [19, 20, 21], right: [22, 23, 24, 25], label: '' },
+        { left: [26, 27, 28], right: [29, 30, 31, null], label: '' }
+      ];
+
+      let result = baseRows.map(r => ({
+        left: [...r.left],
+        right: [...r.right],
+        label: r.label,
+        mirrored: false
+      }));
+
+      // 상하·좌우 뒤집기(교탁이 아래쪽에 위치하는 교사 시점 - 첨부 이미지와 100% 동일)
+      if (flipVertical) {
+        result = result.slice().reverse().map(row => ({
+          left: row.right.slice().reverse(),
+          right: row.left.slice().reverse(),
+          label: row.label,
+          mirrored: true
+        }));
+      }
+
+      if (flipHorizontal) {
+        result = result.map(row => ({
+          left: row.right.slice().reverse(),
+          right: row.left.slice().reverse(),
+          label: row.label,
+          mirrored: !row.mirrored
+        }));
+      }
+
+      return result;
+    }
+
     function renderSingleSeatCardHtml(seatNum, cData, rosterMap, stuGroupMap, cls, dateStr, period, showPhotos, showGroupBadges) {
+      if (seatNum === null || seatNum === undefined) {
+        return `<div class="seat-card blank-seat"><div class="empty-name">빈 자리</div></div>`;
+      }
+
       const seatKey = String(seatNum);
       const assignedStuNo = cData.seating[seatKey];
       const stu = assignedStuNo ? rosterMap[String(assignedStuNo)] : null;
@@ -5932,26 +6189,21 @@
         return `
           <div class="seat-card empty-seat ${isSwapSource ? 'swap-source' : ''}"
                onclick="onSeatCardClick('${seatKey}')">
-            <div class="seat-num-badge">#${seatKey}</div>
-            <div style="font-size:0.78rem; color:#94a3b8; font-weight:700; margin-top:14px;">빈 좌석</div>
-            <div style="font-size:0.68rem; color:#cbd5e1;">클릭하여 배정</div>
+            <div class="pc-no">${seatKey}</div>
+            <div class="empty-name">빈 자리</div>
           </div>
         `;
       }
 
       const att = getStudentAttendanceObj(cls, dateStr, period, stu.no);
       const task = getStudentTaskObj(cls, dateStr, stu.no);
+      const taskChecked = task.status === '완료';
       const grpNum = stuGroupMap[String(stu.no)];
       const levelClass = stu.level ? `level-${stu.level}` : '';
 
       let attBadgeHtml = '';
       if (att.status && att.status !== '출석') {
         attBadgeHtml = `<span class="seat-att-badge att-${escapeHtml(att.status)}">${escapeHtml(att.status)}</span>`;
-      }
-
-      let taskBadgeHtml = '';
-      if (task.status) {
-        taskBadgeHtml = `<span class="seat-task-badge task-${escapeHtml(task.status)}">과제:${escapeHtml(task.status)}</span>`;
       }
 
       let photoHtml = '';
@@ -5965,18 +6217,20 @@
       }
 
       return `
-        <div class="seat-card ${levelClass} ${isSwapSource ? 'swap-source' : ''}"
+        <div class="seat-card ${levelClass} ${taskChecked ? 'task-checked' : ''} ${isSwapSource ? 'swap-source' : ''}"
              onclick="onSeatCardClick('${seatKey}')">
-          <div class="seat-num-badge">#${seatKey}</div>
-          ${(showGroupBadges && grpNum) ? `<div class="seat-group-badge">${grpNum}모둠</div>` : ''}
+          <div class="pc-no">${seatKey}</div>
+          <button type="button" class="task-check ${taskChecked ? 'checked' : ''}"
+                  onclick="toggleSeatTaskFromCard(event, '${stu.no}')"
+                  title="과제 제출 체크">${taskChecked ? '✓' : ''}</button>
           ${attBadgeHtml}
           ${photoHtml}
-          <div class="seat-stu-name">
-            <span class="seat-stu-no">${stu.no}번</span>${escapeHtml(stu.name)}
+          <div class="student-line ${showPhotos ? 'with-photo' : ''}">
+            <span class="student-num">${stu.no}</span>
+            <span class="student-name">${escapeHtml(stu.name)}</span>
           </div>
-          ${stu.note ? `<div class="seat-note-preview" title="${escapeHtml(stu.note)}">💡 ${escapeHtml(stu.note)}</div>` : ''}
-          ${att.memo ? `<div class="seat-note-preview" style="background:#fee2e2; color:#991b1b;">🙋‍♀️ ${escapeHtml(att.memo)}</div>` : ''}
-          ${taskBadgeHtml}
+          ${(showGroupBadges && grpNum) ? `<div class="seat-group-badge">${grpNum}모둠</div>` : ''}
+          ${stu.note ? `<span class="seat-note-dot" title="${escapeHtml(stu.note)}"></span>` : ''}
         </div>
       `;
     }
@@ -6069,12 +6323,13 @@
       if (summaryBar) {
         const dObj = new Date(seatingSelectedDate + 'T00:00:00');
         const dLabel = `${seatingSelectedDate} (${getKoreanDayName(dObj.getDay())}) ${seatingSelectedPeriod}교시`;
+        const hrInfo = cData.homeroom ? ` · 담임: <strong>${escapeHtml(cData.homeroom)}</strong>` : '';
         summaryBar.innerHTML = `
           <div>
-            📌 <strong>${cls}반</strong> 교실 자리배치표 · 재적 <strong>${(cData.roster || []).length}명</strong> (사진 등록: <strong>${photoCount}명</strong>) · 기준일시: <strong>${dLabel}</strong>
+            📌 <strong>${cls}반</strong>${hrInfo} · 재적 <strong>${(cData.roster || []).length}명</strong> (사진: <strong>${photoCount}명</strong>) · <strong>${dLabel}</strong>
           </div>
           <div style="color:${absentCnt > 0 ? '#be123c' : '#047857'};">
-            ${absentCnt > 0 ? `🙋‍♀️ 결시/출결특이 ${absentCnt}명: ${escapeHtml(absentNames.join(', '))}` : '✅ 현재 교시 전원 출석'}
+            ${absentCnt > 0 ? `🙋‍♀️ 결시/출결특이 ${absentCnt}명: ${escapeHtml(absentNames.join(', '))}` : '✅ 전원 출석'}
           </div>
         `;
       }
@@ -6082,58 +6337,28 @@
       const stage = document.getElementById('seatingStageContainer');
       if (!stage) return;
 
-      const podiumHtml = `<div class="podium-box">🖥️ 교탁 / 칠판 (${cls}반 · ${layout.flipVertical ? '교사 시점 바라보기' : '학생 시점 바라보기'})</div>`;
+      const podiumTopHtml = `<div class="podium-box">교탁 / 전자칠판</div>`;
+      const podiumBottomHtml = `<div class="podium-box bottom">교탁 / 전자칠판</div>`;
       const showPhotos = !!appState.seatingData.showPhotos;
       const showGroupBadges = !!appState.seatingData.showGroupBadges;
 
       let gridHtml = '';
       if (layout.type === 'lab') {
-        // 컴퓨터실 31석 (왼쪽 3열 + 통로 + 오른쪽 4열, 4행(1~28번) + 마지막줄 우측 3석(29~31번))
-        const baseRows = [
-          { left: [1, 2, 3], right: [4, 5, 6, 7] },
-          { left: [8, 9, 10], right: [11, 12, 13, 14] },
-          { left: [15, 16, 17], right: [18, 19, 20, 21] },
-          { left: [22, 23, 24], right: [25, 26, 27, 28] },
-          { left: [null, null, null], right: [null, 29, 30, 31] }
-        ];
-
-        let rowsToRender = baseRows.map(r => ({
-          left: [...r.left],
-          right: [...r.right]
-        }));
-
-        if (layout.flipVertical) {
-          rowsToRender.reverse();
-        }
-        if (layout.flipHorizontal) {
-          rowsToRender = rowsToRender.map(r => ({
-            left: [...r.right].reverse(),
-            right: [...r.left].reverse(),
-            swappedCols: true
-          }));
-        }
-
-        gridHtml += `<div class="seating-grid-lab" style="${layout.flipHorizontal ? 'grid-template-columns: repeat(4, minmax(110px, 1fr)) 36px repeat(3, minmax(110px, 1fr));' : ''}">`;
+        const rowsToRender = getLabRowsDefinition(layout.flipVertical ?? true, !!layout.flipHorizontal);
+        gridHtml += `<div class="seat-rows">`;
         rowsToRender.forEach(rowObj => {
+          gridHtml += `<div class="lab-row ${rowObj.mirrored ? 'mirrored' : ''}">`;
           rowObj.left.forEach(sNum => {
-            if (sNum === null) {
-              gridHtml += `<div style="min-height:92px;"></div>`;
-            } else {
-              gridHtml += renderSingleSeatCardHtml(sNum, cData, rosterMap, stuGroupMap, cls, seatingSelectedDate, seatingSelectedPeriod, showPhotos, showGroupBadges);
-            }
+            gridHtml += renderSingleSeatCardHtml(sNum, cData, rosterMap, stuGroupMap, cls, seatingSelectedDate, seatingSelectedPeriod, showPhotos, showGroupBadges);
           });
-          gridHtml += `<div class="seating-aisle">통로</div>`;
+          gridHtml += `<div class="seating-aisle">${rowObj.label || ''}</div>`;
           rowObj.right.forEach(sNum => {
-            if (sNum === null) {
-              gridHtml += `<div style="min-height:92px;"></div>`;
-            } else {
-              gridHtml += renderSingleSeatCardHtml(sNum, cData, rosterMap, stuGroupMap, cls, seatingSelectedDate, seatingSelectedPeriod, showPhotos, showGroupBadges);
-            }
+            gridHtml += renderSingleSeatCardHtml(sNum, cData, rosterMap, stuGroupMap, cls, seatingSelectedDate, seatingSelectedPeriod, showPhotos, showGroupBadges);
           });
+          gridHtml += `</div>`;
         });
         gridHtml += `</div>`;
       } else {
-        // 일반 교실 (cols × rows)
         const cols = Math.max(1, Math.min(12, Number(layout.cols) || 5));
         const rows = Math.max(1, Math.min(12, Number(layout.rows) || 6));
         const matrix = [];
@@ -6148,7 +6373,7 @@
         if (layout.flipVertical) matrix.reverse();
         if (layout.flipHorizontal) matrix.forEach(r => r.reverse());
 
-        gridHtml += `<div class="seating-grid-custom" style="grid-template-columns: repeat(${cols}, minmax(115px, 1fr));">`;
+        gridHtml += `<div class="seating-grid-custom" style="grid-template-columns: repeat(${cols}, minmax(0, 1fr));">`;
         matrix.forEach(rowArr => {
           rowArr.forEach(sNum => {
             gridHtml += renderSingleSeatCardHtml(sNum, cData, rosterMap, stuGroupMap, cls, seatingSelectedDate, seatingSelectedPeriod, showPhotos, showGroupBadges);
@@ -6158,11 +6383,9 @@
       }
 
       if (layout.flipVertical) {
-        // 교사 시점: 교탁이 아래쪽
-        stage.innerHTML = gridHtml + `<div style="margin-top:18px; width:100%; display:flex; justify-content:center;">${podiumHtml}</div>`;
+        stage.innerHTML = gridHtml + podiumBottomHtml;
       } else {
-        // 학생 시점: 교탁이 위쪽
-        stage.innerHTML = podiumHtml + gridHtml;
+        stage.innerHTML = podiumTopHtml + gridHtml;
       }
     }
 
@@ -6507,14 +6730,7 @@
 
       cData.roster = cleanRoster;
       if (!keepExistingSeats || Object.keys(cData.seating || {}).length === 0) {
-        const newSeating = {};
-        const totalSeats = getTotalSeatsForClass(cData);
-        cleanRoster.forEach((stu, i) => {
-          if (i + 1 <= totalSeats) {
-            newSeating[String(i + 1)] = String(stu.no);
-          }
-        });
-        cData.seating = newSeating;
+        cData.seating = buildReverseSeatingForRoster(cleanRoster, getTotalSeatsForClass(cData));
       }
       cData._updatedAt = Date.now();
     }
@@ -6595,11 +6811,123 @@
     }
 
     function loadSampleRosterForCurrentClass() {
-      const sample = SAMPLE_KOREAN_NAMES.slice(0, 28).map((name, i) => ({ no: i + 1, name }));
-      applyNewRosterToClass(rosterModalTargetClass, sample, false);
-      saveState(`${rosterModalTargetClass}반에 예시 명렬(28명)을 불러왔습니다.`);
+      const defList = DEFAULT_CLASS_ROSTERS_2026[rosterModalTargetClass];
+      if (defList && defList.length > 0) {
+        applyNewRosterToClass(rosterModalTargetClass, defList, false);
+        saveState(`✅ ${rosterModalTargetClass}반의 2026학년도 기본 명렬(${defList.length}명)과 나이스 사진을 복원했습니다!`);
+      } else {
+        const sample = SAMPLE_KOREAN_NAMES.slice(0, 28).map((name, i) => ({ no: i + 1, name }));
+        applyNewRosterToClass(rosterModalTargetClass, sample, false);
+        saveState(`${rosterModalTargetClass}반에 예시 명렬(28명)을 불러왔습니다.`);
+      }
       refreshRosterPhotoModalUI();
       renderAll();
+    }
+
+    async function extractNeisXlsxPhotoRosterInBrowser(arrayBuffer) {
+      try {
+        if (typeof DecompressionStream === 'undefined') return null;
+        const u8 = new Uint8Array(arrayBuffer);
+        const dv = new DataView(arrayBuffer);
+        let eocd = u8.length - 22;
+        while (eocd >= 0 && dv.getUint32(eocd, true) !== 0x06054b50) eocd--;
+        if (eocd < 0) return null;
+
+        const cdOffset = dv.getUint32(eocd + 16, true);
+        const totalEntries = dv.getUint16(eocd + 10, true);
+        let ptr = cdOffset;
+        const entries = {};
+        const dec = new TextDecoder('utf-8');
+
+        for (let i = 0; i < totalEntries; i++) {
+          const compMethod = dv.getUint16(ptr + 10, true);
+          const compSize = dv.getUint32(ptr + 20, true);
+          const nameLen = dv.getUint16(ptr + 28, true);
+          const extraLen = dv.getUint16(ptr + 30, true);
+          const commentLen = dv.getUint16(ptr + 32, true);
+          const localHeaderOffset = dv.getUint32(ptr + 42, true);
+          const name = dec.decode(u8.subarray(ptr + 46, ptr + 46 + nameLen));
+          const lNameLen = dv.getUint16(localHeaderOffset + 26, true);
+          const lExtraLen = dv.getUint16(localHeaderOffset + 28, true);
+          const dataStart = localHeaderOffset + 30 + lNameLen + lExtraLen;
+          const compData = u8.subarray(dataStart, dataStart + compSize);
+
+          if (compMethod === 0) {
+            entries[name] = compData;
+          } else if (compMethod === 8) {
+            const ds = new DecompressionStream('deflate-raw');
+            const writer = ds.writable.getWriter();
+            writer.write(compData);
+            writer.close();
+            const ab = await new Response(ds.readable).arrayBuffer();
+            entries[name] = new Uint8Array(ab);
+          }
+          ptr += 46 + nameLen + extraLen + commentLen;
+        }
+
+        if (!entries['xl/sharedStrings.xml'] || !entries['xl/worksheets/sheet1.xml']) return null;
+        const ssXml = dec.decode(entries['xl/sharedStrings.xml']);
+        const sharedStrings = [];
+        const siRe = /<si>([\s\S]*?)<\/si>/g;
+        let m;
+        while ((m = siRe.exec(ssXml)) !== null) {
+          const tMatches = [...m[1].matchAll(/<t[^>]*>([\s\S]*?)<\/t>/g)];
+          sharedStrings.push(tMatches.map(x => x[1]).join(''));
+        }
+
+        function colStrToIdx(colStr) {
+          let n = 0;
+          for (let i = 0; i < colStr.length; i++) n = n * 26 + (colStr.charCodeAt(i) - 64);
+          return n - 1;
+        }
+
+        const sheetXml = dec.decode(entries['xl/worksheets/sheet1.xml']);
+        const cellRe = /<c r="([A-Z]+)(\d+)"[^>]*t="s"[^>]*><v>(\d+)<\/v><\/c>/g;
+        const stuCells = [];
+        while ((m = cellRe.exec(sheetXml)) !== null) {
+          const col = colStrToIdx(m[1]);
+          const row = Number(m[2]) - 1;
+          const val = sharedStrings[Number(m[3])] || '';
+          const sm = val.match(/(\d+)학년\s*(\d+)반\s*(\d+)번\s*(.+)/);
+          if (sm) {
+            stuCells.push({ col, row, cls: `${sm[1]}-${Number(sm[2])}`, no: Number(sm[3]), name: sm[4].trim() });
+          }
+        }
+        if (stuCells.length === 0) return null;
+
+        const relMap = {};
+        if (entries['xl/drawings/_rels/drawing1.xml.rels']) {
+          const relsXml = dec.decode(entries['xl/drawings/_rels/drawing1.xml.rels']);
+          const relRe = /Id="(rId\d+)"[\s\S]*?Target="([^"]+)"/g;
+          while ((m = relRe.exec(relsXml)) !== null) {
+            relMap[m[1]] = m[2].replace('../', 'xl/');
+          }
+        }
+
+        const pics = [];
+        if (entries['xl/drawings/drawing1.xml']) {
+          const drawXml = dec.decode(entries['xl/drawings/drawing1.xml']);
+          const anchorRe = /<xdr:twoCellAnchor[\s\S]*?<xdr:from><xdr:col>(\d+)<\/xdr:col>[\s\S]*?<xdr:row>(\d+)<\/xdr:row>[\s\S]*?r:embed="(rId\d+)"[\s\S]*?<\/xdr:twoCellAnchor>/g;
+          while ((m = anchorRe.exec(drawXml)) !== null) {
+            pics.push({ col: Number(m[1]), row: Number(m[2]), rId: m[3], target: relMap[m[3]] });
+          }
+        }
+
+        const byClass = {};
+        for (const sc of stuCells) {
+          const pic = pics.find(p => p.col === sc.col && p.row === sc.row - 1);
+          let photoDataUrl = '';
+          if (pic && entries[pic.target]) {
+            const blob = new Blob([entries[pic.target]], { type: 'image/jpeg' });
+            photoDataUrl = await compressImageFileToDataUrl(blob, 150, 190, 0.8);
+          }
+          if (!byClass[sc.cls]) byClass[sc.cls] = [];
+          byClass[sc.cls].push({ no: sc.no, name: sc.name, photo: photoDataUrl });
+        }
+        return byClass;
+      } catch (e) {
+        return null;
+      }
     }
 
     async function handleRosterFilesUpload(fileList) {
@@ -6617,12 +6945,21 @@
 
         if ((ext === 'xlsx' || ext === 'xls') && typeof XLSX !== 'undefined') {
           const buf = await file.arrayBuffer();
-          const wb = XLSX.read(buf, { type: 'array' });
-          wb.SheetNames.forEach(sheetName => {
-            const sheet = wb.Sheets[sheetName];
-            const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
-            parseRowsFromSpreadsheet(rows, inferredClass, sheetName, updatedClasses);
-          });
+          // 먼저 나이스 교과별수강학생사진명렬표(사진 포함 xlsx)인지 검사하여 사진+명렬 동시 추출 시도
+          const neisPhotoRoster = await extractNeisXlsxPhotoRosterInBrowser(buf);
+          if (neisPhotoRoster && Object.keys(neisPhotoRoster).length > 0) {
+            Object.keys(neisPhotoRoster).forEach(clsKey => {
+              applyNewRosterToClass(clsKey, neisPhotoRoster[clsKey], false);
+              updatedClasses.add(clsKey);
+            });
+          } else {
+            const wb = XLSX.read(buf, { type: 'array' });
+            wb.SheetNames.forEach(sheetName => {
+              const sheet = wb.Sheets[sheetName];
+              const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
+              parseRowsFromSpreadsheet(rows, inferredClass, sheetName, updatedClasses);
+            });
+          }
         } else {
           // CSV 또는 TXT
           const text = await file.text();
@@ -6805,9 +7142,22 @@
       if (!fileList || fileList.length === 0) return;
 
       const imageTasks = []; // [{ filename, blob }]
+      let xlsxMatchedCount = 0;
+      const xlsxUpdatedClasses = new Set();
+
       for (const f of Array.from(fileList)) {
         const lower = f.name.toLowerCase();
-        if (lower.endsWith('.zip') && typeof JSZip !== 'undefined') {
+        if (lower.endsWith('.xlsx')) {
+          const buf = await f.arrayBuffer();
+          const neisPhotoRoster = await extractNeisXlsxPhotoRosterInBrowser(buf);
+          if (neisPhotoRoster && Object.keys(neisPhotoRoster).length > 0) {
+            Object.keys(neisPhotoRoster).forEach(clsKey => {
+              applyNewRosterToClass(clsKey, neisPhotoRoster[clsKey], false);
+              xlsxUpdatedClasses.add(clsKey);
+              xlsxMatchedCount += neisPhotoRoster[clsKey].filter(s => !!s.photo).length;
+            });
+          }
+        } else if (lower.endsWith('.zip') && typeof JSZip !== 'undefined') {
           try {
             const zip = await JSZip.loadAsync(f);
             const entries = Object.values(zip.files);
@@ -6827,8 +7177,20 @@
         }
       }
 
+      if (xlsxMatchedCount > 0 && imageTasks.length === 0) {
+        const arr = Array.from(xlsxUpdatedClasses);
+        rosterModalTargetClass = arr[0];
+        seatingSelectedClass = arr[0];
+        const sel = document.getElementById('rosterModalClassSelect');
+        if (sel) sel.value = rosterModalTargetClass;
+        saveState(`📷 나이스 사진명렬표(.xlsx)에서 ${arr.join(', ')}반 학생 사진 ${xlsxMatchedCount}장이 자동 매칭되었습니다!`);
+        refreshRosterPhotoModalUI();
+        renderAll();
+        return;
+      }
+
       if (imageTasks.length === 0) {
-        alert('업로드된 파일 중 이미지(.jpg, .png)를 찾지 못했습니다.');
+        alert('업로드된 파일 중 이미지(.jpg, .png) 또는 나이스 사진명렬표(.xlsx)를 찾지 못했습니다.');
         return;
       }
 
