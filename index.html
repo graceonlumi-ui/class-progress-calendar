@@ -3061,9 +3061,62 @@
     <div class="modal-box" style="max-width:440px; text-align:center;">
       <div class="modal-header" style="background:linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);">
         <div id="studentPhotoZoomHeaderTitle" style="font-weight:900; font-size:1.05rem; color:#1e1b4b;">📸 학생 큰 사진 보기</div>
-        <button class="btn btn-outline" style="padding:5px 10px; background:#fff;" onclick="closeStudentPhotoZoomModal()">✕ 닫기</button>
+        <button class="btn btn-outline" style="padding:5px 10px; background:#fff; white-space:nowrap; flex-shrink:0;" onclick="closeStudentPhotoZoomModal()">✕ 닫기</button>
       </div>
       <div class="modal-body" id="studentPhotoZoomModalBody" style="align-items:center; padding:22px 20px; gap:12px;"></div>
+    </div>
+  </div>
+
+  <!-- 📝 반별 날짜·교시 특이사항 메모 추가/수정 모달 -->
+  <div class="modal-backdrop" id="classMemoAddModalBackdrop" onclick="if(event.target===this) closeClassMemoModal()" style="z-index:1220;">
+    <div class="modal-box" style="max-width:480px;">
+      <div class="modal-header" style="background:linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); flex-wrap:nowrap;">
+        <div id="classMemoModalHeaderTitle" style="font-weight:900; font-size:1.05rem; color:#1e1b4b; white-space:nowrap;">
+          📝 반별 메모 작성
+        </div>
+        <button class="btn btn-outline" style="padding:5px 10px; background:#fff; white-space:nowrap; flex-shrink:0;" onclick="closeClassMemoModal()">✕ 닫기</button>
+      </div>
+      <div class="modal-body" style="gap:14px;">
+        <input type="hidden" id="classMemoModalEditSourceType" value="" />
+        <input type="hidden" id="classMemoModalEditKeyOrId" value="" />
+        <input type="hidden" id="classMemoModalEditOrigCls" value="" />
+
+        <div class="form-group">
+          <label>🏫 학반 선택</label>
+          <select id="classMemoModalClassSelect" class="form-control" style="font-weight:800; font-size:0.95rem;" onchange="onClassMemoModalDateOrClassChange()"></select>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="form-group">
+            <label>📅 날짜 선택</label>
+            <input type="date" id="classMemoModalDateInput" class="form-control" style="font-weight:800;" onchange="onClassMemoModalDateOrClassChange()" />
+          </div>
+          <div class="form-group">
+            <label>⏰ 교시 선택</label>
+            <select id="classMemoModalPeriodSelect" class="form-control" style="font-weight:800;">
+              <option value="1">1교시</option>
+              <option value="2">2교시</option>
+              <option value="3">3교시</option>
+              <option value="4">4교시</option>
+              <option value="5">5교시</option>
+              <option value="6">6교시</option>
+              <option value="7">7교시</option>
+              <option value="">교시 무관 (일반)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="classMemoModalScheduleHint" style="font-size:0.78rem; font-weight:800; color:#4f46e5; background:#eef2ff; border:1px solid #c7d2fe; border-radius:9px; padding:7px 10px; display:none;"></div>
+
+        <div class="form-group">
+          <label>✏️ 메모 내용</label>
+          <textarea id="classMemoModalTextInput" class="form-control" rows="4" placeholder="그 반의 수업 특이사항, 결시생, 준비물, 과제 미제출자 등을 자유롭게 적어주세요..." style="font-size:0.92rem; line-height:1.5;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content:flex-end;">
+        <button type="button" class="btn btn-outline" onclick="closeClassMemoModal()">취소</button>
+        <button type="button" class="btn btn-primary" onclick="saveClassMemoFromModal()">💾 메모 저장</button>
+      </div>
     </div>
   </div>
 
@@ -3474,6 +3527,51 @@
       return merged;
     }
 
+    function getStudentPhotoSrc(photo) {
+      if (!photo) return '';
+      const str = String(photo);
+      if (str.startsWith('data:') || str.includes('?v=')) return str;
+      if (str.startsWith('photos/') || str.startsWith('/photos/')) {
+        return str + '?v=2';
+      }
+      return str;
+    }
+
+    function mergeClassMemosSafe(baseMemos, incMemos) {
+      const m1 = baseMemos || {};
+      const m2 = incMemos || {};
+      const allKeys = new Set([...Object.keys(m1), ...Object.keys(m2)]);
+      const result = {};
+      allKeys.forEach(cls => {
+        const c1 = m1[cls] || {};
+        const c2 = m2[cls] || {};
+        const t1 = c1._updatedAt || 0;
+        const t2 = c2._updatedAt || 0;
+        const newer = t2 >= t1 ? c2 : c1;
+        const older = t2 >= t1 ? c1 : c2;
+
+        // dateNotes 배열 병합 (삭제된 id 제외 및 최신 _updatedAt 우선)
+        const deletedIds = new Set([...(c1.deletedNoteIds || []), ...(c2.deletedNoteIds || [])]);
+        const noteMap = new Map();
+        [...(older.dateNotes || []), ...(newer.dateNotes || [])].forEach(dn => {
+          if (!dn || !dn.id || deletedIds.has(dn.id)) return;
+          const prev = noteMap.get(dn.id);
+          if (!prev || (dn.updatedAt || 0) >= (prev.updatedAt || 0)) {
+            noteMap.set(dn.id, dn);
+          }
+        });
+
+        result[cls] = {
+          absentSummary: (newer.absentSummary !== undefined && newer.absentSummary !== '') ? newer.absentSummary : (older.absentSummary || ''),
+          specialNote: (newer.specialNote !== undefined && newer.specialNote !== '') ? newer.specialNote : (older.specialNote || ''),
+          dateNotes: Array.from(noteMap.values()),
+          deletedNoteIds: Array.from(deletedIds),
+          _updatedAt: Math.max(t1, t2)
+        };
+      });
+      return result;
+    }
+
     function applyParsedState(parsed) {
       if (!parsed) return;
       if (parsed.semesterConfig) {
@@ -3507,7 +3605,7 @@
           }
         });
       }
-      if (parsed.classMemos) appState.classMemos = { ...(appState.classMemos || {}), ...parsed.classMemos };
+      if (parsed.classMemos) appState.classMemos = mergeClassMemosSafe(appState.classMemos, parsed.classMemos);
       if (parsed.holidays) appState.holidays = { ...(appState.holidays || {}), ...parsed.holidays };
       if (parsed.scheduleOverrides) appState.scheduleOverrides = { ...(appState.scheduleOverrides || {}), ...parsed.scheduleOverrides };
       if (Array.isArray(parsed.addedLessons) && parsed.addedLessons.length > 0) {
@@ -3668,7 +3766,7 @@
           if (cloudData.seatingData) {
             appState.seatingData = mergeSeatingDataSafe(cloudData.seatingData, appState.seatingData);
           }
-          appState.classMemos = { ...(cloudData.classMemos || {}), ...(appState.classMemos || {}) };
+          appState.classMemos = mergeClassMemosSafe(cloudData.classMemos, appState.classMemos);
           appState.holidays = { ...(cloudData.holidays || {}), ...(appState.holidays || {}) };
           appState.scheduleOverrides = { ...(cloudData.scheduleOverrides || {}), ...(appState.scheduleOverrides || {}) };
           if (Array.isArray(cloudData.addedLessons)) {
@@ -3785,7 +3883,7 @@
               r.category = inferCategoryFromText(r.topic);
             }
           });
-          appState.classMemos = { ...(serverData.classMemos || {}), ...(appState.classMemos || {}) };
+          appState.classMemos = mergeClassMemosSafe(serverData.classMemos, appState.classMemos);
           appState.holidays = { ...(serverData.holidays || {}), ...(appState.holidays || {}) };
           appState.scheduleOverrides = { ...(serverData.scheduleOverrides || {}), ...(appState.scheduleOverrides || {}) };
           if (serverData.seatingData) {
@@ -5464,8 +5562,79 @@
     }
 
     /*************************************************************************
-     * 8. 반별 진도표 · 결시생 현황 · 특이사항 뷰
+     * 8. 반별 진도표 · 결시생 현황 · 특이사항 뷰 (+ 모바일 반별 날짜·교시 메모장 & 검색)
      *************************************************************************/
+    let mobileMemoClassFilter = 'ALL'; // 'ALL' | 'G1' | 'G2' | '1-1' ...
+    let mobileMemoSearchQuery = '';
+
+    function collectAllClassDateMemos(sessionsByClass) {
+      const allCls = [...getClassesG1(), ...getClassesG2()];
+      const list = [];
+
+      allCls.forEach(c => {
+        const cSessions = (sessionsByClass && sessionsByClass[c]) || [];
+        cSessions.forEach(s => {
+          const r = appState.records[s.recordKey] || {};
+          if (r.absent && r.absent.trim()) {
+            list.push({
+              cls: c,
+              sourceType: 'record_absent',
+              keyOrId: s.recordKey,
+              dateStr: s.dateStr,
+              period: String(s.period || ''),
+              badge: `🙋‍♀️ ${s.period}교시 결시생`,
+              badgeBg: '#fee2e2',
+              badgeColor: '#991b1b',
+              text: r.absent.trim(),
+              updatedAt: r._updatedAt || 0
+            });
+          }
+          if (r.note && r.note.trim()) {
+            list.push({
+              cls: c,
+              sourceType: 'record_note',
+              keyOrId: s.recordKey,
+              dateStr: s.dateStr,
+              period: String(s.period || ''),
+              badge: `⭐ ${s.period}교시 수업메모`,
+              badgeBg: '#fef3c7',
+              badgeColor: '#92400e',
+              text: r.note.trim(),
+              updatedAt: r._updatedAt || 0
+            });
+          }
+        });
+
+        const cm = appState.classMemos[c] || {};
+        const deletedIds = new Set(cm.deletedNoteIds || []);
+        const dNotes = Array.isArray(cm.dateNotes) ? cm.dateNotes : [];
+        dNotes.forEach(dn => {
+          if (!dn || !dn.text || deletedIds.has(dn.id)) return;
+          const pStr = dn.period ? `${dn.period}교시` : '교시무관';
+          list.push({
+            cls: c,
+            sourceType: 'custom_date_note',
+            keyOrId: dn.id,
+            dateStr: dn.dateStr || getDefaultWidgetDateStr(),
+            period: dn.period ? String(dn.period) : '',
+            badge: dn.period ? `📝 ${pStr} 메모` : `📝 일반 메모`,
+            badgeBg: '#e0e7ff',
+            badgeColor: '#3730a3',
+            text: dn.text.trim(),
+            updatedAt: dn.updatedAt || 0
+          });
+        });
+      });
+
+      list.sort((a, b) => {
+        const cmp = (b.dateStr || '').localeCompare(a.dateStr || '');
+        if (cmp !== 0) return cmp;
+        return (Number(b.period) || 0) - (Number(a.period) || 0);
+      });
+
+      return list;
+    }
+
     function renderClassBoardView(sessionsByClass) {
       const sidebar = document.getElementById('classSidebar');
       const panel = document.getElementById('classDetailPanel');
@@ -5518,173 +5687,97 @@
       const theme = getClassColor(cls);
       const sessions = sessionsByClass[cls] || [];
       const classMemo = appState.classMemos[cls] || { absentSummary: '', specialNote: '', dateNotes: [] };
-      const customDateNotes = Array.isArray(classMemo.dateNotes) ? classMemo.dateNotes : [];
+      const allMemoItems = collectAllClassDateMemos(sessionsByClass);
+      const thisClassMemos = allMemoItems.filter(m => m.cls === cls);
       const syllabusOptions = appState.syllabus[grade] || [];
 
-      const absentHistory = [];
-      const noteHistory = [];
-      const combinedDateMemoItems = [];
+      const absentHistory = thisClassMemos.filter(m => m.sourceType === 'record_absent');
+      const noteHistory = thisClassMemos.filter(m => m.sourceType !== 'record_absent');
 
-      sessions.forEach(s => {
-        const r = appState.records[s.recordKey] || {};
-        if (r.absent && r.absent.trim()) {
-          absentHistory.push({ dateStr: s.dateStr, text: r.absent, recordKey: s.recordKey });
-          combinedDateMemoItems.push({
-            sourceType: 'record_absent',
-            keyOrId: s.recordKey,
-            dateStr: s.dateStr,
-            badge: `🙋‍♀️ ${s.period}교시 결시생`,
-            badgeBg: '#fee2e2',
-            badgeColor: '#991b1b',
-            text: r.absent
-          });
-        }
-        if (r.note && r.note.trim()) {
-          noteHistory.push({ dateStr: s.dateStr, text: r.note, recordKey: s.recordKey });
-          combinedDateMemoItems.push({
-            sourceType: 'record_note',
-            keyOrId: s.recordKey,
-            dateStr: s.dateStr,
-            badge: `⭐ ${s.period}교시 수업메모`,
-            badgeBg: '#fef3c7',
-            badgeColor: '#92400e',
-            text: r.note
-          });
-        }
-      });
-
-      customDateNotes.forEach(dn => {
-        if (!dn || !dn.text) return;
-        noteHistory.push({ dateStr: dn.dateStr || '', text: dn.text, id: dn.id });
-        combinedDateMemoItems.push({
-          sourceType: 'custom_date_note',
-          keyOrId: dn.id,
-          dateStr: dn.dateStr || getActiveTodayDateStr(),
-          badge: '📝 날짜별 메모',
-          badgeBg: '#e0e7ff',
-          badgeColor: '#3730a3',
-          text: dn.text
-        });
-      });
-
-      combinedDateMemoItems.sort((a, b) => (b.dateStr || '').localeCompare(a.dateStr || ''));
-
-      // 모바일(앱) 화면에서는 진도 기록 표를 빼고 반별 날짜별 메모장 형태로 간결하게 렌더링
+      // 모바일(앱) 화면에서는 진도 기록 표를 빼고 + 버튼으로 반·날짜·교시별 메모 작성 & 학반별 검색 메모장으로 렌더링
       if (isMobileAppScreen()) {
-        const buildChip = (c) => {
-          const t = getClassColor(c);
-          const isSel = c === cls;
+        const buildFilterChip = (val, label, customTheme) => {
+          const isSel = mobileMemoClassFilter === val;
+          const borderCol = isSel ? '#1e1b4b' : (customTheme ? customTheme.border : '#cbd5e1');
+          const bgCol = isSel ? (customTheme ? customTheme.badgeBg : '#4f46e5') : '#fff';
+          const txtCol = isSel ? '#fff' : '#334155';
           return `
             <button type="button"
-                    onclick="selectBoardClass('${c}')"
-                    style="padding:6px 11px; border-radius:99px; font-size:0.82rem; font-weight:800; cursor:pointer; transition:0.15s;
-                           border:2px solid ${isSel ? '#1e1b4b' : t.border};
-                           background:${isSel ? t.badgeBg : '#fff'};
-                           color:${isSel ? '#fff' : '#334155'};
+                    onclick="setMobileBoardMemoClassFilter('${val}')"
+                    style="padding:5px 11px; border-radius:99px; font-size:0.8rem; font-weight:800; cursor:pointer; transition:0.15s; white-space:nowrap;
+                           border:2px solid ${borderCol};
+                           background:${bgCol};
+                           color:${txtCol};
                            box-shadow:${isSel ? '0 3px 8px rgba(15,23,42,0.18)' : 'none'};">
-              ${c}
+              ${label}
             </button>
           `;
         };
 
-        const formatWithDow = (dStr) => {
-          const dObj = parseDateStr(dStr);
-          if (!dObj || isNaN(dObj.getTime())) return dStr || '';
-          return `${dStr} (${getKoreanDayName(dObj.getDay())})`;
-        };
-
-        const memoListHtml = combinedDateMemoItems.length > 0
-          ? combinedDateMemoItems.map(item => `
-              <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:12px; padding:10px 12px; display:flex; flex-direction:column; gap:6px; box-shadow:0 1px 3px rgba(15,23,42,0.04);">
-                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
-                  <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-                    <span style="font-size:0.84rem; font-weight:900; color:#0f172a;">📅 ${escapeHtml(formatWithDow(item.dateStr))}</span>
-                    <span style="font-size:0.72rem; font-weight:800; padding:2px 8px; border-radius:99px; background:${item.badgeBg}; color:${item.badgeColor};">${escapeHtml(item.badge)}</span>
-                  </div>
-                  <button type="button"
-                          onclick="deleteClassDateMemoItem('${cls}', '${item.sourceType}', '${escapeHtml(item.keyOrId)}')"
-                          style="background:#fff1f2; color:#e11d48; border:1px solid #fecdd3; border-radius:7px; padding:3px 8px; font-size:0.72rem; font-weight:800; cursor:pointer; white-space:nowrap;">
-                    삭제
-                  </button>
-                </div>
-                <textarea rows="2"
-                          style="width:100%; border:1px solid #cbd5e1; border-radius:8px; padding:7px 9px; font-size:0.85rem; font-family:inherit; color:#1e293b; background:#f8fafc; resize:vertical;"
-                          onchange="updateClassDateMemoItem('${cls}', '${item.sourceType}', '${escapeHtml(item.keyOrId)}', this.value)">${escapeHtml(item.text)}</textarea>
-              </div>
-            `).join('')
-          : `<div style="text-align:center; padding:24px 12px; color:#94a3b8; font-size:0.85rem; background:#f8fafc; border-radius:12px; border:1px dashed #cbd5e1;">
-               아직 기록된 날짜별 메모가 없습니다.<br/>위 입력창에서 날짜를 선택하고 ${cls}반의 특이사항을 적어보세요!
-             </div>`;
-
         panel.innerHTML = `
-          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:10px 12px; margin-bottom:12px;">
-            <div style="font-size:0.76rem; font-weight:800; color:#475569; margin-bottom:6px;">📒 1학년 반 선택</div>
-            <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
-              ${g1List.map(buildChip).join('')}
+          <!-- 상단 헤더 & + 새 메모 추가 버튼 -->
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:12px; padding-bottom:10px; border-bottom:2px solid #f1f5f9;">
+            <div>
+              <h3 style="font-size:1.05rem; font-weight:900; color:#1e1b4b; margin:0; display:flex; align-items:center; gap:6px;">
+                <span>📒 반별 특이사항 메모장</span>
+              </h3>
+              <p style="font-size:0.75rem; color:#64748b; margin:2px 0 0 0;">+ 버튼을 눌러 반·날짜·교시별 메모를 기록하고 학반별로 검색하세요</p>
             </div>
-            <div style="font-size:0.76rem; font-weight:800; color:#475569; margin-bottom:6px;">📗 2학년 반 선택</div>
-            <div style="display:flex; flex-wrap:wrap; gap:6px;">
-              ${g2List.map(buildChip).join('')}
-            </div>
+            <button type="button" class="btn btn-primary"
+                    style="padding:8px 14px; font-size:0.86rem; font-weight:900; border-radius:10px; white-space:nowrap; flex-shrink:0; box-shadow:0 4px 12px rgba(79,70,229,0.28);"
+                    onclick="openClassMemoModal()">
+              ＋ 메모 추가
+            </button>
           </div>
 
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:12px; padding-bottom:10px; border-bottom:2px solid #f1f5f9;">
-            <div style="display:flex; align-items:center; gap:8px;">
-              <span style="background:${theme.badgeBg}; color:#fff; font-size:1.05rem; font-weight:900; padding:5px 12px; border-radius:10px;">
-                ${cls}반
-              </span>
-              <div>
-                <h3 style="font-size:1rem; font-weight:900; color:#0f172a; margin:0;">날짜별 특이사항 메모장</h3>
-                <p style="font-size:0.75rem; color:#64748b; margin:0;">입력한 메모는 클라우드로 웹과 자동 동기화됩니다</p>
+          <!-- 🔍 학반별 선택 및 메모 내용 검색창 -->
+          <div style="background:#f8fafc; border:1.5px solid #c7d2fe; border-radius:14px; padding:11px 12px; margin-bottom:12px; display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; gap:8px; align-items:center;">
+              <div style="flex:1; display:flex; align-items:center; gap:6px; background:#fff; border:2px solid #6366f1; border-radius:10px; padding:6px 10px;">
+                <span style="font-size:0.95rem; flex-shrink:0;">🔍</span>
+                <input type="text" id="mobileBoardMemoSearchInput"
+                       value="${escapeHtml(mobileMemoSearchQuery)}"
+                       placeholder="메모 내용, 학반(예: 1-3), 날짜, 교시 검색..."
+                       style="border:none; outline:none; width:100%; font-size:0.86rem; font-weight:800; color:#1e293b; font-family:inherit;"
+                       oninput="onMobileBoardMemoSearchInput(this.value)" />
+                <button type="button" class="btn btn-outline"
+                        style="padding:3px 8px; font-size:0.72rem; white-space:nowrap; flex-shrink:0;"
+                        onclick="onMobileBoardMemoSearchInput('', true)">초기화</button>
               </div>
             </div>
-            <button class="btn btn-outline btn-sm" style="border-color:#818cf8; color:#4f46e5; white-space:nowrap; font-weight:800;"
-                    onclick="seatingSelectedClass='${cls}'; switchMobileTab('seating');">
-              🪑 자리배치
-            </button>
-          </div>
 
-          <!-- 날짜별 새 메모 입력 카드 -->
-          <div style="background:linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%); border:1.5px solid #c7d2fe; border-radius:14px; padding:12px; margin-bottom:14px;">
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px;">
-              <label for="mobileBoardMemoDateInput" style="font-size:0.84rem; font-weight:900; color:#312e81;">📝 날짜별 메모 추가</label>
-              <input type="date" id="mobileBoardMemoDateInput" value="${getActiveTodayDateStr()}"
-                     style="padding:5px 9px; border-radius:8px; border:1.5px solid #a5b4fc; font-size:0.82rem; font-weight:800; color:#1e1b4b; background:#fff; font-family:inherit;" />
-            </div>
-            <textarea id="mobileBoardMemoTextInput" rows="2"
-                      placeholder="${cls}반 특이사항, 수업 태도, 결시생, 준비물 등을 입력해 주세요..."
-                      style="width:100%; border:1.5px solid #cbd5e1; border-radius:10px; padding:9px 11px; font-size:0.88rem; font-family:inherit; background:#fff; margin-bottom:8px; resize:vertical;"></textarea>
-            <button type="button" class="btn btn-primary"
-                    style="width:100%; justify-content:center; padding:9px 14px; font-size:0.88rem; font-weight:800; border-radius:10px;"
-                    onclick="addClassDateMemo('${cls}')">
-              💾 ${cls}반 날짜별 메모 저장
-            </button>
-          </div>
-
-          <!-- 날짜별 누적 메모 리스트 -->
-          <div style="margin-bottom:16px;">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
-              <h4 style="font-size:0.92rem; font-weight:900; color:#1e293b; margin:0;">📋 날짜별 메모 기록 (${combinedDateMemoItems.length}건)</h4>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px;">
-              ${memoListHtml}
+            <!-- 빠른 학반별 필터 칩 -->
+            <div>
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+                <span style="font-size:0.75rem; font-weight:800; color:#475569;">🏫 학반별 모아보기 필터</span>
+                <div style="display:flex; gap:4px;">
+                  ${buildFilterChip('ALL', '전체 학반', null)}
+                  ${buildFilterChip('G1', '1학년', null)}
+                  ${buildFilterChip('G2', '2학년', null)}
+                </div>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; gap:5px; margin-bottom:6px;">
+                ${g1List.map(c => buildFilterChip(c, c, getClassColor(c))).join('')}
+              </div>
+              <div style="display:flex; flex-wrap:wrap; gap:5px;">
+                ${g2List.map(c => buildFilterChip(c, c, getClassColor(c))).join('')}
+              </div>
             </div>
           </div>
 
-          <!-- 반별 상시 고정 메모 -->
-          <div class="class-memo-grid" style="grid-template-columns:1fr; gap:10px;">
-            <div class="memo-box" style="background:#fffbeb; border-color:#fde68a;">
-              <label style="color:#92400e;">⭐ ${cls}반 상시 특이사항 메모 (도우미/모둠/좌석 등)</label>
-              <textarea placeholder="${cls}반 정보 도우미 학생, 실습실 좌석 특이사항 등을 자유롭게 기록하세요."
-                        onchange="updateClassMemo('${cls}', 'specialNote', this.value)">${escapeHtml(classMemo.specialNote || '')}</textarea>
-            </div>
-            <div class="memo-box" style="background:#fef2f2; border-color:#fecaca;">
-              <label style="color:#991b1b;">🙋‍♀️ ${cls}반 결시생 상시 확인 메모</label>
-              <textarea placeholder="${cls}반 고정 결시생(장기결석, 위탁교육 등)이나 수행평가 미응시자 보충 일정을 적어두세요."
-                        onchange="updateClassMemo('${cls}', 'absentSummary', this.value)">${escapeHtml(classMemo.absentSummary || '')}</textarea>
-            </div>
-          </div>
+          <!-- 📋 검색 및 학반 필터링된 메모 리스트 영역 -->
+          <div id="mobileBoardMemoResultsContainer"></div>
+
+          <!-- 우측 하단 플로팅 + 메모 작성 버튼 (FAB) -->
+          <button type="button"
+                  onclick="openClassMemoModal()"
+                  title="새 반별 메모 작성"
+                  style="position:fixed; right:18px; bottom:78px; width:54px; height:54px; border-radius:50%; background:linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color:#fff; border:none; box-shadow:0 8px 22px rgba(79,70,229,0.42); font-size:1.75rem; font-weight:900; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:950;">
+            ＋
+          </button>
         `;
+
+        renderMobileBoardMemoListOnly(allMemoItems);
         return;
       }
 
@@ -5786,6 +5879,7 @@
             </div>
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn btn-primary" onclick="openClassMemoModal('${cls}')">＋ ${cls}반 날짜·교시 메모 추가</button>
             <button class="btn btn-outline" style="border-color:#818cf8; color:#4f46e5;" onclick="seatingSelectedClass='${cls}'; switchMainView('seating')">🪑 ${cls}반 교실 자리배치표 열기</button>
             <button class="btn btn-outline" onclick="autoFillClassFromSyllabus('${cls}', ${grade})">⚡ 미입력 차시에 ${grade}학년 진도표 순서대로 자동 채우기</button>
           </div>
@@ -5818,7 +5912,7 @@
             <label style="color:#991b1b;">🙋‍♀️ ${cls}반 결시생 누적 현황 & 상시 확인 메모</label>
             <div style="font-size:0.8rem; color:#7f1d1d; margin-bottom:8px;">
               ${absentHistory.length > 0
-                ? absentHistory.map(a => `<div style="margin-bottom:3px;">• <strong>${a.dateStr}</strong>: ${escapeHtml(a.text)}</div>`).join('')
+                ? absentHistory.map(a => `<div style="margin-bottom:3px;">• <strong>${a.dateStr}${a.period ? ` (${a.period}교시)` : ''}</strong>: ${escapeHtml(a.text)}</div>`).join('')
                 : '<span style="color:#94a3b8;">아직 날짜별로 기록된 결시생이 없습니다. 자리배치표에서 출결을 체크하면 자동으로 이곳에도 반영됩니다!</span>'}
             </div>
             <textarea placeholder="${cls}반 고정 결시생(장기결석, 위탁교육 등)이나 수행평가 미응시 결시생 보충 일정을 적어두세요."
@@ -5826,10 +5920,10 @@
           </div>
 
           <div class="memo-box" style="background:#fffbeb; border-color:#fde68a;">
-            <label style="color:#92400e;">⭐ ${cls}반 학급 특이사항 & 수업 참고 메모</label>
+            <label style="color:#92400e;">⭐ ${cls}반 학급 특이사항 & 날짜·교시별 메모</label>
             <div style="font-size:0.8rem; color:#78350f; margin-bottom:8px;">
               ${noteHistory.length > 0
-                ? noteHistory.map(n => `<div style="margin-bottom:3px;">• <strong>${n.dateStr}</strong>: ${escapeHtml(n.text)}</div>`).join('')
+                ? noteHistory.map(n => `<div style="margin-bottom:3px;">• <strong>${n.dateStr}${n.period ? ` (${n.period}교시)` : ''}</strong>: ${escapeHtml(n.text)}</div>`).join('')
                 : '<span style="color:#94a3b8;">아직 날짜별로 기록된 특이사항이 없습니다.</span>'}
             </div>
             <textarea placeholder="${cls}반 정보 도우미 학생, 모둠 편성 특징, 실습실 좌석 특이사항 등을 자유롭게 기록하세요."
@@ -5837,6 +5931,298 @@
           </div>
         </div>
       `;
+    }
+
+    function renderMobileBoardMemoListOnly(precomputedItems) {
+      const container = document.getElementById('mobileBoardMemoResultsContainer');
+      if (!container) return;
+
+      const allItems = precomputedItems || collectAllClassDateMemos(getAllScheduleSessions());
+      const q = (mobileMemoSearchQuery || '').trim().toLowerCase();
+      const clsFilter = mobileMemoClassFilter || 'ALL';
+
+      const formatWithDow = (dStr) => {
+        const dObj = parseDateStr(dStr);
+        if (!dObj || isNaN(dObj.getTime())) return dStr || '';
+        return `${dStr}(${getKoreanDayName(dObj.getDay())})`;
+      };
+
+      const filtered = allItems.filter(item => {
+        if (clsFilter === 'G1' && !item.cls.startsWith('1-')) return false;
+        if (clsFilter === 'G2' && !item.cls.startsWith('2-')) return false;
+        if (clsFilter !== 'ALL' && clsFilter !== 'G1' && clsFilter !== 'G2' && item.cls !== clsFilter) return false;
+
+        if (q) {
+          const hay = `${item.cls} ${item.cls}반 ${item.dateStr} ${formatWithDow(item.dateStr)} ${item.period ? item.period + '교시' : ''} ${item.badge} ${item.text}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      const filterLabel = clsFilter === 'ALL'
+        ? '전체 학반'
+        : (clsFilter === 'G1' ? '1학년 전체' : (clsFilter === 'G2' ? '2학년 전체' : `${clsFilter}반`));
+
+      const listHtml = filtered.length > 0
+        ? filtered.map(item => {
+            const cTheme = getClassColor(item.cls);
+            return `
+              <div style="background:#fff; border:1.5px solid #e2e8f0; border-radius:13px; padding:11px 13px; display:flex; flex-direction:column; gap:7px; box-shadow:0 2px 6px rgba(15,23,42,0.04);">
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; flex-wrap:wrap;">
+                  <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                    <span style="background:${cTheme.badgeBg}; color:#fff; font-size:0.78rem; font-weight:900; padding:2px 9px; border-radius:7px;">${escapeHtml(item.cls)}반</span>
+                    <span style="font-size:0.83rem; font-weight:900; color:#0f172a;">📅 ${escapeHtml(formatWithDow(item.dateStr))}</span>
+                    <span style="font-size:0.72rem; font-weight:800; padding:2px 8px; border-radius:99px; background:${item.badgeBg}; color:${item.badgeColor};">${escapeHtml(item.badge)}</span>
+                  </div>
+                  <div style="display:flex; gap:5px; flex-shrink:0;">
+                    <button type="button"
+                            onclick="openClassMemoModal('${item.cls}', '${item.sourceType}', '${escapeHtml(item.keyOrId)}')"
+                            style="background:#eef2ff; color:#4f46e5; border:1px solid #c7d2fe; border-radius:7px; padding:3px 8px; font-size:0.72rem; font-weight:800; cursor:pointer; white-space:nowrap;">
+                      수정
+                    </button>
+                    <button type="button"
+                            onclick="deleteClassDateMemoItem('${item.cls}', '${item.sourceType}', '${escapeHtml(item.keyOrId)}')"
+                            style="background:#fff1f2; color:#e11d48; border:1px solid #fecdd3; border-radius:7px; padding:3px 8px; font-size:0.72rem; font-weight:800; cursor:pointer; white-space:nowrap;">
+                      삭제
+                    </button>
+                  </div>
+                </div>
+                <div style="font-size:0.9rem; font-weight:700; color:#1e293b; background:#f8fafc; border-radius:9px; padding:9px 11px; border:1px solid #e2e8f0; white-space:pre-wrap; line-height:1.45;">${escapeHtml(item.text)}</div>
+              </div>
+            `;
+          }).join('')
+        : `
+          <div style="text-align:center; padding:32px 14px; color:#64748b; background:#f8fafc; border-radius:14px; border:1.5px dashed #cbd5e1;">
+            <div style="font-size:1.8rem; margin-bottom:6px;">📝</div>
+            <div style="font-size:0.92rem; font-weight:900; color:#1e293b; margin-bottom:4px;">
+              ${q ? `'${escapeHtml(mobileMemoSearchQuery)}' 검색 결과가 없습니다.` : `${filterLabel}에 저장된 메모가 아직 없습니다.`}
+            </div>
+            <div style="font-size:0.8rem; color:#64748b; margin-bottom:12px;">
+              우측 상단 또는 아래 <strong>[＋ 메모 추가]</strong> 버튼을 눌러 반·날짜·교시별 메모를 작성해 보세요!
+            </div>
+            <button type="button" class="btn btn-primary" style="padding:8px 16px; font-size:0.84rem; font-weight:800; border-radius:9px;" onclick="openClassMemoModal()">
+              ＋ 새 메모 작성하기
+            </button>
+          </div>
+        `;
+
+      // 특정 학반(예: 1-3)이 선택된 경우에는 해당 반의 상시 메모장도 하단에 함께 표시
+      let specificClassBoxHtml = '';
+      if (clsFilter !== 'ALL' && clsFilter !== 'G1' && clsFilter !== 'G2') {
+        const cm = appState.classMemos[clsFilter] || { absentSummary: '', specialNote: '' };
+        specificClassBoxHtml = `
+          <div style="margin-top:16px; padding-top:14px; border-top:2px dashed #e2e8f0;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+              <h4 style="font-size:0.88rem; font-weight:900; color:#1e293b; margin:0;">📌 ${clsFilter}반 상시 고정 메모</h4>
+              <button type="button" class="btn btn-outline btn-sm" style="font-size:0.74rem; padding:4px 9px; font-weight:800;" onclick="seatingSelectedClass='${clsFilter}'; switchMobileTab('seating');">🪑 ${clsFilter}반 자리배치</button>
+            </div>
+            <div class="class-memo-grid" style="grid-template-columns:1fr; gap:8px;">
+              <div class="memo-box" style="background:#fffbeb; border-color:#fde68a;">
+                <label style="color:#92400e;">⭐ ${clsFilter}반 상시 특이사항 (도우미/모둠/좌석 등)</label>
+                <textarea placeholder="${clsFilter}반 상시 특이사항을 적어두세요."
+                          onchange="updateClassMemo('${clsFilter}', 'specialNote', this.value)">${escapeHtml(cm.specialNote || '')}</textarea>
+              </div>
+              <div class="memo-box" style="background:#fef2f2; border-color:#fecaca;">
+                <label style="color:#991b1b;">🙋‍♀️ ${clsFilter}반 결시생 상시 확인 메모</label>
+                <textarea placeholder="${clsFilter}반 고정 결시생이나 보충 일정을 적어두세요."
+                          onchange="updateClassMemo('${clsFilter}', 'absentSummary', this.value)">${escapeHtml(cm.absentSummary || '')}</textarea>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      container.innerHTML = `
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+          <h4 style="font-size:0.9rem; font-weight:900; color:#1e293b; margin:0;">
+            📋 ${filterLabel} 메모 목록 <span style="color:#4f46e5;">(${filtered.length}건)</span>
+          </h4>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          ${listHtml}
+        </div>
+        ${specificClassBoxHtml}
+      `;
+    }
+
+    function setMobileBoardMemoClassFilter(filterVal) {
+      mobileMemoClassFilter = filterVal;
+      if (filterVal !== 'ALL' && filterVal !== 'G1' && filterVal !== 'G2') {
+        selectedBoardClass = filterVal;
+      }
+      renderAll();
+    }
+
+    function onMobileBoardMemoSearchInput(val, clearFocus = false) {
+      mobileMemoSearchQuery = val || '';
+      if (clearFocus) {
+        const inp = document.getElementById('mobileBoardMemoSearchInput');
+        if (inp) {
+          inp.value = '';
+          inp.focus();
+        }
+      }
+      renderMobileBoardMemoListOnly();
+    }
+
+    function openClassMemoModal(defaultCls = '', editSourceType = '', editKeyOrId = '') {
+      const clsSel = document.getElementById('classMemoModalClassSelect');
+      const dateInp = document.getElementById('classMemoModalDateInput');
+      const perSel = document.getElementById('classMemoModalPeriodSelect');
+      const txtInp = document.getElementById('classMemoModalTextInput');
+      const headerEl = document.getElementById('classMemoModalHeaderTitle');
+
+      const srcTypeEl = document.getElementById('classMemoModalEditSourceType');
+      const keyIdEl = document.getElementById('classMemoModalEditKeyOrId');
+      const origClsEl = document.getElementById('classMemoModalEditOrigCls');
+
+      const initialCls = defaultCls ||
+        ((mobileMemoClassFilter && mobileMemoClassFilter !== 'ALL' && mobileMemoClassFilter !== 'G1' && mobileMemoClassFilter !== 'G2')
+          ? mobileMemoClassFilter
+          : (selectedBoardClass || '1-1'));
+
+      if (clsSel) {
+        populateClassSelectOptions(clsSel, initialCls);
+        clsSel.value = initialCls;
+      }
+
+      if (editSourceType && editKeyOrId) {
+        if (headerEl) headerEl.textContent = '✏️ 반별 메모 수정';
+        if (srcTypeEl) srcTypeEl.value = editSourceType;
+        if (keyIdEl) keyIdEl.value = editKeyOrId;
+        if (origClsEl) origClsEl.value = initialCls;
+
+        if (editSourceType === 'custom_date_note') {
+          const cm = appState.classMemos[initialCls] || {};
+          const target = (cm.dateNotes || []).find(x => x && x.id === editKeyOrId);
+          if (target) {
+            if (dateInp) dateInp.value = target.dateStr || getDefaultWidgetDateStr();
+            if (perSel) perSel.value = target.period ? String(target.period) : '';
+            if (txtInp) txtInp.value = target.text || '';
+          }
+        } else {
+          // record_absent or record_note
+          const rec = appState.records[editKeyOrId] || {};
+          const m = editKeyOrId.match(/^(\d{4}-\d{2}-\d{2})_P(\d+)_/);
+          if (dateInp) dateInp.value = m ? m[1] : getDefaultWidgetDateStr();
+          if (perSel) perSel.value = m ? m[2] : '1';
+          if (txtInp) txtInp.value = editSourceType === 'record_absent' ? (rec.absent || '') : (rec.note || '');
+        }
+        onClassMemoModalDateOrClassChange(true);
+      } else {
+        if (headerEl) headerEl.textContent = '📝 반별 메모 작성';
+        if (srcTypeEl) srcTypeEl.value = '';
+        if (keyIdEl) keyIdEl.value = '';
+        if (origClsEl) origClsEl.value = '';
+        if (dateInp) dateInp.value = getDefaultWidgetDateStr();
+        if (txtInp) txtInp.value = '';
+        onClassMemoModalDateOrClassChange(false);
+      }
+
+      document.getElementById('classMemoAddModalBackdrop')?.classList.add('open');
+      setTimeout(() => {
+        if (txtInp) txtInp.focus();
+      }, 60);
+    }
+
+    function closeClassMemoModal() {
+      document.getElementById('classMemoAddModalBackdrop')?.classList.remove('open');
+    }
+
+    function onClassMemoModalDateOrClassChange(keepPeriod = false) {
+      const cls = document.getElementById('classMemoModalClassSelect')?.value || '1-1';
+      const dateStr = document.getElementById('classMemoModalDateInput')?.value || getDefaultWidgetDateStr();
+      const perSel = document.getElementById('classMemoModalPeriodSelect');
+      const hintEl = document.getElementById('classMemoModalScheduleHint');
+      if (!perSel) return;
+
+      const dObj = parseDateStr(dateStr);
+      if (dObj && !isNaN(dObj.getTime())) {
+        const { activeLessons } = getDayLessons(dateStr, dObj.getDay());
+        const matching = activeLessons.filter(l => l.className === cls);
+        if (matching.length > 0) {
+          if (!keepPeriod) {
+            perSel.value = String(matching[0].period);
+          }
+          if (hintEl) {
+            const pList = matching.map(m => `${m.period}교시`).join(', ');
+            hintEl.style.display = 'block';
+            hintEl.textContent = `💡 ${dateStr}에 ${cls}반은 [${pList}] 수업이 배정되어 있습니다.`;
+          }
+          return;
+        }
+      }
+      if (hintEl) {
+        hintEl.style.display = 'none';
+        hintEl.textContent = '';
+      }
+    }
+
+    function saveClassMemoFromModal() {
+      const cls = document.getElementById('classMemoModalClassSelect')?.value || '1-1';
+      const dateStr = document.getElementById('classMemoModalDateInput')?.value || getDefaultWidgetDateStr();
+      const period = document.getElementById('classMemoModalPeriodSelect')?.value || '';
+      const text = (document.getElementById('classMemoModalTextInput')?.value || '').trim();
+
+      const editSourceType = document.getElementById('classMemoModalEditSourceType')?.value || '';
+      const editKeyOrId = document.getElementById('classMemoModalEditKeyOrId')?.value || '';
+      const origCls = document.getElementById('classMemoModalEditOrigCls')?.value || '';
+
+      if (!text) {
+        alert('메모할 내용을 입력해 주세요!');
+        document.getElementById('classMemoModalTextInput')?.focus();
+        return;
+      }
+
+      if (editSourceType === 'record_absent' || editSourceType === 'record_note') {
+        const field = editSourceType === 'record_absent' ? 'absent' : 'note';
+        updateRecordField(editKeyOrId, field, text);
+        closeClassMemoModal();
+        return;
+      }
+
+      if (!appState.classMemos[cls]) {
+        appState.classMemos[cls] = { absentSummary: '', specialNote: '', dateNotes: [], deletedNoteIds: [] };
+      }
+      if (!Array.isArray(appState.classMemos[cls].dateNotes)) {
+        appState.classMemos[cls].dateNotes = [];
+      }
+
+      if (editSourceType === 'custom_date_note' && editKeyOrId) {
+        if (origCls && origCls !== cls && appState.classMemos[origCls] && Array.isArray(appState.classMemos[origCls].dateNotes)) {
+          appState.classMemos[origCls].dateNotes = appState.classMemos[origCls].dateNotes.filter(x => x && x.id !== editKeyOrId);
+          appState.classMemos[origCls]._updatedAt = Date.now();
+        }
+        const existingIdx = appState.classMemos[cls].dateNotes.findIndex(x => x && x.id === editKeyOrId);
+        const updatedObj = {
+          id: editKeyOrId,
+          cls,
+          dateStr,
+          period,
+          text,
+          updatedAt: Date.now()
+        };
+        if (existingIdx >= 0) {
+          appState.classMemos[cls].dateNotes[existingIdx] = updatedObj;
+        } else {
+          appState.classMemos[cls].dateNotes.push(updatedObj);
+        }
+      } else {
+        appState.classMemos[cls].dateNotes.push({
+          id: 'dn_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+          cls,
+          dateStr,
+          period,
+          text,
+          updatedAt: Date.now()
+        });
+      }
+
+      appState.classMemos[cls]._updatedAt = Date.now();
+      selectedBoardClass = cls;
+      closeClassMemoModal();
+      saveState(`✅ ${cls}반 ${dateStr}${period ? ` (${period}교시)` : ''} 메모가 저장되었습니다!`);
+      renderAll();
     }
 
     function selectBoardClass(cls) {
@@ -5874,61 +6260,15 @@
 
     function updateClassMemo(cls, field, value) {
       if (!appState.classMemos[cls]) {
-        appState.classMemos[cls] = { absentSummary: '', specialNote: '', dateNotes: [] };
+        appState.classMemos[cls] = { absentSummary: '', specialNote: '', dateNotes: [], deletedNoteIds: [] };
       }
       appState.classMemos[cls][field] = value;
+      appState.classMemos[cls]._updatedAt = Date.now();
       saveState(`${cls}반 메모가 저장되었습니다.`);
     }
 
-    function addClassDateMemo(cls) {
-      const dateInput = document.getElementById('mobileBoardMemoDateInput');
-      const textInput = document.getElementById('mobileBoardMemoTextInput');
-      const dateStr = (dateInput && dateInput.value) ? dateInput.value : getActiveTodayDateStr();
-      const text = (textInput && textInput.value) ? textInput.value.trim() : '';
-      if (!text) {
-        alert('저장할 메모 내용을 입력해 주세요.');
-        if (textInput) textInput.focus();
-        return;
-      }
-      if (!appState.classMemos[cls]) {
-        appState.classMemos[cls] = { absentSummary: '', specialNote: '', dateNotes: [] };
-      }
-      if (!Array.isArray(appState.classMemos[cls].dateNotes)) {
-        appState.classMemos[cls].dateNotes = [];
-      }
-      appState.classMemos[cls].dateNotes.push({
-        id: 'dn_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
-        dateStr,
-        text
-      });
-      if (textInput) textInput.value = '';
-      saveState(`${cls}반 ${dateStr} 메모가 저장되었습니다.`);
-      renderAll();
-    }
-
-    function updateClassDateMemoItem(cls, sourceType, keyOrId, newVal) {
-      const trimmed = (newVal || '').trim();
-      if (sourceType === 'record_absent') {
-        updateRecordField(keyOrId, 'absent', trimmed);
-        return;
-      }
-      if (sourceType === 'record_note') {
-        updateRecordField(keyOrId, 'note', trimmed);
-        return;
-      }
-      if (sourceType === 'custom_date_note') {
-        if (!appState.classMemos[cls] || !Array.isArray(appState.classMemos[cls].dateNotes)) return;
-        const target = appState.classMemos[cls].dateNotes.find(item => item && item.id === keyOrId);
-        if (target) {
-          target.text = trimmed;
-          saveState(`${cls}반 날짜별 메모가 수정되었습니다.`);
-          renderAll();
-        }
-      }
-    }
-
     function deleteClassDateMemoItem(cls, sourceType, keyOrId) {
-      if (!confirm('이 날짜의 메모를 삭제하시겠습니까?')) return;
+      if (!confirm('이 메모를 삭제하시겠습니까?')) return;
       if (sourceType === 'record_absent') {
         updateRecordField(keyOrId, 'absent', '');
         return;
@@ -5940,7 +6280,14 @@
       if (sourceType === 'custom_date_note') {
         if (!appState.classMemos[cls] || !Array.isArray(appState.classMemos[cls].dateNotes)) return;
         appState.classMemos[cls].dateNotes = appState.classMemos[cls].dateNotes.filter(item => item && item.id !== keyOrId);
-        saveState(`${cls}반 날짜별 메모가 삭제되었습니다.`);
+        if (!Array.isArray(appState.classMemos[cls].deletedNoteIds)) {
+          appState.classMemos[cls].deletedNoteIds = [];
+        }
+        if (!appState.classMemos[cls].deletedNoteIds.includes(keyOrId)) {
+          appState.classMemos[cls].deletedNoteIds.push(keyOrId);
+        }
+        appState.classMemos[cls]._updatedAt = Date.now();
+        saveState(`${cls}반 메모가 삭제되었습니다.`);
         renderAll();
       }
     }
@@ -7029,7 +7376,7 @@
       let photoHtml = '';
       if (showPhotos) {
         if (stu.photo) {
-          photoHtml = `<img src="${stu.photo}" class="seat-photo" alt="${escapeHtml(stu.name)}" onclick="openStudentPhotoZoom(event, '${cls}', '${stu.no}')" title="클릭하면 큰 사진과 학번이 크게 보입니다" />`;
+          photoHtml = `<img src="${getStudentPhotoSrc(stu.photo)}" class="seat-photo" alt="${escapeHtml(stu.name)}" onclick="openStudentPhotoZoom(event, '${cls}', '${stu.no}')" title="클릭하면 큰 사진과 학번이 크게 보입니다" />`;
         } else {
           const initial = (stu.name || '?').trim().charAt(0);
           photoHtml = `<div class="seat-photo-placeholder" onclick="openStudentPhotoZoom(event, '${cls}', '${stu.no}')" style="cursor:zoom-in;" title="클릭하면 학생 학번·정보가 크게 보입니다">${escapeHtml(initial)}</div>`;
@@ -7278,7 +7625,7 @@
       const avatarBox = document.getElementById('seatModalPhotoPreviewBox');
       if (avatarBox) {
         if (stu && stu.photo) {
-          avatarBox.innerHTML = `<img src="${stu.photo}" style="width:100%; height:100%; object-fit:cover; cursor:zoom-in;" onclick="openStudentPhotoZoom(event, '${cls}', '${stu.no}')" title="클릭하여 큰 사진 보기" />`;
+          avatarBox.innerHTML = `<img src="${getStudentPhotoSrc(stu.photo)}" style="width:100%; height:100%; object-fit:cover; cursor:zoom-in;" onclick="openStudentPhotoZoom(event, '${cls}', '${stu.no}')" title="클릭하여 큰 사진 보기" />`;
         } else {
           avatarBox.innerHTML = `<span style="font-size:1.5rem; font-weight:900; color:#94a3b8;">${stu ? escapeHtml((stu.name || '?').charAt(0)) : '?'}</span>`;
         }
@@ -7519,7 +7866,7 @@
           previewGrid.innerHTML = roster.map(s => `
             <div class="photo-preview-item" onclick="openStudentPhotoZoom(event, '${cls}', '${s.no}')" title="클릭하여 큰 사진 보기" style="cursor:zoom-in; border-color:${s.photo ? '#86efac' : '#e2e8f0'}; background:${s.photo ? '#f0fdf4' : '#f8fafc'};">
               ${s.photo
-                ? `<img src="${s.photo}" alt="${escapeHtml(s.name)}" />`
+                ? `<img src="${getStudentPhotoSrc(s.photo)}" alt="${escapeHtml(s.name)}" />`
                 : `<div style="width:48px; height:60px; border-radius:6px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; font-weight:800; color:#64748b; font-size:0.82rem;">미등록</div>`
               }
               <div style="font-weight:800; color:#1e293b;">${s.no}번</div>
@@ -8399,7 +8746,7 @@
             ${winners.map(w => `
               <div style="background:#fff; border:2.5px solid #4f46e5; border-radius:14px; padding:10px 16px; display:flex; align-items:center; gap:10px; box-shadow:0 6px 16px rgba(79,70,229,0.18);">
                 ${w.photo
-                  ? `<img src="${w.photo}" onclick="openStudentPhotoZoom(event, '${cls}', '${w.no}')" title="클릭하여 큰 사진 보기" style="width:48px; height:60px; object-fit:cover; border-radius:8px; border:1px solid #cbd5e1; cursor:zoom-in;" />`
+                  ? `<img src="${getStudentPhotoSrc(w.photo)}" onclick="openStudentPhotoZoom(event, '${cls}', '${w.no}')" title="클릭하여 큰 사진 보기" style="width:48px; height:60px; object-fit:cover; border-radius:8px; border:1px solid #cbd5e1; cursor:zoom-in;" />`
                   : `<div style="width:44px; height:44px; border-radius:50%; background:#eef2ff; color:#4f46e5; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.1rem;">🎉</div>`
                 }
                 <div style="text-align:left;">
@@ -8451,7 +8798,7 @@
             ${escapeHtml(idInfo.fullLabel)}
           </div>
           ${stu.photo
-            ? `<img src="${stu.photo}" alt="${escapeHtml(stu.name)}" style="width:260px; height:325px; object-fit:cover; border-radius:18px; border:3px solid #6366f1; box-shadow:0 14px 32px rgba(79,70,229,0.24); background:#f8fafc;" />`
+            ? `<img src="${getStudentPhotoSrc(stu.photo)}" alt="${escapeHtml(stu.name)}" style="width:260px; height:325px; object-fit:cover; border-radius:18px; border:3px solid #6366f1; box-shadow:0 14px 32px rgba(79,70,229,0.24); background:#f8fafc;" />`
             : `<div style="width:240px; height:300px; border-radius:18px; border:2.5px dashed #94a3b8; background:#f8fafc; display:flex; align-items:center; justify-content:center; font-size:4rem; font-weight:900; color:#94a3b8;">${escapeHtml((stu.name || '?').charAt(0))}</div>`
           }
           <div class="student-name-huge-label" style="font-size:1.85rem; margin-top:4px;">
@@ -8607,7 +8954,7 @@
               ${escapeHtml(idInfo.fullLabel)}
             </div>
             ${stu.photo
-              ? `<img src="${stu.photo}" class="student-large-photo-img" style="${photoStyle}" alt="${escapeHtml(stu.name)}" />`
+              ? `<img src="${getStudentPhotoSrc(stu.photo)}" class="student-large-photo-img" style="${photoStyle}" alt="${escapeHtml(stu.name)}" />`
               : `<div class="student-large-photo-placeholder" style="${photoStyle}">${escapeHtml((stu.name || '?').charAt(0))}</div>`
             }
             <div class="student-name-huge-label">${escapeHtml(stu.name)}</div>

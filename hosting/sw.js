@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hyejeong-planner-v5';
+const CACHE_NAME = 'hyejeong-planner-v6';
 const CORE_ASSETS = [
   '/',
   '/index.html',
