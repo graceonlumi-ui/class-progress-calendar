@@ -550,8 +550,39 @@
     }
 
     .day-cell.today {
-      border: 2px solid var(--primary);
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+      background: linear-gradient(180deg, #fef9c3 0%, #eef2ff 38%, #ffffff 100%);
+      border: 3.5px solid #4f46e5;
+      box-shadow: 0 12px 28px rgba(79, 70, 229, 0.25), 0 0 0 4px rgba(245, 158, 11, 0.38);
+      transform: translateY(-2px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .today-banner-ribbon {
+      background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 55%, #db2777 100%);
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 900;
+      padding: 6px 10px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.28);
+      letter-spacing: 0.01em;
+    }
+
+    .day-cell.today .day-top {
+      background: rgba(255, 255, 255, 0.88);
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1.5px solid #c7d2fe;
+    }
+
+    .day-cell.today .day-number {
+      font-size: 1.06rem;
+      font-weight: 900;
+      color: #1e1b4b;
     }
 
     .day-cell.out-of-range {
@@ -579,12 +610,14 @@
     }
 
     .today-tag {
-      background: var(--primary);
+      background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
       color: #fff;
-      font-size: 0.68rem;
-      padding: 2px 7px;
+      font-size: 0.76rem;
+      padding: 3px 9px;
       border-radius: 99px;
-      font-weight: 700;
+      font-weight: 900;
+      box-shadow: 0 2px 6px rgba(234, 88, 12, 0.35);
+      animation: subtlePulse 2s infinite ease-in-out;
     }
 
     .day-top-actions {
@@ -1629,18 +1662,32 @@
     }
 
     .seat-pc-label {
-      font-size: clamp(0.72rem, 0.85vw, 0.82rem);
-      color: #6366f1;
-      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: clamp(0.88rem, 1.05vw, 1.04rem);
+      color: #3730a3;
+      background: #eef2ff;
+      border: 1.5px solid #a5b4fc;
+      padding: 2px 8px;
+      border-radius: 7px;
+      font-weight: 900;
       line-height: 1.2;
       letter-spacing: -0.02em;
       white-space: nowrap;
+      margin-bottom: 2px;
+    }
+
+    .seat-pc-label strong {
+      font-size: 1.08em;
+      color: #1e1b4b;
+      font-weight: 900;
     }
 
     .seat-stu-title {
-      font-size: clamp(0.92rem, 1.15vw, 1.18rem);
+      font-size: clamp(0.95rem, 1.18vw, 1.2rem);
       font-weight: 900;
-      color: #1e1b4b;
+      color: #0f172a;
       line-height: 1.22;
       letter-spacing: -0.04em;
       white-space: nowrap;
@@ -1682,9 +1729,12 @@
     }
 
     .empty-pc-label {
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: #64748b;
+      font-size: clamp(0.88rem, 1.05vw, 1.02rem);
+      font-weight: 900;
+      color: #334155;
+      background: #e2e8f0;
+      padding: 2px 9px;
+      border-radius: 7px;
     }
 
     .empty-name {
@@ -4254,10 +4304,16 @@
 
           html += `
             <div class="day-cell ${isToday ? 'today' : ''}">
+              ${isToday ? `
+                <div class="today-banner-ribbon">
+                  <span>🌟 오늘 수업 (TODAY)</span>
+                  <span style="font-size:0.74rem; background:rgba(255,255,255,0.22); padding:2px 7px; border-radius:99px;">총 ${activeLessons.length}교시</span>
+                </div>
+              ` : ''}
               <div class="day-top">
                 <div class="day-number">
                   <span>${dayObj.date.getMonth() + 1}/${dayObj.date.getDate()}(${getKoreanDayName(dow)})</span>
-                  ${isToday ? '<span class="today-tag">오늘</span>' : ''}
+                  ${isToday ? '<span class="today-tag">📍 오늘</span>' : ''}
                 </div>
                 <div class="day-top-actions">
                   <button class="day-action-btn add-btn" onclick="openAddLessonModal('${dateStr}')" title="이 날짜에 보강이나 교체된 수업을 새로 추가합니다">
@@ -6362,7 +6418,7 @@
       const stu = assignedStuNo ? rosterMap[String(assignedStuNo)] : null;
       const isSwapSource = seatingMoveMode && seatingSwapSourceKey === seatKey;
       const isLab = !cData.layout || cData.layout.type !== 'classroom';
-      const seatLabelText = isLab ? `컴퓨터 ${seatKey}번` : `좌석 ${seatKey}번`;
+      const seatLabelText = isLab ? `컴퓨터 <strong>${seatKey}번</strong>` : `좌석 <strong>${seatKey}번</strong>`;
 
       if (!stu) {
         return `
