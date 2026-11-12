@@ -7,8 +7,8 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="혜정샘 플래너" />
-  <title>혜정샘의 수업 진도 · 학급 현황 · 교실 자리배치표 통합 플래너</title>
+  <meta name="apple-mobile-web-app-title" content="혜정샘의 수업 플래너" />
+  <title>혜정샘의 수업 플래너</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
@@ -558,37 +558,38 @@
     }
 
     .day-cell.today {
-      background: linear-gradient(180deg, #fef9c3 0%, #eef2ff 38%, #ffffff 100%);
-      border: 3.5px solid #4f46e5;
-      box-shadow: 0 12px 28px rgba(79, 70, 229, 0.25), 0 0 0 4px rgba(245, 158, 11, 0.38);
+      background: linear-gradient(180deg, #dbeafe 0%, #c7d2fe 52%, #e0e7ff 100%);
+      border: 3px solid #4338ca;
+      box-shadow: 0 10px 26px rgba(67, 56, 202, 0.24), 0 0 0 3px rgba(99, 102, 241, 0.28);
       transform: translateY(-2px);
       position: relative;
       z-index: 2;
     }
 
     .today-banner-ribbon {
-      background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 55%, #db2777 100%);
+      background: linear-gradient(90deg, #4f46e5 0%, #6366f1 60%, #7c3aed 100%);
       color: #ffffff;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 900;
-      padding: 6px 10px;
+      padding: 5px 10px;
       border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.28);
+      box-shadow: 0 3px 10px rgba(79, 70, 229, 0.25);
       letter-spacing: 0.01em;
+      white-space: nowrap;
     }
 
     .day-cell.today .day-top {
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.92);
       padding: 6px 8px;
       border-radius: 8px;
-      border: 1.5px solid #c7d2fe;
+      border: 1.5px solid #a5b4fc;
     }
 
     .day-cell.today .day-number {
-      font-size: 1.06rem;
+      font-size: 0.95rem;
       font-weight: 900;
       color: #1e1b4b;
     }
@@ -606,6 +607,7 @@
       padding-bottom: 6px;
       border-bottom: 1px solid #f1f5f9;
       gap: 4px;
+      flex-wrap: nowrap;
     }
 
     .day-number {
@@ -615,36 +617,43 @@
       display: flex;
       align-items: center;
       gap: 5px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .today-tag {
-      background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+      background: #4f46e5;
       color: #fff;
-      font-size: 0.76rem;
-      padding: 3px 9px;
+      font-size: 0.72rem;
+      padding: 2px 8px;
       border-radius: 99px;
-      font-weight: 900;
-      box-shadow: 0 2px 6px rgba(234, 88, 12, 0.35);
-      animation: subtlePulse 2s infinite ease-in-out;
+      font-weight: 800;
+      white-space: nowrap;
+      flex-shrink: 0;
+      line-height: 1.3;
     }
 
     .day-top-actions {
       display: flex;
       align-items: center;
       gap: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .day-action-btn {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      font-size: 0.71rem;
+      font-size: 0.69rem;
       font-weight: 700;
       color: #475569;
       cursor: pointer;
-      padding: 3px 7px;
+      padding: 3px 6px;
       border-radius: 6px;
       transition: all 0.12s;
       font-family: inherit;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .day-action-btn:hover {
@@ -2123,7 +2132,16 @@
       }
 
       body.widget-mode {
-        padding-bottom: 76px;
+        padding: 0 0 82px 0;
+      }
+
+      body.widget-mode .app-header {
+        display: block !important;
+      }
+
+      body.widget-mode .widget-wrapper {
+        max-width: 100%;
+        padding: 12px;
       }
 
       .mobile-bottom-nav {
@@ -2131,24 +2149,24 @@
       }
 
       .app-header {
-        padding: 12px 12px;
+        padding: 10px 14px;
+      }
+
+      .brand-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 1.15rem;
+        border-radius: 9px;
       }
 
       .brand-title h1 {
-        font-size: 1.02rem;
+        font-size: 1.08rem;
+        font-weight: 900;
       }
 
+      /* 앱(모바일)에서는 상단 클라우드/위젯/엑셀/백업/인쇄 버튼 숨김 */
       .header-actions {
-        width: 100%;
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding-bottom: 2px;
-      }
-
-      .header-actions .btn {
-        padding: 6px 10px;
-        font-size: 0.75rem;
-        flex-shrink: 0;
+        display: none !important;
       }
 
       .container {
@@ -2157,19 +2175,20 @@
 
       .control-panel {
         padding: 10px;
+        margin-bottom: 12px;
       }
 
-      .view-tabs {
+      /* 하단 고정 탭 바가 있으므로 상단 뷰 탭은 모바일에서 숨김 */
+      .control-panel .view-tabs {
+        display: none !important;
+      }
+
+      .control-panel .control-row {
+        justify-content: stretch;
+      }
+
+      .control-panel .control-row > div {
         width: 100%;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-      }
-
-      .view-tab {
-        white-space: nowrap;
-        flex-shrink: 0;
-        padding: 6px 10px;
-        font-size: 0.78rem;
       }
 
       .student-search-inline {
@@ -2200,55 +2219,77 @@
         display: none;
       }
 
-      /* 모바일에서 자리배치표 가로 스크롤 지원 */
+      /* 모바일 자리배치표: 설정용 툴바 숨기고 반 선택/검색만 깔끔하게 표시 */
+      #view-seating .seating-toolbar:nth-of-type(2) {
+        display: none !important;
+      }
+
+      #view-seating .seating-toolbar:nth-of-type(1) .seating-toolbar-group:nth-of-type(2) {
+        display: none !important;
+      }
+
+      /* 모바일 자리배치표: 사진은 빼고 컴퓨터 번호 + 학생 번호·이름만 또렷하게 표시 */
       .seating-stage {
         overflow-x: auto;
-        padding: 10px;
+        padding: 10px 8px;
         -webkit-overflow-scrolling: touch;
       }
 
       .seat-rows {
-        min-width: 780px;
+        min-width: 560px;
+        gap: 8px;
       }
 
-      .seating-stage.mobile-fit-mode .seat-rows {
-        min-width: 0;
+      .lab-row {
+        gap: 6px;
       }
 
-      .seating-stage.mobile-fit-mode .lab-row {
-        gap: 4px;
+      .seat-card {
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        min-height: 58px !important;
+        padding: 6px 4px !important;
+        gap: 3px !important;
+        border-radius: 12px !important;
+        border-width: 2px !important;
       }
 
-      .seating-stage.mobile-fit-mode .seat-card {
-        min-height: 58px;
-        padding: 4px 5px;
-        gap: 4px;
-        border-radius: 10px;
-        border-width: 1.5px;
+      .seat-card .seat-photo,
+      .seat-card .seat-photo-placeholder,
+      .seat-card .task-check {
+        display: none !important;
       }
 
-      .seating-stage.mobile-fit-mode .seat-photo,
-      .seating-stage.mobile-fit-mode .seat-photo-placeholder {
-        width: 26px;
-        height: 34px;
-        border-radius: 5px;
+      .seat-card .seat-info-col {
+        align-items: center !important;
+        width: 100%;
+        gap: 2px;
       }
 
-      .seating-stage.mobile-fit-mode .seat-pc-label {
-        font-size: 0.56rem;
-        padding: 1px 4px;
+      .seat-card .seat-pc-label {
+        font-size: 0.72rem !important;
+        padding: 1px 6px !important;
+        border-radius: 5px !important;
+        margin-bottom: 1px !important;
       }
 
-      .seating-stage.mobile-fit-mode .seat-stu-title {
-        font-size: 0.66rem;
+      .seat-card .seat-stu-title {
+        font-size: 0.86rem !important;
+        font-weight: 900 !important;
+        white-space: nowrap !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
       }
 
-      .seating-stage.mobile-fit-mode .task-check {
-        width: 15px;
-        height: 15px;
-        font-size: 9px;
-        right: 3px;
-        top: 3px;
+      .seat-card .empty-pc-label {
+        font-size: 0.72rem !important;
+        padding: 1px 6px !important;
+      }
+
+      .seat-card .empty-name {
+        font-size: 0.75rem !important;
       }
     }
 
@@ -2292,18 +2333,13 @@
 </head>
 <body>
 
-  <!-- 바탕화면 위젯 전용 컨테이너 -->
-  <div class="widget-wrapper" id="widgetWrapper">
-    <div id="widgetContentArea"></div>
-  </div>
-
   <!-- 전체 화면 헤더 -->
   <header class="app-header">
     <div class="header-inner">
       <div class="brand-area">
         <div class="brand-icon">🗓️</div>
         <div class="brand-title">
-          <h1 id="headerMainTitleText">혜정샘의 수업 진도 & 학급 자리배치 통합 플래너</h1>
+          <h1 id="headerMainTitleText">혜정샘의 수업 플래너</h1>
         </div>
       </div>
       <div class="header-actions">
@@ -2326,6 +2362,11 @@
       </div>
     </div>
   </header>
+
+  <!-- 바탕화면/모바일 첫화면 위젯 전용 컨테이너 -->
+  <div class="widget-wrapper" id="widgetWrapper">
+    <div id="widgetContentArea"></div>
+  </div>
 
   <main class="container">
     <!-- 갤럭시 안드로이드 모바일 접속 시 상단 원터치 앱 설치 배너 -->
@@ -3061,13 +3102,13 @@
 
   <!-- 📱 갤럭시 스마트폰 전용 하단 네비게이션 바 -->
   <nav class="mobile-bottom-nav" id="mobileBottomNav">
-    <button type="button" class="mobile-nav-btn active" id="mNav-calendar" onclick="switchMobileTab('calendar')">
-      <span class="nav-ico">📅</span>
-      <span>진도달력</span>
-    </button>
-    <button type="button" class="mobile-nav-btn" id="mNav-widget" onclick="switchMobileTab('widget')">
+    <button type="button" class="mobile-nav-btn active" id="mNav-widget" onclick="switchMobileTab('widget')">
       <span class="nav-ico">⚡</span>
       <span>오늘수업</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" id="mNav-calendar" onclick="switchMobileTab('calendar')">
+      <span class="nav-ico">📅</span>
+      <span>전체달력</span>
     </button>
     <button type="button" class="mobile-nav-btn" id="mNav-seating" onclick="switchMobileTab('seating')">
       <span class="nav-ico">🪑</span>
@@ -4012,16 +4053,22 @@
     /*************************************************************************
      * 3. 바탕화면 위젯 모드 (Widget Mode) 렌더링 및 제어
      *************************************************************************/
+    function isMobileAppScreen() {
+      return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    }
+
     function checkWidgetModeFromUrl() {
       const params = new URLSearchParams(window.location.search);
       const isHashWidget = window.location.hash.includes('widget');
-      const isParamWidget = params.get('mode') === 'widget';
-      isWidgetMode = isHashWidget || isParamWidget;
+      const isParamWidget = params.get('mode') === 'widget' || params.get('widget') === '1';
+      const hasExplicitView = !!params.get('view') || params.get('search') === '1';
+      const isMobileOrPwaStart = (isMobileAppScreen() || params.get('source') === 'pwa') && !hasExplicitView;
 
-      const cfg = getSemesterConfig();
+      isWidgetMode = isHashWidget || isParamWidget || isMobileOrPwaStart;
+
       if (isWidgetMode) {
         document.body.classList.add('widget-mode');
-        document.title = '📌 오늘의 수업 위젯 - 혜정샘';
+        document.title = '혜정샘의 수업 플래너';
         if (!widgetCurrentDateStr) {
           widgetCurrentDateStr = getDefaultWidgetDateStr();
         }
@@ -4029,7 +4076,7 @@
         if (openBoardBtn) openBoardBtn.style.display = 'none';
       } else {
         document.body.classList.remove('widget-mode');
-        document.title = `혜정샘의 수업 진도 & 학급 현황 플래너 (${cfg.title || '2026학년도'})`;
+        document.title = '혜정샘의 수업 플래너';
         const openBoardBtn = document.getElementById('modalOpenClassBoardBtn');
         if (openBoardBtn) openBoardBtn.style.display = 'inline-flex';
       }
@@ -4053,6 +4100,14 @@
     }
 
     function openFullCalendarFromWidget() {
+      // 모바일 앱이거나 일반 웹 창에서는 새 창을 띄우지 않고 바로 전체 진도 달력 화면으로 전환!
+      if (isMobileAppScreen() || isRunningStandalonePwa() || !window.opener) {
+        isWidgetMode = false;
+        document.body.classList.remove('widget-mode');
+        switchMainView('calendar');
+        updateMobileBottomNavUI();
+        return;
+      }
       const baseUrl = window.location.href.split('#')[0].split('?')[0];
       window.open(baseUrl, '_blank');
     }
@@ -4136,7 +4191,7 @@
               }
             </div>
             <div class="day-top-actions">
-              <button class="day-action-btn add-btn" onclick="openAddLessonModal('${dateStr}')">+수업추가</button>
+              <button class="day-action-btn add-btn" onclick="openFullCalendarFromWidget()">📅 전체달력</button>
               <button class="day-action-btn" onclick="toggleDayHoliday('${dateStr}')">${isDayHoliday ? '🔄휴일해제' : '🏖️ 휴일'}</button>
             </div>
           </div>
@@ -4604,7 +4659,7 @@
               <div class="day-top">
                 <div class="day-number">
                   <span>${dayObj.date.getMonth() + 1}/${dayObj.date.getDate()}(${getKoreanDayName(dow)})</span>
-                  ${isToday ? '<span class="today-tag">📍 오늘</span>' : ''}
+                  ${isToday ? '<span class="today-tag">오늘</span>' : ''}
                 </div>
                 <div class="day-top-actions">
                   <button class="day-action-btn add-btn" onclick="openAddLessonModal('${dateStr}')" title="이 날짜에 보강이나 교체된 수업을 새로 추가합니다">
@@ -6751,7 +6806,7 @@
           ${photoHtml}
           <div class="seat-info-col">
             <div class="seat-pc-label">${seatLabelText}</div>
-            <div class="seat-stu-title">${stu.no}번 ${escapeHtml(stu.name)}</div>
+            <div class="seat-stu-title" onclick="openStudentPhotoZoom(event, '${cls}', '${stu.no}')" style="cursor:zoom-in;" title="클릭하면 학생의 큰 사진과 학번이 보입니다">${stu.no}번 ${escapeHtml(stu.name)}</div>
           </div>
           ${attBadgeHtml}
           ${(showGroupBadges && grpNum) ? `<div class="seat-group-badge">${grpNum}모둠</div>` : ''}
@@ -6939,6 +6994,13 @@
         seatingSwapSourceKey = null;
         saveState(`🔄 좌석 #${prevKey} ↔ #${seatKey} 자리가 교체되었습니다!`);
         renderAll();
+        return;
+      }
+
+      // 모바일(앱)에서는 좌석 카드를 터치했을 때 배정된 학생이 있으면 곧바로 큰 사진 & 학번 모달을 띄움
+      const assignedStuNo = cData.seating[String(seatKey)];
+      if (isMobileAppScreen() && assignedStuNo) {
+        openStudentPhotoZoom(null, seatingSelectedClass, assignedStuNo);
         return;
       }
 
@@ -8442,8 +8504,8 @@
       if (target === 'widget') {
         isWidgetMode = true;
         document.body.classList.add('widget-mode');
-        if (!widgetSelectedDateStr) {
-          widgetSelectedDateStr = getDefaultWidgetDateStr();
+        if (!widgetCurrentDateStr) {
+          widgetCurrentDateStr = getDefaultWidgetDateStr();
         }
         renderAll();
         updateMobileBottomNavUI();
@@ -8484,10 +8546,9 @@
     }
 
     function renderAll() {
-      const cfg = getSemesterConfig();
       const headerTitleEl = document.getElementById('headerMainTitleText');
       if (headerTitleEl) {
-        headerTitleEl.textContent = `혜정샘의 수업 진도 & 학급 자리배치 통합 플래너 (${cfg.title || '2026학년도'})`;
+        headerTitleEl.textContent = '혜정샘의 수업 플래너';
       }
       updateMobileBottomNavUI();
       const sessionsByClass = getAllScheduleSessions();

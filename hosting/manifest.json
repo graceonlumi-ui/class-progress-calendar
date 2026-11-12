@@ -1,9 +1,9 @@
 {
   "id": "/",
-  "name": "혜정샘의 수업진도 & 학급 자리배치 플래너",
-  "short_name": "혜정샘 플래너",
+  "name": "혜정샘의 수업 플래너",
+  "short_name": "혜정샘의 수업 플래너",
   "description": "수업 진도 달력, 교실 자리배치표, 나이스 학생 사진 검색 및 출결·과제 통합 플래너",
-  "start_url": "/?source=pwa",
+  "start_url": "/?source=pwa&widget=1",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",
@@ -39,9 +39,15 @@
   ],
   "shortcuts": [
     {
-      "name": "📅 오늘 수업 위젯",
+      "name": "⚡ 오늘 수업 위젯",
       "short_name": "오늘수업",
       "url": "/?widget=1",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "📅 전체 진도 달력",
+      "short_name": "전체달력",
+      "url": "/?view=calendar",
       "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
