@@ -1537,50 +1537,62 @@
 
     .seat-card {
       position: relative;
-      min-height: clamp(64px, 8.2vw, 114px);
-      border-radius: clamp(14px, 1.4vw, 20px);
-      border: 3px solid #3b82f6;
-      background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
-      padding: clamp(6px, .8vw, 10px);
+      min-height: 84px;
+      border-radius: 16px;
+      border: 2.5px solid #4f46e5;
+      background: #ffffff;
+      padding: 9px 11px;
       cursor: pointer;
       overflow: visible;
-      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.16);
-      transition: transform 0.08s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.14);
+      transition: transform 0.1s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      flex-direction: row;
+      justify-content: flex-start;
       align-items: center;
-      text-align: center;
+      gap: 10px;
+      text-align: left;
       min-width: 0;
+    }
+
+    .seat-card.no-photo-mode {
+      justify-content: center;
+      text-align: center;
+      padding: 12px 10px;
     }
 
     .seat-card:hover {
       transform: translateY(-2px);
-      border-color: #1d4ed8;
-      box-shadow: 0 14px 26px rgba(37, 99, 235, 0.24);
+      border-color: #4338ca;
+      box-shadow: 0 10px 22px rgba(79, 70, 229, 0.24);
     }
 
     .seat-card.swap-source {
-      border-color: #111827 !important;
+      border-color: #d97706 !important;
       background: #fef3c7 !important;
       box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.35) !important;
     }
 
-    .seat-card.level-1 { background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%); border-color: #22c55e; }
-    .seat-card.level-2 { background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%); border-color: #f59e0b; }
-    .seat-card.level-3 { background: linear-gradient(135deg, #fee2e2 0%, #fff1f2 100%); border-color: #ef4444; }
+    .seat-card.level-1 { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-color: #16a34a; }
+    .seat-card.level-2 { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-color: #f59e0b; }
+    .seat-card.level-3 { background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border-color: #f43f5e; }
 
     .seat-card.task-checked {
-      background: linear-gradient(135deg, #bbf7d0 0%, #ecfdf5 100%) !important;
-      border-color: #16a34a !important;
-      box-shadow: 0 10px 22px rgba(22, 163, 74, 0.24);
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
+      border-color: #10b981 !important;
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.22);
     }
 
     .seat-card.empty-seat {
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
       border-color: #cbd5e1;
       border-style: dashed;
       box-shadow: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 3px;
     }
 
     .seat-card.blank-seat {
@@ -1590,6 +1602,10 @@
       box-shadow: none;
       color: #cbd5e1;
       cursor: default;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
     .seat-card.blank-seat:hover {
@@ -1598,41 +1614,53 @@
       box-shadow: none;
     }
 
-    .pc-no {
-      position: absolute;
-      top: clamp(6px, .7vw, 9px);
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: clamp(44px, 4.6vw, 64px);
-      height: clamp(30px, 3vw, 40px);
+    .seat-info-col {
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      font-size: clamp(14px, 1.85vw, 30px);
-      line-height: 1;
+      align-items: flex-start;
+      min-width: 0;
+      flex: 1;
+      gap: 2px;
+    }
+
+    .seat-card.no-photo-mode .seat-info-col {
+      align-items: center;
+    }
+
+    .seat-pc-label {
+      font-size: clamp(0.72rem, 0.85vw, 0.82rem);
+      color: #6366f1;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .seat-stu-title {
+      font-size: clamp(0.92rem, 1.15vw, 1.18rem);
       font-weight: 900;
-      letter-spacing: -0.05em;
-      color: #0f172a;
-      background: rgba(255,255,255,0.92);
-      border: 2px solid rgba(71,85,105,0.55);
-      border-radius: 8px;
-      padding: 0 8px;
-      z-index: 1;
-      text-align: center;
+      color: #1e1b4b;
+      line-height: 1.22;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
     }
 
     .task-check {
       position: absolute;
-      left: 8px;
-      top: 8px;
-      width: 25px;
-      height: 25px;
+      right: 6px;
+      top: 6px;
+      width: 21px;
+      height: 21px;
       padding: 0;
-      border-radius: 7px;
-      border: 2px solid #94a3b8;
+      border-radius: 6px;
+      border: 1.5px solid #cbd5e1;
       background: rgba(255,255,255,0.92);
       color: #64748b;
-      font-size: 15px;
+      font-size: 13px;
       line-height: 1;
       font-weight: 900;
       display: inline-flex;
@@ -1640,6 +1668,11 @@
       justify-content: center;
       z-index: 3;
       cursor: pointer;
+      transition: all 0.12s;
+    }
+
+    .task-check:hover {
+      border-color: #6366f1;
     }
 
     .task-check.checked {
@@ -1648,53 +1681,16 @@
       color: #ffffff;
     }
 
-    .student-line {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(4px, .55vw, 8px);
-      width: 100%;
-      min-width: 0;
-      padding-top: clamp(28px, 3.2vw, 42px);
-    }
-
-    .student-line.with-photo {
-      padding-top: 2px;
-    }
-
-    .student-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: clamp(30px, 2.8vw, 42px);
-      height: clamp(22px, 2.1vw, 30px);
-      padding: 0 clamp(6px, .6vw, 10px);
-      border-radius: 999px;
-      background: #1d4ed8;
-      color: #ffffff;
-      font-size: clamp(11px, 1.15vw, 18px);
-      font-weight: 900;
-      flex: 0 0 auto;
-    }
-
-    .student-name {
-      font-size: clamp(13px, 1.65vw, 26px);
-      font-weight: 900;
-      letter-spacing: -0.06em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: #0f172a;
-      line-height: 1.08;
-      min-width: 0;
+    .empty-pc-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #64748b;
     }
 
     .empty-name {
-      color: #64748b;
-      font-size: clamp(13px, 1.25vw, 19px);
-      font-weight: 900;
-      margin-top: clamp(28px, 3.2vw, 42px);
+      color: #94a3b8;
+      font-size: 0.86rem;
+      font-weight: 800;
       text-align: center;
     }
 
@@ -1705,12 +1701,11 @@
 
     .seat-group-badge {
       position: absolute;
-      bottom: 6px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.68rem;
+      bottom: 5px;
+      right: 6px;
+      font-size: 0.64rem;
       font-weight: 800;
-      padding: 1px 7px;
+      padding: 1px 6px;
       border-radius: 99px;
       background: #4f46e5;
       color: #fff;
@@ -1719,28 +1714,158 @@
 
     .seat-att-badge {
       position: absolute;
-      top: 7px;
-      right: 7px;
-      font-size: 0.68rem;
+      bottom: 5px;
+      right: 6px;
+      font-size: 0.66rem;
       font-weight: 900;
-      padding: 2px 7px;
+      padding: 1px 6px;
       border-radius: 99px;
       background: #fee2e2;
       color: #991b1b;
       border: 1px solid #fca5a5;
-      z-index: 2;
+      z-index: 3;
     }
 
     .seat-photo {
-      width: 52px;
-      height: 64px;
+      width: 48px;
+      height: 60px;
       object-fit: cover;
       border-radius: 8px;
-      border: 2px solid #ffffff;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.14);
-      margin-top: 38px;
-      margin-bottom: 3px;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 2px 5px rgba(15, 23, 42, 0.08);
+      background: #f8fafc;
+      flex-shrink: 0;
+      cursor: zoom-in;
+      transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+    }
+
+    .seat-photo:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 14px rgba(79, 70, 229, 0.28);
+      border-color: #4f46e5;
+    }
+
+    .seat-photo-placeholder {
+      width: 48px;
+      height: 60px;
+      border-radius: 8px;
+      border: 1px dashed #cbd5e1;
+      background: #eef2ff;
+      color: #4f46e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+      cursor: zoom-in;
+    }
+
+    .student-search-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      border: 2px solid #6366f1;
+      border-radius: 12px;
+      padding: 3px 6px 3px 10px;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.12);
+    }
+
+    .student-search-inline input {
+      border: none;
+      outline: none;
+      font-size: 0.83rem;
+      font-weight: 800;
+      color: #0f172a;
+      width: 170px;
+      background: transparent;
+    }
+
+    .student-search-inline input::placeholder {
+      color: #64748b;
+      font-weight: 700;
+    }
+
+    .student-search-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+      max-height: 65vh;
+      overflow-y: auto;
+      padding: 4px;
+    }
+
+    .student-search-card-grid.single-result {
+      grid-template-columns: minmax(280px, 420px);
+      justify-content: center;
+    }
+
+    .student-large-photo-card {
+      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+      border: 2.5px solid #3b82f6;
+      border-radius: 20px;
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.14);
+      transition: transform 0.12s ease, box-shadow 0.15s ease;
+    }
+
+    .student-large-photo-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.22);
+    }
+
+    .student-large-photo-img {
+      width: 190px;
+      height: 238px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 3px solid #ffffff;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
       background: #f1f5f9;
+      cursor: zoom-in;
+      margin-bottom: 12px;
+    }
+
+    .student-search-card-grid.single-result .student-large-photo-img {
+      width: 240px;
+      height: 300px;
+    }
+
+    .student-id-huge-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1d4ed8;
+      color: #ffffff;
+      font-size: 1.15rem;
+      font-weight: 900;
+      padding: 5px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+      box-shadow: 0 4px 10px rgba(29, 78, 216, 0.25);
+    }
+
+    .student-search-card-grid.single-result .student-id-huge-badge {
+      font-size: 1.35rem;
+      padding: 6px 18px;
+    }
+
+    .student-name-huge-label {
+      font-size: 1.55rem;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+    }
+
+    .student-search-card-grid.single-result .student-name-huge-label {
+      font-size: 1.9rem;
     }
 
     .seat-photo-placeholder {
@@ -1964,7 +2089,14 @@
           <button class="view-tab" id="tabBtn-semester" onclick="switchMainView('semester')">⚙️ 학기·시간표 설정</button>
         </div>
 
-        <div class="month-tabs" id="calendarMonthFilter"></div>
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+          <div class="student-search-inline" title="학생 이름 또는 학번(예: 20101)을 입력하면 학번과 큰 사진이 바로 뜹니다">
+            <span>🔍</span>
+            <input type="text" id="globalStudentPhotoSearchInput" placeholder="학생 이름·학번 사진 검색..." onkeydown="onQuickStudentSearchKeydown(event, this)" />
+            <button type="button" onclick="triggerQuickStudentSearch('globalStudentPhotoSearchInput')">사진 검색</button>
+          </div>
+          <div class="month-tabs" id="calendarMonthFilter"></div>
+        </div>
       </div>
 
       <!-- Class Filter Bar -->
@@ -2037,6 +2169,11 @@
           </div>
 
           <div class="seating-toolbar-group">
+            <div class="student-search-inline" style="background:#f5f3ff; border-color:#818cf8;">
+              <span>🔍</span>
+              <input type="text" id="seatingStudentPhotoSearchInput" placeholder="이름 검색 → 학번·큰사진" style="width:145px;" onkeydown="onQuickStudentSearchKeydown(event, this)" />
+              <button type="button" onclick="triggerQuickStudentSearch('seatingStudentPhotoSearchInput')">검색</button>
+            </div>
             <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="openAssignmentReportModal()">📊 과제누적</button>
             <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="openSeatingTimerModal()">⏱️ 타이머</button>
             <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="openGroupMakerModal()">👥 모둠편성</button>
@@ -2562,6 +2699,46 @@
         <div class="lucky-winner-box" id="luckyDrawResultBox"></div>
         <button type="button" class="btn btn-primary" style="justify-content:center; padding:10px;" onclick="runLuckyDraw()">🎉 추첨하기!</button>
       </div>
+    </div>
+  </div>
+
+  <!-- 🔍 학생 이름·학번 사진 크게 검색 모달 -->
+  <div class="modal-backdrop" id="studentPhotoSearchModalBackdrop" onclick="if(event.target===this) closeStudentPhotoSearchModal()">
+    <div class="modal-box" style="max-width:860px;">
+      <div class="modal-header">
+        <div style="font-weight:900; font-size:1.1rem; color:#1e1b4b; display:flex; align-items:center; gap:8px;">
+          <span>🔍 학생 이름 · 학번 사진 검색</span>
+          <span id="studentPhotoSearchCountBadge" style="font-size:0.8rem; background:#eef2ff; color:#4f46e5; padding:3px 10px; border-radius:999px; font-weight:800;"></span>
+        </div>
+        <button class="btn btn-outline" style="padding:5px 10px;" onclick="closeStudentPhotoSearchModal()">✕ 닫기</button>
+      </div>
+      <div class="modal-body" style="gap:12px;">
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; background:#f8fafc; padding:12px 14px; border-radius:12px; border:1.5px solid #c7d2fe;">
+          <div style="flex:1; min-width:220px; display:flex; align-items:center; gap:8px; background:#fff; border:2px solid #6366f1; border-radius:10px; padding:6px 12px;">
+            <span style="font-size:1.1rem;">🔎</span>
+            <input type="text" id="studentPhotoModalSearchInput" placeholder="학생 이름(예: 고현준, 김민서) 또는 학번(예: 20101, 1-2)을 입력하세요" style="border:none; outline:none; width:100%; font-size:0.96rem; font-weight:800; color:#1e293b;" oninput="renderStudentPhotoSearchResults()" />
+            <button type="button" class="btn btn-outline" style="padding:3px 8px; font-size:0.74rem;" onclick="document.getElementById('studentPhotoModalSearchInput').value=''; renderStudentPhotoSearchResults(); document.getElementById('studentPhotoModalSearchInput').focus();">초기화</button>
+          </div>
+          <select id="studentPhotoModalClassFilter" class="form-control" style="width:140px; font-weight:800;" onchange="renderStudentPhotoSearchResults()">
+            <option value="ALL">🏫 전체 학년/반</option>
+            <option value="G1">📒 1학년 전체</option>
+            <option value="G2">📗 2학년 전체</option>
+          </select>
+        </div>
+
+        <div id="studentPhotoSearchResultsGrid" class="student-search-card-grid" style="max-height:62vh; overflow-y:auto; padding:4px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🖼️ 학생 사진 클릭 시 큰 사진 & 학번 확대 모달 -->
+  <div class="modal-backdrop" id="studentPhotoZoomModalBackdrop" onclick="if(event.target===this) closeStudentPhotoZoomModal()" style="z-index:1200;">
+    <div class="modal-box" style="max-width:440px; text-align:center;">
+      <div class="modal-header" style="background:linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);">
+        <div id="studentPhotoZoomHeaderTitle" style="font-weight:900; font-size:1.05rem; color:#1e1b4b;">📸 학생 큰 사진 보기</div>
+        <button class="btn btn-outline" style="padding:5px 10px; background:#fff;" onclick="closeStudentPhotoZoomModal()">✕ 닫기</button>
+      </div>
+      <div class="modal-body" id="studentPhotoZoomModalBody" style="align-items:center; padding:22px 20px; gap:12px;"></div>
     </div>
   </div>
 
@@ -6184,12 +6361,14 @@
       const assignedStuNo = cData.seating[seatKey];
       const stu = assignedStuNo ? rosterMap[String(assignedStuNo)] : null;
       const isSwapSource = seatingMoveMode && seatingSwapSourceKey === seatKey;
+      const isLab = !cData.layout || cData.layout.type !== 'classroom';
+      const seatLabelText = isLab ? `컴퓨터 ${seatKey}번` : `좌석 ${seatKey}번`;
 
       if (!stu) {
         return `
           <div class="seat-card empty-seat ${isSwapSource ? 'swap-source' : ''}"
                onclick="onSeatCardClick('${seatKey}')">
-            <div class="pc-no">${seatKey}</div>
+            <div class="empty-pc-label">${seatLabelText}</div>
             <div class="empty-name">빈 자리</div>
           </div>
         `;
@@ -6209,26 +6388,25 @@
       let photoHtml = '';
       if (showPhotos) {
         if (stu.photo) {
-          photoHtml = `<img src="${stu.photo}" class="seat-photo" alt="${escapeHtml(stu.name)}" />`;
+          photoHtml = `<img src="${stu.photo}" class="seat-photo" alt="${escapeHtml(stu.name)}" onclick="openStudentPhotoZoom(event, '${cls}', '${stu.no}')" title="클릭하면 큰 사진과 학번이 크게 보입니다" />`;
         } else {
           const initial = (stu.name || '?').trim().charAt(0);
-          photoHtml = `<div class="seat-photo-placeholder">${escapeHtml(initial)}</div>`;
+          photoHtml = `<div class="seat-photo-placeholder" onclick="openStudentPhotoZoom(event, '${cls}', '${stu.no}')" style="cursor:zoom-in;" title="클릭하면 학생 학번·정보가 크게 보입니다">${escapeHtml(initial)}</div>`;
         }
       }
 
       return `
-        <div class="seat-card ${levelClass} ${taskChecked ? 'task-checked' : ''} ${isSwapSource ? 'swap-source' : ''}"
+        <div class="seat-card ${showPhotos ? '' : 'no-photo-mode'} ${levelClass} ${taskChecked ? 'task-checked' : ''} ${isSwapSource ? 'swap-source' : ''}"
              onclick="onSeatCardClick('${seatKey}')">
-          <div class="pc-no">${seatKey}</div>
           <button type="button" class="task-check ${taskChecked ? 'checked' : ''}"
                   onclick="toggleSeatTaskFromCard(event, '${stu.no}')"
                   title="과제 제출 체크">${taskChecked ? '✓' : ''}</button>
-          ${attBadgeHtml}
           ${photoHtml}
-          <div class="student-line ${showPhotos ? 'with-photo' : ''}">
-            <span class="student-num">${stu.no}</span>
-            <span class="student-name">${escapeHtml(stu.name)}</span>
+          <div class="seat-info-col">
+            <div class="seat-pc-label">${seatLabelText}</div>
+            <div class="seat-stu-title">${stu.no}번 ${escapeHtml(stu.name)}</div>
           </div>
+          ${attBadgeHtml}
           ${(showGroupBadges && grpNum) ? `<div class="seat-group-badge">${grpNum}모둠</div>` : ''}
           ${stu.note ? `<span class="seat-note-dot" title="${escapeHtml(stu.note)}"></span>` : ''}
         </div>
@@ -6452,7 +6630,7 @@
       const avatarBox = document.getElementById('seatModalPhotoPreviewBox');
       if (avatarBox) {
         if (stu && stu.photo) {
-          avatarBox.innerHTML = `<img src="${stu.photo}" style="width:100%; height:100%; object-fit:cover;" />`;
+          avatarBox.innerHTML = `<img src="${stu.photo}" style="width:100%; height:100%; object-fit:cover; cursor:zoom-in;" onclick="openStudentPhotoZoom(event, '${cls}', '${stu.no}')" title="클릭하여 큰 사진 보기" />`;
         } else {
           avatarBox.innerHTML = `<span style="font-size:1.5rem; font-weight:900; color:#94a3b8;">${stu ? escapeHtml((stu.name || '?').charAt(0)) : '?'}</span>`;
         }
@@ -6691,7 +6869,7 @@
           previewGrid.innerHTML = `<div style="grid-column:1/-1; padding:16px; text-align:center; color:#94a3b8; font-size:0.8rem;">먼저 왼쪽에서 학생 명렬표를 등록해 주세요.</div>`;
         } else {
           previewGrid.innerHTML = roster.map(s => `
-            <div class="photo-preview-item" style="border-color:${s.photo ? '#86efac' : '#e2e8f0'}; background:${s.photo ? '#f0fdf4' : '#f8fafc'};">
+            <div class="photo-preview-item" onclick="openStudentPhotoZoom(event, '${cls}', '${s.no}')" title="클릭하여 큰 사진 보기" style="cursor:zoom-in; border-color:${s.photo ? '#86efac' : '#e2e8f0'}; background:${s.photo ? '#f0fdf4' : '#f8fafc'};">
               ${s.photo
                 ? `<img src="${s.photo}" alt="${escapeHtml(s.name)}" />`
                 : `<div style="width:48px; height:60px; border-radius:6px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; font-weight:800; color:#64748b; font-size:0.82rem;">미등록</div>`
@@ -7573,7 +7751,7 @@
             ${winners.map(w => `
               <div style="background:#fff; border:2.5px solid #4f46e5; border-radius:14px; padding:10px 16px; display:flex; align-items:center; gap:10px; box-shadow:0 6px 16px rgba(79,70,229,0.18);">
                 ${w.photo
-                  ? `<img src="${w.photo}" style="width:48px; height:60px; object-fit:cover; border-radius:8px; border:1px solid #cbd5e1;" />`
+                  ? `<img src="${w.photo}" onclick="openStudentPhotoZoom(event, '${cls}', '${w.no}')" title="클릭하여 큰 사진 보기" style="width:48px; height:60px; object-fit:cover; border-radius:8px; border:1px solid #cbd5e1; cursor:zoom-in;" />`
                   : `<div style="width:44px; height:44px; border-radius:50%; background:#eef2ff; color:#4f46e5; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.1rem;">🎉</div>`
                 }
                 <div style="text-align:left;">
@@ -7584,6 +7762,241 @@
             `).join('')}
           </div>
         `;
+      }
+    }
+
+    /*************************************************************************
+     * 15. 학생 사진 클릭 시 큰 사진 확대 모달 & 이름/학번 사진 크게 검색 기능
+     *************************************************************************/
+    function formatStudentIdInfo(cls, no) {
+      const parts = String(cls || '').split('-');
+      const g = Number(parts[0]) || 1;
+      const c = Number(parts[1]) || 1;
+      const n = Number(no) || 1;
+      const id5 = `${g}${String(c).padStart(2, '0')}${String(n).padStart(2, '0')}`;
+      const fullLabel = `${g}학년 ${c}반 ${n}번`;
+      return { id5, fullLabel, grade: g, classNum: c, no: n };
+    }
+
+    function openStudentPhotoZoom(event, cls, stuNo) {
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+      const cData = ensureClassSeatingData(cls);
+      const stu = (cData.roster || []).find(s => String(s.no) === String(stuNo));
+      if (!stu) return;
+
+      const idInfo = formatStudentIdInfo(cls, stu.no);
+      const seatKey = Object.keys(cData.seating || {}).find(k => String(cData.seating[k]) === String(stu.no)) || '';
+      const hrText = cData.homeroom ? `담임: ${cData.homeroom} 선생님` : '';
+
+      const headerTitle = document.getElementById('studentPhotoZoomHeaderTitle');
+      if (headerTitle) {
+        headerTitle.innerHTML = `📸 ${escapeHtml(idInfo.fullLabel)} <strong>${escapeHtml(stu.name)}</strong>`;
+      }
+
+      const bodyEl = document.getElementById('studentPhotoZoomModalBody');
+      if (bodyEl) {
+        bodyEl.innerHTML = `
+          <div class="student-id-huge-badge" style="font-size:1.22rem; padding:7px 20px;">
+            학번 ${escapeHtml(idInfo.id5)} · ${escapeHtml(idInfo.fullLabel)}
+          </div>
+          ${stu.photo
+            ? `<img src="${stu.photo}" alt="${escapeHtml(stu.name)}" style="width:260px; height:325px; object-fit:cover; border-radius:18px; border:3px solid #6366f1; box-shadow:0 14px 32px rgba(79,70,229,0.24); background:#f8fafc;" />`
+            : `<div style="width:240px; height:300px; border-radius:18px; border:2.5px dashed #94a3b8; background:#f8fafc; display:flex; align-items:center; justify-content:center; font-size:4rem; font-weight:900; color:#94a3b8;">${escapeHtml((stu.name || '?').charAt(0))}</div>`
+          }
+          <div class="student-name-huge-label" style="font-size:1.85rem; margin-top:4px;">
+            ${escapeHtml(stu.name)}
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; font-size:0.86rem; font-weight:800; color:#475569;">
+            ${seatKey ? `<span style="background:#f1f5f9; border:1px solid #cbd5e1; padding:4px 12px; border-radius:999px;">🪑 좌석 #${escapeHtml(seatKey)}번</span>` : `<span style="background:#f1f5f9; padding:4px 12px; border-radius:999px;">🪑 미배정</span>`}
+            ${hrText ? `<span style="background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; padding:4px 12px; border-radius:999px;">👩‍🏫 ${escapeHtml(hrText)}</span>` : ''}
+          </div>
+          ${stu.note ? `<div style="background:#fef9c3; color:#854d0e; border:1px solid #fde047; padding:6px 14px; border-radius:10px; font-size:0.84rem; font-weight:800; width:100%;">⭐ ${escapeHtml(stu.note)}</div>` : ''}
+          <div style="display:flex; gap:8px; width:100%; justify-content:center; margin-top:6px; flex-wrap:wrap;">
+            <button type="button" class="btn btn-outline" style="padding:8px 14px; font-size:0.84rem;" onclick="jumpToStudentSeatFromModal('${cls}', '${stu.no}', false)">🪑 이 반 자리배치표 보기</button>
+            <button type="button" class="btn btn-primary" style="padding:8px 14px; font-size:0.84rem;" onclick="jumpToStudentSeatFromModal('${cls}', '${stu.no}', true)">📋 출결·과제·특이사항 기록</button>
+          </div>
+        `;
+      }
+
+      document.getElementById('studentPhotoZoomModalBackdrop').classList.add('open');
+    }
+
+    function closeStudentPhotoZoomModal() {
+      document.getElementById('studentPhotoZoomModalBackdrop')?.classList.remove('open');
+    }
+
+    function onQuickStudentSearchKeydown(event, inputEl) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        openStudentPhotoSearchModal(inputEl.value.trim());
+      }
+    }
+
+    function triggerQuickStudentSearch(inputId) {
+      const inp = document.getElementById(inputId);
+      const q = inp ? inp.value.trim() : '';
+      openStudentPhotoSearchModal(q);
+    }
+
+    function populateStudentPhotoSearchClassFilter() {
+      const sel = document.getElementById('studentPhotoModalClassFilter');
+      if (!sel) return;
+      const curVal = sel.value || 'ALL';
+      const g1 = getClassesG1();
+      const g2 = getClassesG2();
+      let html = `
+        <option value="ALL">🏫 전체 학년/반</option>
+        <option value="G1">📒 1학년 전체</option>
+        <option value="G2">📗 2학년 전체</option>
+      `;
+      if (g1.length > 0) {
+        html += `<optgroup label="1학년 학급">` + g1.map(c => `<option value="${c}">${c}반</option>`).join('') + `</optgroup>`;
+      }
+      if (g2.length > 0) {
+        html += `<optgroup label="2학년 학급">` + g2.map(c => `<option value="${c}">${c}반</option>`).join('') + `</optgroup>`;
+      }
+      sel.innerHTML = html;
+      if ([...sel.options].some(o => o.value === curVal)) {
+        sel.value = curVal;
+      }
+    }
+
+    function openStudentPhotoSearchModal(initialQuery = '') {
+      populateStudentPhotoSearchClassFilter();
+      const modalInp = document.getElementById('studentPhotoModalSearchInput');
+      if (modalInp) {
+        modalInp.value = initialQuery || '';
+      }
+      renderStudentPhotoSearchResults();
+      document.getElementById('studentPhotoSearchModalBackdrop').classList.add('open');
+      setTimeout(() => {
+        if (modalInp) {
+          modalInp.focus();
+          modalInp.select();
+        }
+      }, 60);
+    }
+
+    function closeStudentPhotoSearchModal() {
+      document.getElementById('studentPhotoSearchModalBackdrop')?.classList.remove('open');
+    }
+
+    function renderStudentPhotoSearchResults() {
+      const grid = document.getElementById('studentPhotoSearchResultsGrid');
+      const badge = document.getElementById('studentPhotoSearchCountBadge');
+      if (!grid) return;
+
+      const rawQuery = (document.getElementById('studentPhotoModalSearchInput')?.value || '').trim();
+      const q = rawQuery.toLowerCase();
+      const clsFilter = document.getElementById('studentPhotoModalClassFilter')?.value || 'ALL';
+
+      const allClasses = getAllClasses();
+      const matched = [];
+
+      allClasses.forEach(cls => {
+        if (clsFilter === 'G1' && !cls.startsWith('1-')) return;
+        if (clsFilter === 'G2' && !cls.startsWith('2-')) return;
+        if (clsFilter !== 'ALL' && clsFilter !== 'G1' && clsFilter !== 'G2' && cls !== clsFilter) return;
+
+        const cData = ensureClassSeatingData(cls);
+        const seatMapByStu = {};
+        Object.entries(cData.seating || {}).forEach(([sKey, sNo]) => {
+          seatMapByStu[String(sNo)] = sKey;
+        });
+
+        (cData.roster || []).forEach(stu => {
+          const idInfo = formatStudentIdInfo(cls, stu.no);
+          const searchableText = `${stu.name} ${idInfo.id5} ${cls} ${cls}반 ${idInfo.fullLabel} ${stu.no}번 ${stu.note || ''}`.toLowerCase();
+          if (!q || searchableText.includes(q)) {
+            matched.push({
+              cls,
+              stu,
+              idInfo,
+              seatKey: seatMapByStu[String(stu.no)] || '',
+              homeroom: cData.homeroom || ''
+            });
+          }
+        });
+      });
+
+      if (badge) {
+        badge.textContent = q
+          ? `'${rawQuery}' 검색 결과 ${matched.length}명`
+          : `전체 ${matched.length}명 (이름이나 학번을 입력해 검색하세요)`;
+      }
+
+      if (matched.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column:1/-1; padding:42px 20px; text-align:center; color:#64748b; background:#f8fafc; border-radius:14px; border:1.5px dashed #cbd5e1;">
+            <div style="font-size:2.2rem; margin-bottom:8px;">🔍</div>
+            <div style="font-size:1rem; font-weight:800; color:#1e293b;">'${escapeHtml(rawQuery)}'에 해당하는 학생을 찾지 못했습니다.</div>
+            <div style="font-size:0.84rem; margin-top:4px;">학생 이름(예: 고현준, 김민서) 또는 5자리 학번(예: 20101, 10201)으로 검색해 보세요.</div>
+          </div>
+        `;
+        return;
+      }
+
+      // 검색어가 없을 때는 현재 선택된 반 학생들을 우선 보여주거나 최대 60명까지 표시
+      const displayList = (!q && clsFilter === 'ALL' && matched.length > 60)
+        ? matched.filter(item => item.cls === seatingSelectedClass).concat(matched.filter(item => item.cls !== seatingSelectedClass)).slice(0, 60)
+        : matched;
+
+      const isSingleFocus = displayList.length <= 2 && !!q;
+      grid.style.gridTemplateColumns = isSingleFocus
+        ? 'repeat(auto-fit, minmax(280px, 340px))'
+        : 'repeat(auto-fill, minmax(220px, 1fr))';
+      grid.style.justifyContent = isSingleFocus ? 'center' : 'stretch';
+
+      grid.innerHTML = displayList.map(item => {
+        const { cls, stu, idInfo, seatKey, homeroom } = item;
+        const photoStyle = isSingleFocus ? 'width:230px; height:288px;' : 'width:190px; height:238px;';
+        return `
+          <div class="student-large-photo-card" onclick="openStudentPhotoZoom(event, '${cls}', '${stu.no}')">
+            <div class="student-id-huge-badge">
+              학번 ${escapeHtml(idInfo.id5)} · ${escapeHtml(idInfo.fullLabel)}
+            </div>
+            ${stu.photo
+              ? `<img src="${stu.photo}" class="student-large-photo-img" style="${photoStyle}" alt="${escapeHtml(stu.name)}" />`
+              : `<div class="student-large-photo-placeholder" style="${photoStyle}">${escapeHtml((stu.name || '?').charAt(0))}</div>`
+            }
+            <div class="student-name-huge-label">${escapeHtml(stu.name)}</div>
+            <div style="font-size:0.8rem; font-weight:800; color:#64748b; display:flex; gap:6px; align-items:center; flex-wrap:wrap; justify-content:center;">
+              <span>🪑 ${seatKey ? `좌석 #${escapeHtml(seatKey)}번` : '미배정'}</span>
+              ${homeroom ? `<span>· 담임 ${escapeHtml(homeroom)}</span>` : ''}
+            </div>
+            <div style="display:flex; gap:6px; width:100%; margin-top:4px;">
+              <button type="button" class="btn btn-outline" style="flex:1; justify-content:center; padding:6px 8px; font-size:0.76rem;" onclick="event.stopPropagation(); jumpToStudentSeatFromModal('${cls}', '${stu.no}', false)">🪑 자리 보기</button>
+              <button type="button" class="btn btn-primary" style="flex:1; justify-content:center; padding:6px 8px; font-size:0.76rem;" onclick="event.stopPropagation(); jumpToStudentSeatFromModal('${cls}', '${stu.no}', true)">📋 출결·기록</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function jumpToStudentSeatFromModal(cls, stuNo, openEditModal = false) {
+      closeStudentPhotoZoomModal();
+      closeStudentPhotoSearchModal();
+      closeRosterPhotoModal();
+
+      seatingSelectedClass = cls;
+      currentMainView = 'seating';
+      document.querySelectorAll('.view-tab').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('tabBtn-seating')?.classList.add('active');
+      ['calendar', 'seating', 'classBoard', 'curriculum', 'semester'].forEach(v => {
+        const sec = document.getElementById(`view-${v}`);
+        if (sec) sec.style.display = (v === 'seating') ? 'block' : 'none';
+      });
+      renderAll();
+
+      const cData = ensureClassSeatingData(cls);
+      const seatKey = Object.keys(cData.seating || {}).find(k => String(cData.seating[k]) === String(stuNo));
+      if (openEditModal && seatKey) {
+        setTimeout(() => openSeatStudentModal(seatKey), 80);
+      } else if (seatKey) {
+        showToast(`🪑 ${cls}반 ${stuNo}번 학생은 #${seatKey}번 좌석에 앉아 있습니다.`);
       }
     }
 
