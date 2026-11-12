@@ -2,8 +2,16 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="theme-color" content="#312e81" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="혜정샘 플래너" />
   <title>혜정샘의 수업 진도 · 학급 현황 · 교실 자리배치표 통합 플래너</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
@@ -1918,22 +1926,6 @@
       font-size: 1.9rem;
     }
 
-    .seat-photo-placeholder {
-      width: 52px;
-      height: 64px;
-      border-radius: 8px;
-      border: 1.5px dashed #cbd5e1;
-      background: rgba(255, 255, 255, 0.65);
-      color: #64748b;
-      font-weight: 900;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 38px;
-      margin-bottom: 3px;
-    }
-
     .seat-note-dot {
       position: absolute;
       right: 8px;
@@ -2058,7 +2050,212 @@
       justify-content: center;
     }
 
+    /* =====================================================================
+     * GALAXY ANDROID PWA & MOBILE APP RESPONSIVE STYLES
+     * ===================================================================== */
+    .pwa-install-banner {
+      display: none;
+      background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 55%, #7c3aed 100%);
+      color: #ffffff;
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 8px 22px rgba(79, 70, 229, 0.28);
+      border: 1.5px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .pwa-install-banner.show {
+      display: flex;
+    }
+
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+      border-top: 1.5px solid #cbd5e1;
+      box-shadow: 0 -4px 18px rgba(15, 23, 42, 0.1);
+      z-index: 950;
+      justify-content: space-around;
+      align-items: center;
+      padding: 4px 6px env(safe-area-inset-bottom, 4px);
+    }
+
+    .mobile-nav-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 6px 2px;
+      color: #64748b;
+      font-family: inherit;
+      font-size: 0.7rem;
+      font-weight: 800;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .mobile-nav-btn .nav-ico {
+      font-size: 1.2rem;
+      line-height: 1.1;
+    }
+
+    .mobile-nav-btn.active {
+      color: #4f46e5;
+      background: #eef2ff;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: 82px;
+      }
+
+      body.widget-mode {
+        padding-bottom: 76px;
+      }
+
+      .mobile-bottom-nav {
+        display: flex;
+      }
+
+      .app-header {
+        padding: 12px 12px;
+      }
+
+      .brand-title h1 {
+        font-size: 1.02rem;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .header-actions .btn {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+      }
+
+      .container {
+        padding: 10px 10px 24px;
+      }
+
+      .control-panel {
+        padding: 10px;
+      }
+
+      .view-tabs {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+      }
+
+      .view-tab {
+        white-space: nowrap;
+        flex-shrink: 0;
+        padding: 6px 10px;
+        font-size: 0.78rem;
+      }
+
+      .student-search-inline {
+        width: 100%;
+      }
+
+      .student-search-inline input {
+        width: 100%;
+        flex: 1;
+      }
+
+      /* 갤럭시 모바일 달력: 가로 스크롤 없이 하루씩 큼직하게 세로 카드로 표시 */
+      .calendar-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px;
+      }
+
+      .calendar-grid .weekday-header {
+        display: none;
+      }
+
+      .day-cell {
+        min-height: auto;
+        padding: 12px;
+      }
+
+      .day-cell.out-of-range {
+        display: none;
+      }
+
+      /* 모바일에서 자리배치표 가로 스크롤 지원 */
+      .seating-stage {
+        overflow-x: auto;
+        padding: 10px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .seat-rows {
+        min-width: 780px;
+      }
+
+      .seating-stage.mobile-fit-mode .seat-rows {
+        min-width: 0;
+      }
+
+      .seating-stage.mobile-fit-mode .lab-row {
+        gap: 4px;
+      }
+
+      .seating-stage.mobile-fit-mode .seat-card {
+        min-height: 58px;
+        padding: 4px 5px;
+        gap: 4px;
+        border-radius: 10px;
+        border-width: 1.5px;
+      }
+
+      .seating-stage.mobile-fit-mode .seat-photo,
+      .seating-stage.mobile-fit-mode .seat-photo-placeholder {
+        width: 26px;
+        height: 34px;
+        border-radius: 5px;
+      }
+
+      .seating-stage.mobile-fit-mode .seat-pc-label {
+        font-size: 0.56rem;
+        padding: 1px 4px;
+      }
+
+      .seating-stage.mobile-fit-mode .seat-stu-title {
+        font-size: 0.66rem;
+      }
+
+      .seating-stage.mobile-fit-mode .task-check {
+        width: 15px;
+        height: 15px;
+        font-size: 9px;
+        right: 3px;
+        top: 3px;
+      }
+    }
+
     @media print {
+      .mobile-bottom-nav, .pwa-install-banner {
+        display: none !important;
+      }
       @page {
         size: A4 landscape;
         margin: 6mm;
@@ -2110,6 +2307,9 @@
         </div>
       </div>
       <div class="header-actions">
+        <button class="btn btn-widget-launch" id="headerPwaInstallBtn" onclick="openPwaInstallModal()" style="background:linear-gradient(135deg,#10b981 0%,#059669 100%); color:#fff !important; border:none;">
+          📲 갤럭시 앱 설치
+        </button>
         <button class="btn btn-glass" id="firebaseSyncStatusBtn" onclick="openFirebaseModal()" style="background:rgba(245,158,11,0.25); border-color:rgba(251,191,36,0.5);">
           🔥 <span id="firebaseStatusText">클라우드 연동</span>
         </button>
@@ -2128,6 +2328,21 @@
   </header>
 
   <main class="container">
+    <!-- 갤럭시 안드로이드 모바일 접속 시 상단 원터치 앱 설치 배너 -->
+    <div class="pwa-install-banner" id="pwaMobileInstallBanner">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <img src="icons/icon-192.png" alt="앱 아이콘" style="width:42px; height:42px; border-radius:10px; border:1.5px solid rgba(255,255,255,0.5);" />
+        <div>
+          <div style="font-weight:900; font-size:0.9rem;">📲 갤럭시 폰에 [혜정샘 플래너] 앱 설치</div>
+          <div style="font-size:0.74rem; color:#e0e7ff;">홈 화면에서 진짜 스마트폰 앱처럼 전체화면으로 바로 실행됩니다!</div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
+        <button type="button" class="btn btn-widget-launch" style="padding:7px 12px; font-size:0.8rem;" onclick="triggerNativePwaInstall()">즉시 설치</button>
+        <button type="button" class="btn btn-glass" style="padding:6px 8px; font-size:0.75rem;" onclick="dismissPwaBanner()">✕</button>
+      </div>
+    </div>
+
     <!-- Top Control Panel -->
     <section class="control-panel">
       <div class="control-row">
@@ -2196,6 +2411,7 @@
             </div>
             <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="toggleSeatingFlip('vertical')">↕️ 상하반전</button>
             <button type="button" class="btn btn-outline" style="padding:6px 10px; font-size:0.78rem;" onclick="toggleSeatingFlip('horizontal')">↔️ 좌우반전</button>
+            <button type="button" class="btn btn-outline" id="seatingMobileFitBtn" style="padding:6px 10px; font-size:0.78rem;" onclick="toggleSeatingMobileFitMode()">📱 한눈에 맞춤</button>
             <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.78rem; font-weight:700; cursor:pointer; padding:4px 6px;">
               <input type="checkbox" id="seatingShowPhotoCheck" checked onchange="toggleSeatingPhotoDisplay(this.checked)" /> 사진
             </label>
@@ -2791,6 +3007,81 @@
       <div class="modal-body" id="studentPhotoZoomModalBody" style="align-items:center; padding:22px 20px; gap:12px;"></div>
     </div>
   </div>
+
+  <!-- 📲 갤럭시 안드로이드 스마트폰 앱 설치 모달 -->
+  <div class="modal-backdrop" id="pwaInstallModalBackdrop" onclick="if(event.target===this) closePwaInstallModal()" style="z-index:1250;">
+    <div class="modal-box" style="max-width:540px;">
+      <div class="modal-header" style="background:linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%); color:#fff;">
+        <div style="font-weight:900; font-size:1.08rem; display:flex; align-items:center; gap:8px;">
+          <span>📲 갤럭시 안드로이드 폰에 앱으로 설치하기</span>
+        </div>
+        <button class="btn btn-outline" style="padding:5px 10px; background:#fff;" onclick="closePwaInstallModal()">✕ 닫기</button>
+      </div>
+      <div class="modal-body" style="gap:14px;">
+        <!-- 원터치 설치 버튼 영역 -->
+        <div style="background:linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border:2px solid #10b981; border-radius:14px; padding:16px; text-align:center;">
+          <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:10px;">
+            <img src="icons/icon-192.png" alt="앱 아이콘" style="width:56px; height:56px; border-radius:14px; box-shadow:0 4px 12px rgba(15,23,42,0.18);" />
+            <div style="text-align:left;">
+              <div style="font-weight:900; font-size:1.05rem; color:#064e3b;">혜정샘 플래너 (안드로이드 앱)</div>
+              <div style="font-size:0.8rem; color:#047857; font-weight:700;">컴퓨터와 실시간 연동 · 주소창 없는 전체화면 앱</div>
+            </div>
+          </div>
+          <button type="button" id="modalDirectPwaInstallBtn" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; font-size:0.98rem; background:#059669; border-radius:10px;" onclick="triggerNativePwaInstall()">
+            📲 지금 이 기기에 앱 바로 설치하기
+          </button>
+          <div id="pwaInstallPromptStatusText" style="font-size:0.76rem; color:#065f46; font-weight:700; margin-top:6px;">
+            갤럭시 폰에서 위 초록색 버튼을 누르면 홈 화면과 앱스 화면에 바로 설치됩니다!
+          </div>
+        </div>
+
+        <!-- PC에서 보고 있을 때 갤럭시 카메라로 찍는 QR 코드 -->
+        <div style="display:grid; grid-template-columns: auto 1fr; gap:14px; align-items:center; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:14px; padding:14px;">
+          <div style="background:#fff; padding:8px; border-radius:12px; border:1px solid #e2e8f0; text-align:center;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://hyejeong-class-planner.web.app" alt="갤럭시 앱 설치 QR코드" style="width:120px; height:120px; display:block;" />
+            <div style="font-size:0.7rem; font-weight:800; color:#4f46e5; margin-top:4px;">📷 갤럭시 카메라 스캔</div>
+          </div>
+          <div style="font-size:0.83rem; color:#334155; display:flex; flex-direction:column; gap:6px;">
+            <div style="font-weight:900; font-size:0.94rem; color:#1e1b4b;">📱 컴퓨터 화면을 보고 계신가요?</div>
+            <div>1. <strong>갤럭시 기본 카메라 앱</strong>을 켜고 왼쪽 <strong>QR코드</strong>를 비춰 주세요.</div>
+            <div>2. 화면에 뜨는 노란색 링크(<code>hyejeong-class-planner.web.app</code>)를 터치해 접속합니다.</div>
+            <div>3. 상단의 <strong>[📲 갤럭시 앱 설치]</strong> 버튼을 누르면 휴대폰에 진짜 앱으로 설치됩니다!</div>
+          </div>
+        </div>
+
+        <!-- 갤럭시 브라우저별 수동 설치 안내 -->
+        <div style="background:#eef2ff; border:1px solid #c7d2fe; border-radius:12px; padding:12px 14px; font-size:0.8rem; color:#1e1b4b; display:flex; flex-direction:column; gap:6px;">
+          <div style="font-weight:900; color:#312e81;">💡 갤럭시 브라우저 메뉴에서 직접 설치하는 방법</div>
+          <div>• <strong>갤럭시 크롬(Chrome)</strong>: 우측 상단 점 3개(<strong>⋮</strong>) 터치 ➔ <strong>[앱 설치]</strong> 또는 <strong>[홈 화면에 추가]</strong> 선택</div>
+          <div>• <strong>갤럭시 삼성 인터넷</strong>: 우측 하단 줄 3개(<strong>≡</strong>) 터치 ➔ <strong>[+ 현재 페이지 추가]</strong> ➔ <strong>[홈 화면]</strong> (또는 주소창 오른쪽 <strong>⬇️ 다운로드 모양 아이콘</strong> 터치)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📱 갤럭시 스마트폰 전용 하단 네비게이션 바 -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <button type="button" class="mobile-nav-btn active" id="mNav-calendar" onclick="switchMobileTab('calendar')">
+      <span class="nav-ico">📅</span>
+      <span>진도달력</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" id="mNav-widget" onclick="switchMobileTab('widget')">
+      <span class="nav-ico">⚡</span>
+      <span>오늘수업</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" id="mNav-seating" onclick="switchMobileTab('seating')">
+      <span class="nav-ico">🪑</span>
+      <span>자리배치</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" id="mNav-search" onclick="openStudentPhotoSearchModal('')">
+      <span class="nav-ico">🔍</span>
+      <span>사진검색</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" id="mNav-classBoard" onclick="switchMobileTab('classBoard')">
+      <span class="nav-ico">🏫</span>
+      <span>반별현황</span>
+    </button>
+  </nav>
 
   <div class="toast" id="toastMsg">저장되었습니다!</div>
 
@@ -8056,12 +8347,149 @@
       }
     }
 
+    /*************************************************************************
+     * 16. 갤럭시 안드로이드 앱(PWA) 설치 · 모바일 하단 탭 · 한눈에 보기 지원
+     *************************************************************************/
+    let deferredPwaPrompt = null;
+    let seatingMobileFitMode = false;
+
+    function isRunningStandalonePwa() {
+      return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    }
+
+    function initPwaAndMobileAppSupport() {
+      if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      }
+
+      // 이미 앱으로 설치되어 실행 중이면 상단 설치 버튼/배너 숨기기
+      if (isRunningStandalonePwa()) {
+        const hBtn = document.getElementById('headerPwaInstallBtn');
+        if (hBtn) hBtn.style.display = 'none';
+      } else {
+        // 모바일(갤럭시 등) 브라우저로 접속했고 아직 닫지 않았다면 설치 배너 표시
+        const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
+        if (isMobileDevice && sessionStorage.getItem('hidePwaBanner') !== '1') {
+          document.getElementById('pwaMobileInstallBanner')?.classList.add('show');
+        }
+      }
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPwaPrompt = e;
+        if (!isRunningStandalonePwa() && sessionStorage.getItem('hidePwaBanner') !== '1') {
+          document.getElementById('pwaMobileInstallBanner')?.classList.add('show');
+        }
+        const statusTxt = document.getElementById('pwaInstallPromptStatusText');
+        if (statusTxt) {
+          statusTxt.textContent = '✅ 원터치 설치 준비 완료! 위 버튼을 누르면 갤럭시 폰에 즉시 앱이 설치됩니다.';
+        }
+      });
+
+      window.addEventListener('appinstalled', () => {
+        deferredPwaPrompt = null;
+        document.getElementById('pwaMobileInstallBanner')?.classList.remove('show');
+        const hBtn = document.getElementById('headerPwaInstallBtn');
+        if (hBtn) hBtn.style.display = 'none';
+        closePwaInstallModal();
+        showToast('🎉 갤럭시 홈 화면에 [혜정샘 플래너] 앱 설치가 완료되었습니다!');
+      });
+
+      // 안드로이드 앱 아이콘 길게 누르기 단축 메뉴(?view=seating, ?search=1) 처리
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const viewParam = params.get('view');
+        if (viewParam && ['calendar', 'seating', 'classBoard', 'curriculum', 'semester'].includes(viewParam)) {
+          switchMainView(viewParam);
+        }
+        if (params.get('search') === '1') {
+          setTimeout(() => openStudentPhotoSearchModal(''), 150);
+        }
+      } catch (e) {}
+    }
+
+    function openPwaInstallModal() {
+      document.getElementById('pwaInstallModalBackdrop')?.classList.add('open');
+    }
+
+    function closePwaInstallModal() {
+      document.getElementById('pwaInstallModalBackdrop')?.classList.remove('open');
+    }
+
+    async function triggerNativePwaInstall() {
+      if (deferredPwaPrompt) {
+        deferredPwaPrompt.prompt();
+        try {
+          const { outcome } = await deferredPwaPrompt.userChoice;
+          if (outcome === 'accepted') {
+            deferredPwaPrompt = null;
+            document.getElementById('pwaMobileInstallBanner')?.classList.remove('show');
+            closePwaInstallModal();
+          }
+        } catch (err) {}
+      } else {
+        openPwaInstallModal();
+        showToast('💡 아래 안내에 따라 브라우저 메뉴에서 [앱 설치] 또는 [홈 화면에 추가]를 눌러주세요!');
+      }
+    }
+
+    function dismissPwaBanner() {
+      sessionStorage.setItem('hidePwaBanner', '1');
+      document.getElementById('pwaMobileInstallBanner')?.classList.remove('show');
+    }
+
+    function switchMobileTab(target) {
+      if (target === 'widget') {
+        isWidgetMode = true;
+        document.body.classList.add('widget-mode');
+        if (!widgetSelectedDateStr) {
+          widgetSelectedDateStr = getDefaultWidgetDateStr();
+        }
+        renderAll();
+        updateMobileBottomNavUI();
+        return;
+      }
+
+      if (isWidgetMode) {
+        isWidgetMode = false;
+        document.body.classList.remove('widget-mode');
+      }
+      switchMainView(target);
+      updateMobileBottomNavUI();
+    }
+
+    function updateMobileBottomNavUI() {
+      const ids = ['calendar', 'widget', 'seating', 'classBoard'];
+      ids.forEach(k => {
+        const btn = document.getElementById(`mNav-${k}`);
+        if (!btn) return;
+        const isActive = isWidgetMode ? (k === 'widget') : (currentMainView === k);
+        btn.classList.toggle('active', isActive);
+      });
+    }
+
+    function toggleSeatingMobileFitMode() {
+      seatingMobileFitMode = !seatingMobileFitMode;
+      const stage = document.getElementById('seatingStageContainer');
+      if (stage) {
+        stage.classList.toggle('mobile-fit-mode', seatingMobileFitMode);
+      }
+      const btn = document.getElementById('seatingMobileFitBtn');
+      if (btn) {
+        btn.style.background = seatingMobileFitMode ? '#eef2ff' : '';
+        btn.style.color = seatingMobileFitMode ? '#4f46e5' : '';
+        btn.style.borderColor = seatingMobileFitMode ? '#818cf8' : '';
+        btn.textContent = seatingMobileFitMode ? '📱 한눈에 맞춤: ON' : '📱 한눈에 맞춤';
+      }
+    }
+
     function renderAll() {
       const cfg = getSemesterConfig();
       const headerTitleEl = document.getElementById('headerMainTitleText');
       if (headerTitleEl) {
         headerTitleEl.textContent = `혜정샘의 수업 진도 & 학급 자리배치 통합 플래너 (${cfg.title || '2026학년도'})`;
       }
+      updateMobileBottomNavUI();
       const sessionsByClass = getAllScheduleSessions();
       if (isWidgetMode) {
         renderWidgetView(sessionsByClass);
@@ -8073,6 +8501,8 @@
         renderCalendarView(sessionsByClass);
       } else if (currentMainView === 'seating') {
         renderSeatingChartView(sessionsByClass);
+        const stage = document.getElementById('seatingStageContainer');
+        if (stage) stage.classList.toggle('mobile-fit-mode', seatingMobileFitMode);
       } else if (currentMainView === 'classBoard') {
         renderClassBoardView(sessionsByClass);
       } else if (currentMainView === 'curriculum') {
@@ -8085,6 +8515,7 @@
     // Initialize
     loadState();
     checkWidgetModeFromUrl();
+    initPwaAndMobileAppSupport();
     renderAll();
   </script>
 </body>
