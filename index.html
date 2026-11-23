@@ -1676,6 +1676,12 @@
 
     .seat-card.no-photo-mode .seat-info-col {
       align-items: center;
+      text-align: center;
+      gap: 4px;
+    }
+
+    .seat-card.no-photo-mode .seat-stu-title {
+      font-size: clamp(1.04rem, 1.3vw, 1.28rem);
     }
 
     .seat-pc-label {
@@ -2485,6 +2491,9 @@
           <div class="seating-toolbar-group">
             <button type="button" class="btn btn-primary" style="padding:6px 12px; font-size:0.78rem; background:#4f46e5;" onclick="openRosterPhotoModal()">
               📸 명렬·사진 업로드
+            </button>
+            <button type="button" class="btn btn-outline" id="seatingTogglePhotoBtn" style="padding:6px 12px; font-size:0.8rem; font-weight:900; border-width:2px;" onclick="toggleSeatingPhotoDisplay()">
+              🙈 사진 숨기기
             </button>
             <button type="button" class="btn btn-outline" id="seatingMoveModeBtn" style="padding:6px 10px; font-size:0.78rem;" onclick="toggleSeatingMoveMode()">
               🔄 자리 이동 모드: OFF
@@ -7196,8 +7205,12 @@
 
     function toggleSeatingPhotoDisplay(checked) {
       ensureSeatingStateRoot();
-      appState.seatingData.showPhotos = !!checked;
-      saveState();
+      if (typeof checked === 'boolean') {
+        appState.seatingData.showPhotos = checked;
+      } else {
+        appState.seatingData.showPhotos = !appState.seatingData.showPhotos;
+      }
+      saveState(appState.seatingData.showPhotos ? '👁️ 자리배치표의 학생 사진을 다시 표시합니다.' : '🙈 학생 자리 확인을 위해 자리배치표의 사진을 숨겼습니다.');
       renderAll();
     }
 
@@ -7375,7 +7388,8 @@
           ${photoHtml}
           <div class="seat-info-col">
             <div class="seat-pc-label">${seatLabelText}</div>
-            <div class="seat-stu-title" onclick="openStudentPhotoZoom(event, '${cls}', '${stu.no}')" style="cursor:zoom-in;" title="클릭하면 학생의 큰 사진과 학번이 보입니다">${stu.no}번 ${escapeHtml(stu.name)}</div>
+            <div class="seat-stu-title"
+                 ${showPhotos ? `onclick="openStudentPhotoZoom(event, '${cls}', '${stu.no}')" style="cursor:zoom-in;" title="클릭하면 학생의 큰 사진과 학번이 보입니다"` : ''}>${stu.no}번 ${escapeHtml(stu.name)}</div>
           </div>
           ${attBadgeHtml}
           ${(showGroupBadges && grpNum) ? `<div class="seat-group-badge">${grpNum}모둠</div>` : ''}
@@ -7425,6 +7439,21 @@
       if (showPhotoChk) showPhotoChk.checked = !!appState.seatingData.showPhotos;
       const showGrpChk = document.getElementById('seatingShowGroupCheck');
       if (showGrpChk) showGrpChk.checked = !!appState.seatingData.showGroupBadges;
+
+      const togglePhotoBtn = document.getElementById('seatingTogglePhotoBtn');
+      if (togglePhotoBtn) {
+        if (appState.seatingData.showPhotos) {
+          togglePhotoBtn.style.background = '#fff1f2';
+          togglePhotoBtn.style.borderColor = '#fb7185';
+          togglePhotoBtn.style.color = '#be123c';
+          togglePhotoBtn.innerHTML = '🙈 사진 숨기기';
+        } else {
+          togglePhotoBtn.style.background = '#eef2ff';
+          togglePhotoBtn.style.borderColor = '#6366f1';
+          togglePhotoBtn.style.color = '#4338ca';
+          togglePhotoBtn.innerHTML = '👁️ 사진 보이기';
+        }
+      }
 
       const moveBtn = document.getElementById('seatingMoveModeBtn');
       if (moveBtn) {
